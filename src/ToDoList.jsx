@@ -36,25 +36,25 @@ function ToDoList() {
     return (
         <div className="container">
             <h1 className="header">To-Do List</h1>
-            <div className="box">
-                <button className="add-task" onClick={togglePopUp}>
-                    +
-                </button>     
+            <div className="box">   
                 <ul>
                     {tasks.map((task, index) =>
                         <li key={index}>
                             <button className="completed-button" onClick={() => completeTask(index)}>
-                                Completed
+                                
                             </button>
                             <span className="text" style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
                                 {task.text}
                             </span>
                             <button className="delete-button" onClick={() => deleteTask(index)}>
-                                -
+                                —
                             </button>
                         </li>
                     )}
                 </ul>
+                <button className="add-task" onClick={togglePopUp}>
+                    +
+                </button>  
             </div>
             
             {isPopupOpen && (
