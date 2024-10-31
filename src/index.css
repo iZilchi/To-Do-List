@@ -1,0 +1,29 @@
+:root {
+  --primary-color: #fff;
+  --secondary-color: #000;
+  --background-color: #7D3333;
+  --linear-color: #785B5B;
+} 
+
+html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  color: var(--primary-color);
+  background: linear-gradient(var(--background-color), var(--linear-color));
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+ul  {
+  list-style: none;
+}
