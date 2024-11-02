@@ -3,18 +3,47 @@ import React, { useState } from 'react';
 function ToDoList() {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
+    const [importance, setImportance] = useState("not-important");           {/*array for importance*/}
+    const [urgency, setUrgency] = useState("not-urgent");                    {/*array for urgency*/}
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [activeButton, setActiveButton] = useState(null);
+    const [activeDisplay, setActiveDisplay] = useState("todo");             {/*array for display buttons: todo and Completed*/}
+    const [activeSort, setActiveSort] = useState(null);                     {/*array for sort buttons: urgencyimportance, importance, urgency*/}
+
+    const displayedTasks = tasks.filter(task =>
+        activeDisplay === "todo" ? !task.completed : task.completed         /*filter function para sa todo at completed display*/
+    );
 
     function handleInputChange(event) {
         setNewTask(event.target.value);
     }
 
-    function addTask() {
-        if (newTask.trim() !== "") {
-            setTasks(t => [...t, { text: newTask, completed: false }]);
-            setNewTask("");
+    function handleImportanceChange(event){
+        setImportance(event.target.value);
+    }
+
+    function handleUrgencyChange(event){
+        setUrgency(event.target.value);
+    }
+
+    function handleDisplayChange(buttonType) {                              {/*for getting the value of display buttons*/}
+        setActiveDisplay(buttonType);
+    }
+
+    function handleSortChange(buttonType){                                  {/*for getting the value of sort buttons*/}
+        setActiveSort(buttonType);
+    }
+
+    function addTask() {                                                    {/*updated: di magcclose yung task creation window hanggang di pinipindot yung + button*/}
+        if (setIsPopupOpen === 'true'){
             setIsPopupOpen(false);
+        }else{
+            if (newTask.trim() !== "") {
+                setTasks(t => [...t, { text: newTask, completed: false, importance, urgency }]);        {/*Additional importance and urgency value to add to task*/}
+                setNewTask("");
+                setImportance("not-important");                                 
+                setUrgency("not-urgent");
+
+            }
         }
     }
 
@@ -24,7 +53,7 @@ function ToDoList() {
     }
 
     function completeTask(index) {
-        const updatedTasks = tasks.map((task, i) => 
+        const updatedTasks = displayedTasks.map((task, i) => 
             i === index ? { ...task, completed: !task.completed } : task
         );
         setTasks(updatedTasks);
@@ -34,32 +63,29 @@ function ToDoList() {
         setIsPopupOpen(prev => !prev);
     }
 
-    function handleButtonClick(buttonType) {
-        setActiveButton(buttonType);
-    }
 
     return (
         <div className="container">
             <h1 className="header">To-Do List</h1>
-            <div className="box">
+            <div className="container-outline">             {/*classname*/}
                 <div className="progress-bar">0%</div>
-                <div className="sort-container">
+                <div className="view-container">            {/*classname*/}
                     <button
-                        className={`to-do-sort ${activeButton === 'todo' ? 'active' : ''}`}
-                        onClick={() => handleButtonClick('todo')}
+                        className={`to-do-view ${activeDisplay === 'todo' ? 'active' : ''}`}     /*classname*/
+                        onClick={() => handleDisplayChange('todo')}
                     >
                         To-Do
                     </button>
                     <button
-                        className={`completed-sort ${activeButton === 'completed' ? 'active' : ''}`}
-                        onClick={() => handleButtonClick('completed')}
+                        className={`completed-view ${activeDisplay === 'completed' ? 'active' : ''}`}    /*classname*/
+                        onClick={() => handleDisplayChange('completed')}
                     >
                         Completed
                     </button>    
                 </div>
                 <div className="list-container">
-                    <ul>
-                        {tasks.map((task, index) =>
+                    <ol>
+                        {displayedTasks.map((task, index) =>                /*changed tasks to displayedTasks*/
                             <li key={index}>
                                 <button className="completed-button" onClick={() => completeTask(index)}>
                                 </button>
@@ -71,24 +97,24 @@ function ToDoList() {
                                 </button>
                             </li>
                         )}
-                    </ul>
+                    </ol>
                 </div>   
-                <div className="eisenhower-container">
+                <div className="sort-container">            {/*classname*/}
                     <button
-                        className={`importance-urgency-sort ${activeButton === 'importance-urgency' ? 'active' : ''}`}
-                        onClick={() => handleButtonClick('importance-urgency')}
+                        className={`importance-urgency-sort ${activeSort === 'importance-urgency' ? 'active' : ''}`}
+                        onClick={() => handleSortChange('importance-urgency')}
                     >
                         Importance Urgency
                     </button>
                     <button
-                        className={`importance-sort ${activeButton === 'importance' ? 'active' : ''}`}
-                        onClick={() => handleButtonClick('importance')}
+                        className={`importance-sort ${activeSort === 'importance' ? 'active' : ''}`}
+                        onClick={() => handleSortChange('importance')}
                     >
                         Importance
                     </button>
                     <button
-                        className={`urgency-sort ${activeButton === 'urgency' ? 'active' : ''}`}
-                        onClick={() => handleButtonClick('urgency')}
+                        className={`urgency-sort ${activeSort === 'urgency' ? 'active' : ''}`}
+                        onClick={() => handleSortChange('urgency')}
                     >
                         Urgency
                     </button>    
@@ -108,11 +134,11 @@ function ToDoList() {
                         onChange={handleInputChange}
                     />
                     <div className="pop-up-container">
-                        <select className="option-container">
+                        <select className="option-container" value={importance} onChange={handleImportanceChange}>
                             <option className="option-button" value="important">Important</option>
                             <option className="option-button" value="not-important">Not Important</option>
                         </select>
-                        <select className="option-container">
+                        <select className="option-container" value={urgency} onChange={handleUrgencyChange}>
                             <option className="option-button" value="urgent">Urgent</option>
                             <option className="option-button" value="not-urgent">Not Urgent</option>
                         </select>
