@@ -1,55 +1,93 @@
-// Ginamitan ko na nang shorthand yung mga function para malinis tingnan
 import React, { useState, useEffect } from 'react';
 
 function ToDoList() {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
-    const [importance, setImportance] = useState("not-important");
-    const [urgency, setUrgency] = useState("not-urgent");
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+     //ginawa kong number yung value ng importance at urgency
+    const [importance, setImportance] = useState(2);
+    const [urgency, setUrgency] = useState(2);
+
+    const [isActive, setisActive] = useState(false);
     const [activeDisplay, setActiveDisplay] = useState("to-do");
     const [activeSort, setActiveSort] = useState(null);
     const [progress, setProgress] = useState(0);
+    
+    
 
-    // Galing gpt yung calculation nung progress depende kung gaano kadami yung task
+    const handleInputChange = (e) => setNewTask(e.target.value);
+
+    //Niconvert ko yung value ng importance at urgency sa number
+    const handleImportanceChange = (e) => setImportance(Number(e.target.value));
+    const handleUrgencyChange = (e) => setUrgency(Number(e.target.value));
+
+    const handleDisplayChange = (displayType) => setActiveDisplay(displayType);
+
+    //Minodify ko para madeselect. Nilagyan ko ng condition na nagseset ng null pag active tas pinindot uli.
+    const handleSortChange = (sortType) => setActiveSort(prev => (prev === sortType ? null : sortType));
+
+    //Pinaltan ko yung togglePopUp ng pangalan para sa naming convention since ginamit din to dun sa sort buttons.
+    const toggleActive = () => setisActive(prev => !prev);
+
     const calculateProgress = () => {
         const completedTasks = tasks.filter(task => task.completed).length;
         return tasks.length ? (completedTasks / tasks.length) * 100 : 0;
     };
 
-    // Pag-uupdate nung progress
     useEffect(() => {
         setProgress(calculateProgress());
     }, [tasks]);
 
-    const displayedTasks = tasks.filter(task =>
-        activeDisplay === "to-do" ? !task.completed : task.completed
-    );
+    //Eisen Sort: Importance and Urgency, Importance, Urgency, default yung return 0
+    function eisenSort(tasks, activeSort){
+        return tasks.slice().sort((a,b) => {
+            if (activeSort === "importance-urgency") {
+                return (a.scale - b.scale);
+            } else if (activeSort === "importance") {
+                return (a.importance - b.importance);
+            } else if (activeSort === "urgency"){
+                return (a.urgency - b.urgency);
+            } else {
+                return 0;
+            }
+        });
+    }
 
-    const handleInputChange = (e) => setNewTask(e.target.value);
-    const handleImportanceChange = (e) => setImportance(e.target.value);
-    const handleUrgencyChange = (e) => setUrgency(e.target.value);
-    const handleDisplayChange = (displayType) => setActiveDisplay(displayType);
-    const handleSortChange = (sortType) => setActiveSort(sortType);
-    const togglePopUp = () => setIsPopupOpen(prev => !prev);
+    //Pinaltan ko yung displayedTasks neto para default nalang na magdidisplay yung displayedTask pag walang sort na pinili
+    const sortedTasks = eisenSort(tasks.filter(task => activeDisplay === "to-do" ? !task.completed : task.completed), activeSort);
 
-    // Gumamit ng Date.now() function para mag set ng unique id sa bawat tasks since iba't iba ang timestamp ng pag-aadd ng task
+    // Dinagdagan ko ng scale yung setTasks para yun gagamitin sa importance-urgency sorting.
     const addTask = () => {
         if (newTask.trim()) {
+
+            let taskScale = 4;
+
+            if(importance === 1 && urgency === 1){
+                taskScale = 1;
+            } else if (importance === 2 && urgency === 1){
+                taskScale = 2;
+            } else if (importance === 1 && urgency === 2){
+                taskScale = 3;
+            } else {
+                taskScale = 4;
+            }
+            
             setTasks([...tasks, {
                 id: Date.now(),
                 text: newTask,
                 completed: false,
                 importance,
-                urgency
+                urgency,
+                scale: taskScale
+
             }]);
+            
             setNewTask("");
-            setImportance("not-important");
-            setUrgency("not-urgent");
+            setImportance(2);
+            setUrgency(2);
         }
     };
 
-    // Pinaltan ko yung displayedTasks.map to tasks.map para maayos yung pag display nung completed tasks
     const completeTask = (id) => {
         setTasks(tasks.map(task =>
             task.id === id ? { ...task, completed: !task.completed } : task
@@ -59,6 +97,8 @@ function ToDoList() {
     const deleteTask = (id) => {
         setTasks(tasks.filter(task => task.id !== id));
     };
+
+    
 
     return (
         <div className="container">
@@ -88,7 +128,7 @@ function ToDoList() {
 
                 <div className="list-container">
                     <ol>
-                        {displayedTasks.map(task => (
+                        {sortedTasks.map(task => (
                             <li key={task.id}>
                                 <button className="completed-button" onClick={() => completeTask(task.id)} />
                                 <span className="text" style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
@@ -112,26 +152,29 @@ function ToDoList() {
                     ))}
                 </div>
 
-                <button className="add-task" onClick={togglePopUp}>+</button>
+                <button className="add-task" onClick={toggleActive}>+</button>
             </div>
 
-            {isPopupOpen && (
+            {isActive && (
                 <div className="pop-up">
-                    <input
+                    <input id="task-input"
                         type="text"
                         placeholder="Enter a new task..."
                         className="task-textbox"
                         value={newTask}
                         onChange={handleInputChange}
                     />
+
+                    {/*Binago ko value ng option sa importance at urgency*/}
+
                     <div className="pop-up-container">
-                        <select className="option-container" value={importance} onChange={handleImportanceChange}>
-                            <option value="important">Important</option>
-                            <option value="not-important">Not Important</option>
+                        <select className="option-container" value={importance} onChange={handleImportanceChange} id="importance-select" name="importance">
+                            <option value={1}>Important</option>
+                            <option value={2}>Not Important</option>
                         </select>
-                        <select className="option-container" value={urgency} onChange={handleUrgencyChange}>
-                            <option value="urgent">Urgent</option>
-                            <option value="not-urgent">Not Urgent</option>
+                        <select className="option-container" value={urgency} onChange={handleUrgencyChange} id="urgency-select" name="urgency">
+                            <option value={1}>Urgent</option>
+                            <option value={2}>Not Urgent</option>
                         </select>
                         <button className="add-button" onClick={addTask}>+</button>
                     </div>
