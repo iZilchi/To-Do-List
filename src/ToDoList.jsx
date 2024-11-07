@@ -1,32 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';  
+// import galing sa firebase para masave dun sa realtime database
+import { database } from './firebase'; 
+import { ref, set, push, onValue, update, remove } from 'firebase/database';
 
 function ToDoList() {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
-
-     //ginawa kong number yung value ng importance at urgency
     const [importance, setImportance] = useState(2);
     const [urgency, setUrgency] = useState(2);
-
     const [isActive, setisActive] = useState(false);
     const [activeDisplay, setActiveDisplay] = useState("to-do");
     const [activeSort, setActiveSort] = useState(null);
     const [progress, setProgress] = useState(0);
     
-    
+    //Ito yung para lumabas ang result dun sa realtime database
+    useEffect(() => {
+        const tasksRef = ref(database, 'tasks');
+        onValue(tasksRef, (snapshot) => {
+            const tasksData = snapshot.val();
+            const tasksList = tasksData ? Object.keys(tasksData).map(key => ({
+                id: key,
+                ...tasksData[key]
+            })) : [];
+            setTasks(tasksList);
+        });
+    }, []);
 
     const handleInputChange = (e) => setNewTask(e.target.value);
-
-    //Niconvert ko yung value ng importance at urgency sa number
     const handleImportanceChange = (e) => setImportance(Number(e.target.value));
     const handleUrgencyChange = (e) => setUrgency(Number(e.target.value));
-
     const handleDisplayChange = (displayType) => setActiveDisplay(displayType);
-
-    //Minodify ko para madeselect. Nilagyan ko ng condition na nagseset ng null pag active tas pinindot uli.
     const handleSortChange = (sortType) => setActiveSort(prev => (prev === sortType ? null : sortType));
-
-    //Pinaltan ko yung togglePopUp ng pangalan para sa naming convention since ginamit din to dun sa sort buttons.
     const toggleActive = () => setisActive(prev => !prev);
 
     const calculateProgress = () => {
@@ -53,16 +57,25 @@ function ToDoList() {
         });
     }
 
-    //Pinaltan ko yung displayedTasks neto para default nalang na magdidisplay yung displayedTask pag walang sort na pinili
     const sortedTasks = eisenSort(tasks.filter(task => activeDisplay === "to-do" ? !task.completed : task.completed), activeSort);
 
-    // Dinagdagan ko ng scale yung setTasks para yun gagamitin sa importance-urgency sorting.
     const addTask = () => {
         if (newTask.trim()) {
 
-            let taskScale = 4;
-
-            if(importance === 1 && urgency === 1){
+            //let taskScale = 4;
+            //Ito ang pinalit ko dun sa taas nitong comment bale parang pinaikli nan lang yung nasa ibaba ng comment
+            let taskScale = (importance === 1 && urgency === 1) ? 1 : (importance === 2 && urgency === 1) ? 2 : (importance === 1 && urgency === 2) ? 3 : 4;
+            //Ito pinalit ko sa comment sa baba nito
+            // Firebase database push
+            const newTaskRef = push(ref(database, 'tasks'));
+            set(newTaskRef, {
+                text: newTask,
+                completed: false,
+                importance,
+                urgency,
+                scale: taskScale
+            });
+            /*if(importance === 1 && urgency === 1){
                 taskScale = 1;
             } else if (importance === 2 && urgency === 1){
                 taskScale = 2;
@@ -80,7 +93,7 @@ function ToDoList() {
                 urgency,
                 scale: taskScale
 
-            }]);
+            }]);*/
             
             setNewTask("");
             setImportance(2);
@@ -89,13 +102,23 @@ function ToDoList() {
     };
 
     const completeTask = (id) => {
-        setTasks(tasks.map(task =>
+        //para makuha(connected) yung data para sa database para pag may nabago ay mag uupdate 
+        //mag-uupdate gawa ng update function
+        const taskRef = ref(database, `tasks/${id}`);
+        const updatedTask = tasks.find(task => task.id === id);
+        if (updatedTask) {
+            update(taskRef, { completed: !updatedTask.completed });
+        }
+        /*setTasks(tasks.map(task =>
             task.id === id ? { ...task, completed: !task.completed } : task
-        ));
+        ));*/
     };
 
     const deleteTask = (id) => {
-        setTasks(tasks.filter(task => task.id !== id));
+        //maddelete gawa ng remove function
+        const taskRef = ref(database, `tasks/${id}`);
+        remove(taskRef);
+        //setTasks(tasks.filter(task => task.id !== id));
     };
 
     
