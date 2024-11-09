@@ -32,6 +32,8 @@ function ToDoList() {
     const handleDisplayChange = (displayType) => setActiveDisplay(displayType);
     const handleSortChange = (sortType) => setActiveSort(prev => (prev === sortType ? null : sortType));
     const toggleActive = () => setisActive(prev => !prev);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const calculateProgress = () => {
         const completedTasks = tasks.filter(task => task.completed).length;
@@ -121,89 +123,140 @@ function ToDoList() {
         //setTasks(tasks.filter(task => task.id !== id));
     };
 
-    
-
     return (
-        <div className="container">
-            <h1 className="header">To-Do List</h1>
-            <div className="container-outline">
-        
-                <div className="progress-bar">
-                    <div
-                        className="progress-bar-fill"
-                        style={{ width: `${progress}%` }}
-                    >
-                        {Math.round(progress)}%
-                    </div>
-                </div>
-
-                <div className="view-container">
-                    {["to-do", "completed"].map(view => (
-                        <button
-                            key={view}
-                            className={`${view}-view ${activeDisplay === view ? 'active' : ''}`}
-                            onClick={() => handleDisplayChange(view)}
-                        >
-                            {view.charAt(0).toUpperCase() + view.slice(1)}
-                        </button>
-                    ))}
-                </div>
-
-                <div className="list-container">
-                    <ol>
-                        {sortedTasks.map(task => (
-                            <li key={task.id}>
-                                <button className="completed-button" onClick={() => completeTask(task.id)} />
-                                <span className="text" style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
-                                    {task.text}
-                                </span>
-                                <button className="delete-button" onClick={() => deleteTask(task.id)}>—</button>
-                            </li>
-                        ))}
-                    </ol>
-                </div>
-
-                <div className="sort-container">
-                    {["importance-urgency", "importance", "urgency"].map(sortType => (
-                        <button
-                            key={sortType}
-                            className={`${sortType}-sort ${activeSort === sortType ? 'active' : ''}`}
-                            onClick={() => handleSortChange(sortType)}
-                        >
-                            {sortType.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
-                        </button>
-                    ))}
-                </div>
-
-                <button className="add-task" onClick={toggleActive}>+</button>
+        <>
+            {/*
+            <div className="sign-in-container">
+                <h3>Sign In</h3>
+                <input id="user-inputs"
+                        type="text"
+                        placeholder="USERNAME"
+                        className="username-textbox"
+                        onChange={(e) => setEmail(e.target.value)}
+                />
+                <input id="user-inputs"
+                        type="password"
+                        placeholder="PASSWORD"
+                        className="password-textbox"
+                        onChange={(e) => setPassword(e.target.value)}
+                />
+                <h4>OR SIGN IN WITH</h4>
+                <button className="google-button">
+                    <img src="src/Assets/GLogo.png" alt="Google Button" className="g-button"/>
+                </button>
+                <button className="arrow-button">
+                    <img src="src/Assets/Arrow.png" alt="Arrow Button" width="50%;" height="60%;"/>
+                </button>
+                <button className="create-account">CREATE ACCOUNT</button>
+                <button className="forgot-password">FORGOT PASSWORD?</button>
             </div>
 
-            {isActive && (
-                <div className="pop-up">
-                    <input id="task-input"
+
+            <div className="create-container">
+                <h3>CREATE AN ACCOUNT</h3>
+                <input id="user-inputs"
                         type="text"
-                        placeholder="Enter a new task..."
-                        className="task-textbox"
-                        value={newTask}
-                        onChange={handleInputChange}
-                    />
-
-                    {/*Binago ko value ng option sa importance at urgency*/}
-
-                    <div className="pop-up-container">
-                        <select className="option-container" value={importance} onChange={handleImportanceChange} id="importance-select" name="importance">
-                            <option value={1}>Important</option>
-                            <option value={2}>Not Important</option>
-                        </select>
-                        <select className="option-container" value={urgency} onChange={handleUrgencyChange} id="urgency-select" name="urgency">
-                            <option value={1}>Urgent</option>
-                            <option value={2}>Not Urgent</option>
-                        </select>
-                        <button className="add-button" onClick={addTask}>+</button>
+                        placeholder="USERNAME"
+                        className="username-textbox"
+                        onChange={(e) => setEmail(e.target.value)}
+                />
+                <input id="user-inputs"
+                        type="password"
+                        placeholder="PASSWORD"
+                        className="password-textbox"
+                        onChange={(e) => setPassword(e.target.value)}
+                />
+                <h4>OR CREATE AN ACCOUNT WITH</h4>
+                <button className="google-button">
+                    <img src="src/Assets/GLogo.png" alt="Google Button" className="g-button"/>
+                </button>
+                <button className="arrow-button">
+                    <img src="src/Assets/Arrow.png" alt="Arrow Button" width="50%;" height="60%;"/>
+                </button>
+                <button className="already-account">ALREADY HAVE AN ACCOUNT?</button>
+            </div>
+            
+                                    */}
+            <div className="container">
+                <h1 className="header">To-Do List</h1>
+                <div className="container-outline">
+                    <div className="progress-bar">
+                        <div
+                            className="progress-bar-fill"
+                            style={{ width: `${progress}%` }}
+                        >
+                            {Math.round(progress)}%
+                        </div>
                     </div>
+
+                    <div className="view-container">
+                        {["to-do", "completed"].map(view => (
+                            <button
+                                key={view}
+                                className={`${view}-view ${activeDisplay === view ? 'active' : ''}`}
+                                onClick={() => handleDisplayChange(view)}
+                            >
+                                {view.charAt(0).toUpperCase() + view.slice(1)}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="list-container">
+                        <ol>
+                            {sortedTasks.map(task => (
+                                <li key={task.id}>
+                                    <button className="completed-button" onClick={() => completeTask(task.id)} />
+                                    <span className="text" style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+                                        {task.text}
+                                    </span>
+                                    <button className="delete-button" onClick={() => deleteTask(task.id)}>—</button>
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+
+                    <div className="sort-container">
+                        {["importance-urgency", "importance", "urgency"].map(sortType => (
+                            <button
+                                key={sortType}
+                                className={`${sortType}-sort ${activeSort === sortType ? 'active' : ''}`}
+                                onClick={() => handleSortChange(sortType)}
+                            >
+                                {sortType.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
+                            </button>
+                        ))}
+                    </div>
+
+                    <button className="add-task" onClick={toggleActive}>+</button>
                 </div>
-            )}
-        </div>
+
+                {isActive && (
+                    <div className="pop-up">
+                        <input id="task-input"
+                            type="text"
+                            placeholder="Enter a new task..."
+                            className="task-textbox"
+                            value={newTask}
+                            onChange={handleInputChange}
+                        />
+
+                        {/*Binago ko value ng option sa importance at urgency*/}
+
+                        <div className="pop-up-container">
+                            <select className="option-container" value={importance} onChange={handleImportanceChange} id="importance-select" name="importance">
+                                <option value={1}>Important</option>
+                                <option value={2}>Not Important</option>
+                            </select>
+                            <select className="option-container" value={urgency} onChange={handleUrgencyChange} id="urgency-select" name="urgency">
+                                <option value={1}>Urgent</option>
+                                <option value={2}>Not Urgent</option>
+                            </select>
+                            <button className="add-button" onClick={addTask}>+</button>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </>
     );
 }
 
