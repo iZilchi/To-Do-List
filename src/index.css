@@ -468,3 +468,25 @@ h4 {
     opacity: 1;
   }
 }
+.logout-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #f44336; /* Red background color */
+  color: white; /* White text */
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.logout-button:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
+
+.logout-button:focus {
+  outline: none; /* Remove default focus outline */
+}
+

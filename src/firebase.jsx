@@ -1,5 +1,9 @@
+//need ang buong file na ito para sa realtime database
+//link para makita content ng database na iniinput
+// https://to-do-list-fee57-default-rtdb.asia-southeast1.firebasedatabase.app/tasks 
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { getAuth, GoogleAuthProvider} from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAPPr7pMI3LZxz5YAGT_DnZrRCQGnLR_xk",
@@ -15,5 +19,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
-export { database }; 
+export { auth, googleProvider, database }; 
