@@ -1,0 +1,39 @@
+:root {
+    --primary-color: #fff;
+    --secondary-color: #A14444;
+    --background-color: #7D3333;
+    --linear-color: #785B5B;
+}
+
+.sort-container {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    top: 65vh;
+  }
+
+.sort-container button {
+    font-size: 1.2em;
+    margin: 0 21px;
+    padding: 5px;
+    width: 125px;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 3px solid var(--primary-color);
+    box-shadow: 4px 4px #000;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sort-container button:hover,
+.sort-container button:active,
+.sort-container button.active {
+  background-color: #DF6B6B;
+}
+
+@media (max-width: 768px) {
+    .sort-container button {
+        font-size: 1em;
+        width: 100px;
+      }
+}

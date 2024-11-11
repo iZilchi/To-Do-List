@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
-import { database } from './firebase';
+import { auth, database } from './firebase';
 import { ref, onValue, push, set, update, remove } from 'firebase/database';
 import { signOut } from 'firebase/auth';
-import { auth } from './firebase';
 import { useNavigate } from 'react-router-dom';
+import ProgressBar from './components/ProgressBar';
+import TaskList from './components/TaskList';
+import DisplayButton from './components/DisplayButton';
+import SortButton from './components/SortButton';
+import AddTaskForm from './components/AddTaskForm';
 
 function ToDoList() {
     const [tasks, setTasks] = useState([]);
-    const [newTask, setNewTask] = useState("");
-    const [importance, setImportance] = useState(2);
-    const [urgency, setUrgency] = useState(2);
     const [isActive, setisActive] = useState(false);
     const [activeDisplay, setActiveDisplay] = useState("to-do");
     const [activeSort, setActiveSort] = useState(null);
@@ -75,8 +76,8 @@ function ToDoList() {
     const sortedTasks = eisenSort(tasks.filter(task => activeDisplay === "to-do" ? !task.completed : task.completed), activeSort);
 
     // Add a new task for the authenticated user
-    const addTask = () => {
-        if (newTask.trim()) {
+    const addTask = (text, importance, urgency) => {
+        if (text.trim()) {
             const userUid = auth.currentUser?.uid;
             if (userUid) {
                 const taskScale = (importance === 1 && urgency === 1) ? 1 : 
@@ -84,18 +85,12 @@ function ToDoList() {
                                   (importance === 1 && urgency === 2) ? 3 : 4;
                 const newTaskRef = push(ref(database, `users/${userUid}/tasks`));
                 set(newTaskRef, {
-                    text: newTask,
+                    text,
                     completed: false,
                     importance,
                     urgency,
                     scale: taskScale
                 });
-                setNewTask("");
-                setImportance(2);
-                setUrgency(2);
-            } else {
-                alert("User not authenticated.");
-                navigate('/');  
             }
         }
     };
@@ -127,65 +122,13 @@ function ToDoList() {
             <button className="logout-button" onClick={handleLogout}>Logout</button>
 
             <div className="container-outline">
-                <div className="progress-bar">
-                    <div className="progress-bar-fill" style={{ width: `${progress}%` }}>
-                        {Math.round(progress)}%
-                    </div>
-                </div>
-
-                <div className="view-container">
-                    {["to-do", "completed"].map(view => (
-                        <button key={view}
-                                className={`${view}-view ${activeDisplay === view ? 'active' : ''}`}
-                                onClick={() => setActiveDisplay(view)}>
-                            {view.charAt(0).toUpperCase() + view.slice(1)}
-                        </button>
-                    ))}
-                </div>
-
-                <div className="list-container">
-                    <ol>
-                        {sortedTasks.map(task => (
-                            <li key={task.id}>
-                                <button className="completed-button" onClick={() => completeTask(task.id)} />
-                                <span className="text" style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
-                                    {task.text}
-                                </span>
-                                <button className="delete-button" onClick={() => deleteTask(task.id)}>—</button>
-                            </li>
-                        ))}
-                    </ol>
-                </div>
-
-                <div className="sort-container">
-                    {["importance-urgency", "importance", "urgency"].map(sortType => (
-                        <button key={sortType}
-                                className={`${sortType}-sort ${activeSort === sortType ? 'active' : ''}`}
-                                onClick={() => setActiveSort(prev => (prev === sortType ? null : sortType))}>
-                            {sortType.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
-                        </button>
-                    ))}
-                </div>
-
+                <ProgressBar progress={progress} />
+                <DisplayButton activeDisplay={activeDisplay} setActiveDisplay={setActiveDisplay} />
+                <TaskList tasks={sortedTasks} completeTask={completeTask} deleteTask={deleteTask} />
+                <SortButton activeSort={activeSort} setActiveSort={setActiveSort} />
                 <button className="add-task" onClick={() => setisActive(prev => !prev)}>+</button>
             </div>
-
-            {isActive && (
-                <div className="pop-up">
-                    <input id="task-input" type="text" placeholder="Enter a new task..." className="task-textbox" value={newTask} onChange={e => setNewTask(e.target.value)} />
-                    <div className="pop-up-container">
-                        <select className="option-container" value={importance} onChange={e => setImportance(Number(e.target.value))}>
-                            <option value={1}>Important</option>
-                            <option value={2}>Not Important</option>
-                        </select>
-                        <select className="option-container" value={urgency} onChange={e => setUrgency(Number(e.target.value))}>
-                            <option value={1}>Urgent</option>
-                            <option value={2}>Not Urgent</option>
-                        </select>
-                        <button className="add-button" onClick={addTask}>+</button>
-                    </div>
-                </div>
-            )}
+            <AddTaskForm addTask={addTask} isActive={isActive} setisActive={setisActive} />
         </div>
     );
 }
