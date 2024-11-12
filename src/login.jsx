@@ -18,19 +18,25 @@ export function Auth() {
     const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 
     // Validate password length
-    const validatePassword = (password) => password.length >= 6;
+    const validatePasswordLength = (password) => password.length >= 6;
+
+    // Validate password format
+    const validatePasswordFormat = (password) => /[a-zA-Z]/.test(password) && /[0-9]/.test(password) && /^[a-zA-Z0-9._%+-]*$/.test(password);
 
     // Handle Sign Up
     const handleSignUp = async () => {
         if (!validateEmail(email)) {
-            alert("Please enter a valid email address.");
+            setErrorMessage("Please enter a valid email address.");
             return;
         }
-        if (!validatePassword(password)) {
-            alert("Password must be at least 6 characters.");
+        if (!validatePasswordLength(password)) {
+            setErrorMessage("Password must be at least 6 characters.");
             return;
         }
-
+        if (!validatePasswordFormat(password)) {
+            setErrorMessage("Password must contain the following characters: Letters (A-Z or a-z) AND Numbers (0-9) with OPTIONAL dot (.).");
+            return;
+        }
         setLoading(true); // Set loading state
         try {
             await createUserWithEmailAndPassword(auth, email, password);
@@ -38,11 +44,11 @@ export function Auth() {
             navigate('/todo');  // Redirect to ToDo list page after successful sign-up
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
-                alert("This email is already associated with an account. Please sign in.");
+                setErrorMessage("This email is already associated with an account. Please sign in.");
             } else if (error.code === 'auth/weak-password') {
-                alert("Password should be at least 6 characters.");
+                setErrorMessage("Password should be at least 6 characters.");
             } else if (error.code === 'auth/invalid-email') {
-                alert("Invalid email address.");
+                setErrorMessage("Invalid email address.");
             } else {
                 setErrorMessage(error.message);  // Display other errors
             }
@@ -53,23 +59,21 @@ export function Auth() {
 
     // Handle Login
     const handleLogin = async () => {
-        if (!validateEmail(email)) {
-            setErrorMessage("Please enter a valid email address.");
-            return;
-        }
-        if (!validatePassword(password)) {
-            //setErrorMessage("Password must be at least 6 characters.");
-            setErrorMessage("Invalid Password.");
-            return;
-        }
-
         setLoading(true); // Set loading state
         try {
             await signInWithEmailAndPassword(auth, email, password);
             alert("Logged in successfully");
             navigate('/todo');  // Redirect to ToDo list page after successful login
         } catch (error) {
-            setErrorMessage(error.message);  // Display login errors
+            if (error.code === 'auth/invalid-email'){
+                setErrorMessage("Invalid email. Please input correct email and try again.");
+            } else if (error.code === 'auth/missing-password'){
+                setErrorMessage("Missing password input. Please enter your password.");
+            } else if (error.code === 'auth/invalid-credential'){
+                setErrorMessage("Invalid credentials. Please check your email and password.");
+            } else {
+                setErrorMessage("Login failed. Please try again.");
+            }
         } finally {
             setLoading(false); // Reset loading state
         }
