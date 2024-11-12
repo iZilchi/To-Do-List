@@ -12,7 +12,7 @@ function AddTaskForm({addTask, isActive, setisActive}){
         setNewTask("");
         setImportance(2);
         setUrgency(2);
-        setisActive(false);
+        setisActive(true);
     }
 
     return (
@@ -28,8 +28,8 @@ function AddTaskForm({addTask, isActive, setisActive}){
                         <option value={1}>Urgent</option>
                         <option value={2}>Not Urgent</option>
                     </select>
-                    <button className="add-button" onClick={handleAddTask}>+</button>
                 </div>
+                <button className="add-button" onClick={handleAddTask}>+</button>
             </div>
         )
     );

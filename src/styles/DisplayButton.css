@@ -1,29 +1,29 @@
 :root {
-    --primary-color: #fff;
-    --secondary-color: #A14444;
-    --background-color: #7D3333;
-    --linear-color: #785B5B;
-  }
+  --primary-color: #fff;
+  --secondary-color: #A14444;
+  --background-color: #7D3333;
+  --linear-color: #785B5B;
+}
 
-  .view-container {
-    display: flex;
-    position: absolute;
-    justify-content: space-between;
-    top: 13vh;
-  }
+.view-container {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  top: 15%;
+}
 
-  .view-container button {
-    font-size: 1.2em;
-    margin: 0 21px;
-    padding: 5px;
-    width: 125px;
-    border-radius: 20px;
-    background-color: transparent;
-    border: 3px solid var(--primary-color);
-    box-shadow: 4px 4px #000;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+.view-container button {
+  font-size: 0.9rem;
+  margin: 0 10px;
+  padding: 5px;
+  width: 85px;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 3px solid var(--primary-color);
+  box-shadow: 4px 4px #000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
 .view-container button:hover,
 .view-container button:active,
@@ -31,9 +31,52 @@
   background-color: #DF6B6B;
 }
 
-@media (max-width: 768px) {
-    .view-container button {
-      font-size: 1em;
-      width: 100px;
-    }
+@media (min-width: 481px) and (max-width: 600px) {
+  .view-container button {
+    font-size: 1rem;
+    margin: 0 25px;
+    width: 100px;
+  }
 }
+
+@media (min-width: 601px) and (max-width: 768px) {
+  .view-container button {
+    font-size: 1.1rem;
+    margin: 0 25px;
+    width: 110px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .view-container button {
+    font-size: 1.2rem;
+    margin: 0 25px;
+    width: 120px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .view-container button {
+    font-size: 1.3rem;
+    margin: 0 25px;
+    width: 130px;
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .view-container button {
+    font-size: 1.3rem;
+    margin: 0 25px;
+    width: 130px;
+  }
+}
+
+@media (min-width: 1441px) {
+  .view-container button {
+    font-size: 1.3rem;
+    margin: 0 25px;
+    width: 130px;
+  }
+}
+
+

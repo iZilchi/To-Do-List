@@ -6,14 +6,19 @@
 }
 
 html, body {
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   font-family: Itim, sans-serif;
   color: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+body {
   background: linear-gradient(var(--background-color), var(--linear-color));
+  background-size: 100% 100%;
+  background-attachment: fixed;
 }
 
 * {
@@ -22,6 +27,7 @@ html, body {
   box-sizing: border-box;
 }
 
+/* 320px-480px */
 .container {
   display: flex;
   flex-direction: column;
@@ -31,13 +37,12 @@ html, body {
 
 .container-outline {
   position: absolute;
-  top: 10vh;
+  top: 15%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 30vw;
-  min-width: 300px;
-  height: 80vh;
+  width: 70%;
+  height: 70%;
   padding: 12px;
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.1);
@@ -49,8 +54,8 @@ html, body {
 
 h1 {
   position: absolute;
-  top: 1vh;
-  font-size: 3em;
+  top: 10%;
+  font-size: 1.5rem;
   padding: 12px;
   border-radius: 20px;
   background-color: var(--secondary-color);
@@ -74,18 +79,16 @@ input:hover {
   transform: scale(1.02);
 }
 
-
-
 .add-task {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 95%;
-  font-size: 6em;
-  padding-bottom: 25px;
-  width: 4vw;
-  height: 8.5vh;
+  position: relative;
+  top: 82%;
+  font-size: 4.5rem;
+  padding-bottom: 20px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background-color: #DF6B6B;
   border: 2px solid var(--primary-color);
@@ -97,22 +100,26 @@ input::placeholder {
   color: var(--primary-color);
 }
 
+.logout-button {
+  position: absolute;
+  top: 2%;
+  right: 4%;
+  padding: 10px 20px;
+  background-color: #f443365c;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-@media (max-width: 768px) {
-  .container-outline {
-    width: 80vw;
-    min-width: 250px;
-  }
+.logout-button:hover {
+  background-color: #d32f2f;
+}
 
-  h1 {
-    font-size: 2em;
-  }
-
-  .add-task {
-    font-size: 4em;
-    width: 10vw;
-    height: 6vh;
-  }
+.logout-button:focus {
+  outline: none;
 }
 
 @keyframes slideInFromLeft {
@@ -125,24 +132,169 @@ input::placeholder {
     opacity: 1;
   }
 }
-.logout-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 10px 20px;
-  background-color: #f443365c; /* Red background color */
-  color: white; /* White text */
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth transition on hover */
+
+@media (min-width: 481px) and (max-width: 600px) {
+  .container-outline {
+    top: 17%;
+    width: 75%;
+    height: 70%;
+    padding: 12px;
+  }
+  
+  h1 {
+    top: 10%;
+    font-size: 2rem;
+    padding: 15px;
+  }
+  
+  .add-task {
+    top: 81%;
+    font-size: 5rem;
+    padding-bottom: 24px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .logout-button {
+    font-size: 1.1rem;
+  }
 }
 
-.logout-button:hover {
-  background-color: #d32f2f; /* Darker red on hover */
+@media (min-width: 601px) and (max-width: 768px) {
+  .container-outline {
+    top: 17%;
+    width: 70%;
+    height: 70%;
+    padding: 12px;
+  }
+  
+  h1 {
+    top: 10%;
+    font-size: 2rem;
+    padding: 15px;
+  }
+  
+  .add-task {
+    top: 80%;
+    font-size: 5rem;
+    padding-bottom: 24px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .logout-button {
+    font-size: 1.3rem;
+  }
 }
 
-.logout-button:focus {
-  outline: none; /* Remove default focus outline */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container-outline {
+    top: 14%;
+    width: 50%;
+    height: 75%;
+    padding: 12px;
+  }
+  
+  h1 {
+    top: 5%;
+    font-size: 2.5rem;
+    padding: 15px;
+  }
+  
+  .add-task {
+    top: 81%;
+    font-size: 5rem;
+    padding-bottom: 24px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .logout-button {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .container-outline {
+    top: 14%;
+    width: 40%;
+    height: 75%;
+    padding: 12px;
+  }
+  
+  h1 {
+    top: 4%;
+    font-size: 2.8rem;
+    padding: 15px;
+  }
+  
+  .add-task {
+    top: 79%;
+    font-size: 7rem;
+    padding-bottom: 30px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .logout-button {
+    top: 4%;
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .container-outline {
+    top: 14%;
+    width: 35%;
+    height: 75%;
+    padding: 12px;
+  }
+  
+  h1 {
+    top: 5%;
+    font-size: 2.5rem;
+    padding: 15px;
+  }
+  
+  .add-task {
+    top: 81%;
+    font-size: 5rem;
+    padding-bottom: 24px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .logout-button {
+    top: 4%;
+    right: 2%;
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 1441px) {
+  .container-outline {
+    top: 12%;
+    width: 30%;
+    height: 80%;
+    padding: 12px;
+  }
+  
+  h1 {
+    top: 4%;
+    font-size: 2.5rem;
+    padding: 15px;
+  }
+  
+  .add-task {
+    top: 79%;
+    font-size: 7rem;
+    padding-bottom: 30px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .logout-button {
+    right: 2%;
+    font-size: 1.6rem;
+  }
 }

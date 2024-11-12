@@ -1,37 +1,67 @@
 :root {
-    --primary-color: #fff;
-    --secondary-color: #A14444;
-    --background-color: #7D3333;
-    --linear-color: #785B5B;
+  --primary-color: #fff;
+  --secondary-color: #A14444;
+  --background-color: #7D3333;
+  --linear-color: #785B5B;
 }
 
-  .progress-bar {
-    position: absolute;
-    top: 7vh;
-    width: 26vw;
-    height: 3.5vh;
-    text-align: center;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 3px solid var(--primary-color);
-    box-shadow: 4px 4px #000;
-    overflow: hidden;
-  }
+.progress-bar {
+  position: absolute;
+  top: 9%;
+  width: 88%;
+  height: 4%;
+  text-align: center;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 3px solid var(--primary-color);
+  box-shadow: 4px 4px #000;
+  overflow: hidden;
+}
 
+.progress-bar-fill {
+  height: 100%;
+  background-color: #DF6B6B;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  white-space: nowrap;
+  transition: width 0.5s ease;
+}
+
+@media (min-width: 481px) and (max-width: 600px) {
   .progress-bar-fill {
-    height: 100%;
-    background-color: #DF6B6B;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5em;
-    white-space: nowrap;
-    transition: width 0.5s ease;
+    font-size: 1rem;
   }
+}
 
-  @media (max-width: 768px) {
-    .progress-bar {
-        width: 80%;
-    }
+@media (min-width: 601px) and (max-width: 768px) {
+  .progress-bar-fill {
+    font-size: 1.1rem;
   }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .progress-bar-fill {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .progress-bar-fill {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .progress-bar-fill {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 1441px) {
+  .progress-bar-fill {
+    font-size: 1.5rem;
+  }
+}

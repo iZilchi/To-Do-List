@@ -5,7 +5,7 @@ import '../styles/TaskItem.css';
 function TaskItem ({task, completeTask, deleteTask}){
     return (
         <li>
-            <button className="completed-button" onClick={() => completeTask(task.id)} />
+            <button className="completed-button" onClick={() => completeTask(task.id)}>✓</button>
             <span className="text" style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
                 {task.text}
             </span>

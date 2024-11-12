@@ -1,124 +1,282 @@
 :root {
-    --primary-color: #fff;
-    --secondary-color: #A14444;
-    --background-color: #7D3333;
-    --linear-color: #785B5B;
+  --primary-color: #fff;
+  --secondary-color: #A14444;
+  --background-color: #7D3333;
+  --linear-color: #785B5B;
 }
 
+/* 320px-480px */
 .sign-in-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 30vw;
-    min-width: 300px;
-    height: 80vh;
-    padding: 12px;
-    border-radius: 12px;
-    background-color: rgba(255, 255, 255);
-    box-shadow: 6px 6px #000;
-    animation: slideInFromLeft 0.7s ease forwards;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75vw;
+  height: 70vh;
+  padding: 10px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255);
+  box-shadow: 3px 3px #000;
+  animation: slideInFromLeft 0.7s ease forwards;
 }
 
 .username-textbox, .password-textbox {
-  position: relative;
-  top: 5%;
-  width: 23vw;
-  font-size: 1em;
-  padding: 15px;
+  width: 80%;
+  font-size: 0.9rem;
+  padding: 10px;
   margin: 10px 0;
   background-color: #EFEFEF;
 }
 
-.username-textbox, .password-textbox::placeholder {
+.username-textbox::placeholder, .password-textbox::placeholder {
   color: #7A7A7A;
 }
 
-.sign-in-button{
+.sign-in-button {
   position: relative;
-  top: 5%;
-  width: 13vw;
-  font-size: 1em;
-  padding: 15px;
+  top: -2%;
+  width: 60%;
+  font-size: 0.9rem;
+  padding: 12px;
   margin: 10px;
-  background-color: hsl(0, 65%, 45%);
+  background-color: var(--secondary-color);
 }
 
-.toggle-sign-up {
+.toggle-sign-up, .forgot-password {
   position: relative;
   top: 5%;
-  width: 23vw;
-  font-size: .7em;
-  padding: 10px;
-  margin: 10px 0;
-  background-color: hsl(0, 65%, 45%);
+  font-size: 0.9rem;
+  color: #7A7A7A;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 h3 {
-  position: absolute;
-  top: 10%;
-  font-size: 2em;
+  font-size: 1.7rem;
   color: #000;
 }
 
 h4 {
   position: relative;
-  top: 5%;
-  font-size: 1em;
+  top: -2%;
+  font-size: 0.9rem;
   color: #7A7A7A;
-}
-
-.arrow-button {
-  position: relative;
-  top: 15%;
-  background-color: var(--secondary-color);
-  border-radius: 25px;
-  width: 17%;
-  height: 13%;
 }
 
 .google-button {
   position: relative;
-  top: 5%;
-  width: 23%;
-  height: 5%;
-  padding: 4px;
+  top: -4%;
+  width: 40%;
+  height: auto;
+  padding: 6px;
   background-color: var(--primary-color);
   border: 1px solid #9F9F9F;
 }
 
 .g-button {
-  width: 25px;
-  height: 25px;
+  width: 18px;
+  height: 18px;
 }
 
-.create-account,
-.forgot-password {
-  position: relative;
-  top: 20%;
-  font-size: 1em;
-  color: #7A7A7A;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.already-account {
-  position: relative;
-  top: 20%;
-  font-size: 1em;
-  color: #7A7A7A;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-  
-  @media (max-width: 768px) {
-    .container {
-      width: 100%;
-    }
-  
-    h3 {
-      font-size: 2em;
-    }
+@media (min-width: 481px) and (max-width: 600px) {
+  .sign-in-button {
+    font-size: 1rem;
+    padding: 15px;
   }
+  
+  h3 {
+    font-size: 2rem;
+    color: #000;
+  }
+
+  .g-button {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  .sign-in-container {
+    width: 60vw;
+    height: 70vh;
+    padding: 12px;
+  }
+
+  .username-textbox, .password-textbox {
+    padding: 15px;
+  }
+
+  .sign-in-button {
+    font-size: 1rem;
+    padding: 15px;
+  }
+  
+  h3 {
+    font-size: 2rem;
+    color: #000;
+  }
+
+  .g-button {
+    width: 20px;
+    height: 20px;
+  }
+
+  .toggle-sign-up, .forgot-password {
+    top: -1%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sign-in-container {
+    width: 60vw;
+    height: 75vh;
+    padding: 12px;
+  }
+
+  .username-textbox, .password-textbox {
+    padding: 15px;
+  }
+
+  .sign-in-button {
+    font-size: 1rem;
+    padding: 15px;
+  }
+  
+  h3 {
+    font-size: 2rem;
+    color: #000;
+  }
+
+  .g-button {
+    width: 20px;
+    height: 20px;
+  }
+
+  .toggle-sign-up, .forgot-password {
+    top: 5%;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .sign-in-container {
+    width: 45vw;
+    height: 80vh;
+  }
+
+  .username-textbox, .password-textbox {
+    padding: 15px;
+  }
+
+  .sign-in-button {
+    top: -2%;
+    font-size: 1rem;
+    padding: 15px;
+  }
+  
+  h3 {
+    font-size: 2rem;
+    color: #000;
+  }
+
+  h4 {
+    top: -2%;
+  }
+  
+  .google-button {
+    top: -4%;
+  }
+
+  .g-button {
+    width: 20px;
+    height: 20px;
+  }
+
+  .toggle-sign-up, .forgot-password {
+    top: 7%;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .sign-in-container {
+    width: 30vw;
+    height: 80vh;
+  }
+
+  .username-textbox, .password-textbox {
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  .sign-in-button {
+    top: -2%;
+    font-size: 1rem;
+    padding: 15px;
+  }
+  
+  h3 {
+    font-size: 2rem;
+    color: #000;
+  }
+
+  h4 {
+    top: -2%;
+  }
+  
+  .google-button {
+    top: -4%;
+  }
+
+  .g-button {
+    width: 20px;
+    height: 20px;
+  }
+
+  .toggle-sign-up, .forgot-password {
+    top: 7%;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1441px) {
+  .sign-in-container {
+    width: 30vw;
+    height: 80vh;
+  }
+
+  .username-textbox, .password-textbox {
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  .sign-in-button {
+    font-size: 1.2rem;
+    padding: 15px;
+    position: relative;
+    top: -2%;
+  }
+  
+  h3 {
+    font-size: 2.5rem;
+    color: #000;
+  }
+
+  h4 {
+    top: -2%;
+  }
+  
+  .google-button {
+    top: -4%;
+  }
+
+  .g-button {
+    width: 20px;
+    height: 20px;
+  }
+
+  .toggle-sign-up, .forgot-password {
+    top: 7%;
+    font-size: 1rem;
+  }
+}

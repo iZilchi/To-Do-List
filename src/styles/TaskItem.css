@@ -9,7 +9,7 @@ li {
     display: flex;
     justify-content: space-between;
     width: 90%;
-    font-size: 2em;
+    font-size: 0.9rem;
     padding: 15px;
     margin: 10px 0;
     border-radius: 20px;
@@ -20,11 +20,19 @@ li {
 }
 
 .completed-button {
-    width: 35px;
-    height: 35px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     border: 2px solid var(--primary-color);
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    line-height: 1;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 
 .delete-button, .completed-button {
     font-size: 1em;
@@ -35,3 +43,95 @@ li {
 .completed-button:hover, .delete-button:hover {
     transform: scale(1.25);
 }
+
+@media (min-width: 481px) and (max-width: 600px) {
+    li {
+        font-size: 1rem;
+    }
+    
+    .completed-button {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .delete-button, .completed-button {
+        font-size: 1.1em;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+    li {
+        font-size: 1.1rem;
+    }
+    
+    .completed-button {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .delete-button, .completed-button {
+        font-size: 1.2em;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    li {
+        font-size: 1.2rem;
+    }
+    
+    .completed-button {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .delete-button, .completed-button {
+        font-size: 1.3em;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    li {
+        font-size: 1.3rem;
+    }
+    
+    .completed-button {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .delete-button, .completed-button {
+        font-size: 1.3em;
+    }
+}
+
+@media (min-width: 1281px) and (max-width: 1440px) {
+    li {
+        font-size: 1.4rem;
+    }
+    
+    .completed-button {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .delete-button, .completed-button {
+        font-size: 1.3em;
+    }
+}
+
+@media (min-width: 1441px) {
+    li {
+        font-size: 1.5rem;
+    }
+    
+    .completed-button {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .delete-button, .completed-button {
+        font-size: 1.3em;
+    }
+}
+
+

@@ -162,6 +162,14 @@ export function Auth() {
                 }}
             />
 
+            {/* Error Message Display */}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+            <h4>OR SIGN IN WITH</h4>
+            <button className="google-button" onClick={handleGoogleLogin} disabled={loading}>
+                {loading ? "Signing in..." : <img src="src/Assets/GLogo.png" alt="Google Button" className="g-button" />}
+            </button>
+
             {/* Sign Up / Sign In Button */}
             <button
                 className="sign-in-button"
@@ -169,6 +177,11 @@ export function Auth() {
                 disabled={loading}  // Disable button while loading
             >
                 {loading ? "Processing..." : isSignUp ? "Create Account" : "Sign In"}
+            </button>
+
+            {/* Forgot Password Button */}
+            <button className="forgot-password" onClick={handleForgotPassword} disabled={loading}>
+                FORGOT PASSWORD?
             </button>
 
             {/* Toggle between Sign In and Sign Up */}
@@ -180,19 +193,6 @@ export function Auth() {
                 }}
             >
                 {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Create Account"}
-            </button>
-
-            {/* Error Message Display */}
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-            <h4>OR SIGN IN WITH</h4>
-            <button className="google-button" onClick={handleGoogleLogin} disabled={loading}>
-                {loading ? "Signing in..." : <img src="src/Assets/GLogo.png" alt="Google Button" className="g-button" />}
-            </button>
-
-            {/* Forgot Password Button */}
-            <button className="forgot-password" onClick={handleForgotPassword} disabled={loading}>
-                FORGOT PASSWORD?
             </button>
 
             {/* Logout Button (only visible if user is logged in) */}
