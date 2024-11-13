@@ -41,12 +41,16 @@ function ToDoList() {
                           ...tasksData[key],
                       }))
                     : [];
+                
+                // Sort tasks by the 'order' property
+                tasksList.sort((a, b) => a.order - b.order);
                 setTasks(tasksList);
             });
         } else {
             navigate('/');  // Redirect to login if the user is not authenticated
         }
     }, [navigate]);
+    
 
     // Calculate progress based on completed tasks
     const calculateProgress = () => {
@@ -89,11 +93,13 @@ function ToDoList() {
                     completed: false,
                     importance,
                     urgency,
-                    scale: taskScale
+                    scale: taskScale,
+                    order: tasks.length,  // Set the initial order
                 });
             }
         }
     };
+    
 
     // Toggle task completion status
     const completeTask = (id) => {
@@ -109,21 +115,52 @@ function ToDoList() {
 
     const moveTaskUp = (id) => {
         const index = tasks.findIndex(task => task.id === id);
-        if (index > 0){
-            const updatedTask = [...tasks];
-            [updatedTask[index], updatedTask[index - 1]] = [updatedTask[index - 1], updatedTask[index]];
-            setTasks(updatedTask);
+        if (index > 0) {
+            const updatedTasks = [...tasks];
+            
+            // Swap order values
+            [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]];
+            updatedTasks[index].order = index;
+            updatedTasks[index - 1].order = index - 1;
+    
+            // Update tasks locally
+            setTasks(updatedTasks);
+    
+            // Update in Firebase
+            const userUid = auth.currentUser?.uid;
+            if (userUid) {
+                const taskRef1 = ref(database, `users/${userUid}/tasks/${updatedTasks[index].id}`);
+                const taskRef2 = ref(database, `users/${userUid}/tasks/${updatedTasks[index - 1].id}`);
+                update(taskRef1, { order: updatedTasks[index].order });
+                update(taskRef2, { order: updatedTasks[index - 1].order });
+            }
         }
     };
-
+    
     const moveTaskDown = (id) => {
         const index = tasks.findIndex(task => task.id === id);
-        if (index < tasks.length - 1){
-            const updatedTask = [...tasks];
-            [updatedTask[index], updatedTask[index + 1]] = [updatedTask[index + 1], updatedTask[index]];
-            setTasks(updatedTask);
+        if (index < tasks.length - 1) {
+            const updatedTasks = [...tasks];
+            
+            // Swap order values
+            [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]];
+            updatedTasks[index].order = index;
+            updatedTasks[index + 1].order = index + 1;
+    
+            // Update tasks locally
+            setTasks(updatedTasks);
+    
+            // Update in Firebase
+            const userUid = auth.currentUser?.uid;
+            if (userUid) {
+                const taskRef1 = ref(database, `users/${userUid}/tasks/${updatedTasks[index].id}`);
+                const taskRef2 = ref(database, `users/${userUid}/tasks/${updatedTasks[index + 1].id}`);
+                update(taskRef1, { order: updatedTasks[index].order });
+                update(taskRef2, { order: updatedTasks[index + 1].order });
+            }
         }
     };
+    
 
     // Delete a task
     const deleteTask = (id) => {
