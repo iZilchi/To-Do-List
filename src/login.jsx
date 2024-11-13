@@ -62,7 +62,7 @@ export function Auth() {
         setLoading(true); // Set loading state
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            alert("Logged in successfully");
+            console.log("Login Successfully!")
             navigate('/todo');  // Redirect to ToDo list page after successful login
         } catch (error) {
             if (error.code === 'auth/invalid-email'){
@@ -113,7 +113,7 @@ export function Auth() {
         try {
             await signOut(auth);  // Sign out the user
             setUser(null);  // Clear user state
-            alert("Logged out successfully");
+            console.log("Logged out successfully");
             navigate('/');  // Redirect to the homepage after logout
         } catch (error) {
             setErrorMessage(error.message);  // Handle any errors

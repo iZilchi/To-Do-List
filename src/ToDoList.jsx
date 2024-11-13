@@ -21,7 +21,7 @@ function ToDoList() {
     const handleLogout = async () => {
         try {
             await signOut(auth);  
-            alert("Logged out successfully!");
+            console.log("Logged out successfully!");
             navigate('/');  
         } catch (error) {
             console.error("Error logging out: ", error.message);
