@@ -8,6 +8,7 @@
 li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 90%;
     font-size: 0.9rem;
     padding: 15px;
@@ -24,6 +25,7 @@ li {
     height: 20px;
     border-radius: 50%;
     border: 2px solid var(--primary-color);
+    margin-right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,14 +35,23 @@ li {
     cursor: pointer;
 }
 
+.text {
+    flex: 1;
+    text-align: center;
+}
 
-.delete-button, .completed-button {
+.button-group {
+    display: flex;
+}
+
+
+.delete-button, .completed-button, .move-button {
     font-size: 1em;
     background-color: transparent;
     cursor: pointer;
 }
 
-.completed-button:hover, .delete-button:hover {
+.completed-button:hover, .delete-button:hover, .move-button:hover {
     transform: scale(1.25);
 }
 
@@ -54,7 +65,7 @@ li {
         height: 20px;
     }
     
-    .delete-button, .completed-button {
+    .delete-button, .completed-button, .move-button {
         font-size: 1.1em;
     }
 }
@@ -69,7 +80,7 @@ li {
         height: 25px;
     }
     
-    .delete-button, .completed-button {
+    .delete-button, .completed-button, .move-button {
         font-size: 1.2em;
     }
 }
@@ -84,7 +95,7 @@ li {
         height: 25px;
     }
     
-    .delete-button, .completed-button {
+    .delete-button, .completed-button, .move-button {
         font-size: 1.3em;
     }
 }
@@ -99,7 +110,7 @@ li {
         height: 25px;
     }
     
-    .delete-button, .completed-button {
+    .delete-button, .completed-button, .move-button {
         font-size: 1.3em;
     }
 }
@@ -114,7 +125,7 @@ li {
         height: 30px;
     }
     
-    .delete-button, .completed-button {
+    .delete-button, .completed-button, .move-button {
         font-size: 1.3em;
     }
 }
@@ -129,7 +140,7 @@ li {
         height: 35px;
     }
     
-    .delete-button, .completed-button {
+    .delete-button, .completed-button, .move-button {
         font-size: 1.3em;
     }
 }

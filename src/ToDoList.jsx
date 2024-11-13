@@ -107,6 +107,24 @@ function ToDoList() {
         }
     };
 
+    const moveTaskUp = (id) => {
+        const index = tasks.findIndex(task => task.id === id);
+        if (index > 0){
+            const updatedTask = [...tasks];
+            [updatedTask[index], updatedTask[index - 1]] = [updatedTask[index - 1], updatedTask[index]];
+            setTasks(updatedTask);
+        }
+    };
+
+    const moveTaskDown = (id) => {
+        const index = tasks.findIndex(task => task.id === id);
+        if (index < tasks.length - 1){
+            const updatedTask = [...tasks];
+            [updatedTask[index], updatedTask[index + 1]] = [updatedTask[index + 1], updatedTask[index]];
+            setTasks(updatedTask);
+        }
+    };
+
     // Delete a task
     const deleteTask = (id) => {
         const userUid = auth.currentUser?.uid;
@@ -124,7 +142,7 @@ function ToDoList() {
             <div className="container-outline">
                 <ProgressBar progress={progress} />
                 <DisplayButton activeDisplay={activeDisplay} setActiveDisplay={setActiveDisplay} />
-                <TaskList tasks={sortedTasks} completeTask={completeTask} deleteTask={deleteTask} />
+                <TaskList tasks={sortedTasks} completeTask={completeTask} moveTaskUp={moveTaskUp} moveTaskDown={moveTaskDown} deleteTask={deleteTask} />
                 <SortButton activeSort={activeSort} setActiveSort={setActiveSort} />
                 <button className="add-task" onClick={() => setisActive(prev => !prev)}>+</button>
             </div>

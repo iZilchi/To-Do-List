@@ -169,11 +169,6 @@ export function Auth() {
             {/* Error Message Display */}
             {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-            <h4>OR SIGN IN WITH</h4>
-            <button className="google-button" onClick={handleGoogleLogin} disabled={loading}>
-                {loading ? "Signing in..." : <img src="src/Assets/GLogo.png" alt="Google Button" className="g-button" />}
-            </button>
-
             {/* Sign Up / Sign In Button */}
             <button
                 className="sign-in-button"
@@ -181,6 +176,11 @@ export function Auth() {
                 disabled={loading}  // Disable button while loading
             >
                 {loading ? "Processing..." : isSignUp ? "Create Account" : "Sign In"}
+            </button>
+
+            <h4>OR SIGN IN WITH</h4>
+            <button className="google-button" onClick={handleGoogleLogin} disabled={loading}>
+                {loading ? "Signing in..." : <img src="src/Assets/GLogo.png" alt="Google Button" className="g-button" />}
             </button>
 
             {/* Forgot Password Button */}
