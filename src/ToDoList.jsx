@@ -72,12 +72,24 @@ function ToDoList() {
                 return a.importance - b.importance;
             } else if (activeSort === "urgency") {
                 return a.urgency - b.urgency;
+            } else {
+                return a.initialOrder - b.initialOrder;
             }
-            return 0;
         });
     };
 
     const sortedTasks = eisenSort(tasks.filter(task => activeDisplay === "to-do" ? !task.completed : task.completed), activeSort);
+
+    // Save order to Firebase when sorting changes
+    useEffect(() => {
+        const userUid = auth.currentUser?.uid;
+        if (userUid && sortedTasks.length) {
+            sortedTasks.forEach((task, index) => {
+                const taskRef = ref(database, `users/${userUid}/tasks/${task.id}`);
+                update(taskRef, { order: index });
+            });
+        }
+    }, [sortedTasks, auth.currentUser, database]);
 
     // Add a new task for the authenticated user
     const addTask = (text, importance, urgency) => {
@@ -95,6 +107,7 @@ function ToDoList() {
                     urgency,
                     scale: taskScale,
                     order: tasks.length,  // Set the initial order
+                    initialOrder: tasks.length,
                 });
             }
         }
