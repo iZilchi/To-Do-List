@@ -5,6 +5,14 @@
   --linear-color: #785B5B;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
 /* 320px-480px */
 .sign-in-container {
   display: flex;

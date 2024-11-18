@@ -138,45 +138,47 @@ export function Auth() {
         <div className="sign-in-container">
             <h3>{isSignUp ? "Create Account" : "Sign In"}</h3>
 
-            {/* Email Input */}
-            <label htmlFor="email">Email</label>
-            <input
-                id="email"
-                type="text"
-                placeholder="EMAIL"
-                className="username-textbox"
-                value={email}
-                onChange={(e) => {
-                    setEmail(e.target.value);
-                    setErrorMessage("");  
-                }}
-            />
+            <form>
+                {/* Email Input */}
+                <label htmlFor="email">Email</label>
+                <input
+                    id="email"
+                    type="text"
+                    placeholder="EMAIL"
+                    className="username-textbox"
+                    value={email}
+                    onChange={(e) => {
+                        setEmail(e.target.value);
+                        setErrorMessage("");  
+                    }}
+                />
 
-            {/* Password Input */}
-            <label htmlFor="password">Password</label>
-            <input
-                id="password"
-                type="password"
-                placeholder="PASSWORD"
-                className="password-textbox"
-                value={password}
-                onChange={(e) => {
-                    setPassword(e.target.value);
-                    setErrorMessage("");  
-                }}
-            />
+                {/* Password Input */}
+                <label htmlFor="password">Password</label>
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="PASSWORD"
+                    className="password-textbox"
+                    value={password}
+                    onChange={(e) => {
+                        setPassword(e.target.value);
+                        setErrorMessage("");  
+                    }}
+                />
 
-            {/* Error Message Display */}
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
+                {/* Error Message Display */}
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-            {/* Sign Up / Sign In Button */}
-            <button
-                className="sign-in-button"
-                onClick={isSignUp ? handleSignUp : handleLogin}
-                disabled={loading}  // Disable button while loading
-            >
-                {loading ? "Processing..." : isSignUp ? "Create Account" : "Sign In"}
-            </button>
+                {/* Sign Up / Sign In Button */}
+                <button
+                    className="sign-in-button"
+                    onClick={isSignUp ? handleSignUp : handleLogin}
+                    disabled={loading}  // Disable button while loading
+                >
+                    {loading ? "Processing..." : isSignUp ? "Create Account" : "Sign In"}
+                </button>
+            </form>
 
             <h4>OR SIGN IN WITH</h4>
             <button className="google-button" onClick={handleGoogleLogin} disabled={loading}>
