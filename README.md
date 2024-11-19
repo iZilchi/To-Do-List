@@ -19,7 +19,36 @@
 - A **Progress bar** is shown at the top of the to-do list container to monitor the progress of tasks that are completed.
 
 ## II. System Architecture
+**ProcrastiMate** is a single-page application developed using HTML, CSS, and Javascript with React library. It implements Firebase API for the backend and utilizes Realtime Database for data management and User Authentication for account system.
 
+### Components:
+#### Frontend
+1. **Login/Registration Page:**
+   - Handles account login and creation functionality.
+   - Required component to access the to-do list application.
+2. **To-Do List Page:**
+   - **AddTaskForm**
+     - Handles the task creation functionality.
+     - Creates tasks and sends data to Realtime Database.
+   - **ProgressBar**
+     - Visualizes the progress of completed tasks.
+   - **DisplayButton**
+     - Handles the display of to-do and completed tasks.
+     - Filters the tasks based on status (To-do / Completed).
+   - **SortButton**
+     - Handle the sorting of tasks by importance and urgency, importance only, and urgency only.
+   - **TaskList**
+     - Maps the tasks created by the user and displays the list of tasks in the container.
+     - Encapsulates the TaskItem.
+   - **TaskItem**
+     - Contains the complete button, task name, manual sort buttons (up and down), and delete button.
+     - Allows user to complete task, move their order up or down, and delete task.
+#### Backend
+1. **Firebase User Authentication**
+   - Handles user authentication and authorization.
+2. **Firebase Realtime Database**
+   - Handles data storage, retrieval, and update (task data).
+   - Provides realtime updates based on the user changes.
 
 ## III. Applied Computer Science Concept
 **ProcrastiMate** applies these following Computer Science concepts:
@@ -123,15 +152,35 @@ Overall, this custom sorting algorithm helps enhance the to-do list web applicat
 
 
 ## V. Security Mechanisms
-
+To enhance the security of the web application, the following security mechanisms are implemented:
+- **Protected Route** are used to make sure that the to-do list page will only be accessible to authenticated users.
+- **Input Validation** is implemented to ensure that the user will input the appropriate data to the input fields. A format for email and password are created to validate if the user inputs an appropriate email account with a standard password format for strength purposes. The developers also make sure that the users can't create a task with an empty input or no name.
+- **Error handling** is implemented to handle errors in login/registration system. An error message is displayed that tells them what went wrong in the login/registration process. This also lets us know if there are any errors in data management when accessing the database.
 
 ## VI. Development Process and Design Decisions
-
+**Computer Science Theory Influence:**
+- The developers used **List** data structure for storing the list of tasks. This is because it allows for flexible storage of datas related to tasks that have different values unlike arrays. The data for task, value for importance and urgency, and the order of the tasks are dynamically stored in list.
+- The developers utilized **Firebase API** because it has realtime database and user authentication that is easy to implement since we are new to using APIs.
+- The design of the application is directed towards **minimalist design**. The developers want to make the application easy to use by offering a simple design that user can easily comprehend.
+- **React library** is utilized in developing the application. This lets the developers organize their codes thanks to the library's ability to create components. Through this, maintaining a part of the application is easier and efficient.
 
 ## VII. Correctness and Efficiency
-
+To ensure the correctness and efficiency of the application, the developers thoroughly tested the overall functionality of the application from login to task completion to make sure that every features perform as how they are intended to. Morever, security mechanisms are added to constraint user and guide them in using the application ensuring that only the correct inputs are accepted. Lastly, the developers came up with a minimal UI for the application to make it easier for the user to use the application.
 
 ## VIII. How to Run the Project
+To run the application, the following requirements must be met:
+
+Running the application:
+1. Open the folder where the code is located.
+2. Open a new terminal and run these syntax `npm run dev`.
+3. Wait for the terminal to display the following:
+  > [!NOTE]
+  > The local address provided in the terminal can vary depending on personal devices.
+
+   ![image](https://github.com/user-attachments/assets/fabf63c7-be43-4bf0-bcd4-26660afaff85)
+
+   
+5. Paste the local address in your web browser to access the web application or you can just simply click the application while holding down the control key in VS Code.
 
 
 ## IX. Contributors
