@@ -1,0 +1,470 @@
+:root {
+  --primary-color: #fff;
+  --secondary-color: #A14444;
+  --background-color: #7D3333;
+  --linear-color: #785B5B;
+}
+
+html, body {
+  height: 100vh;
+  margin: 0;
+  font-family: Itim, sans-serif;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(var(--background-color), var(--linear-color));
+}
+
+* {
+  font-family: inherit;
+  color: inherit;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-in-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  min-width: 300px;
+  height: 80vh;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255);
+  box-shadow: 6px 6px #000;
+  animation: slideInFromLeft 0.7s ease forwards;
+  opacity: 0;
+}
+
+.create-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  min-width: 300px;
+  height: 80vh;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255);
+  box-shadow: 6px 6px #000;
+  animation: slideInFromLeft 0.7s ease forwards;
+  opacity: 0;
+}
+
+.container-outline {
+  position: absolute;
+  top: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30vw;
+  min-width: 300px;
+  height: 80vh;
+  padding: 12px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 3px solid var(--primary-color);
+  box-shadow: 6px 6px #000;
+  animation: slideInFromLeft 0.7s ease forwards;
+  opacity: 0;
+}
+
+h1 {
+  position: absolute;
+  top: 1vh;
+  font-size: 3em;
+  padding: 12px;
+  border-radius: 20px;
+  background-color: var(--secondary-color);
+  border: 3px solid var(--primary-color);
+  box-shadow: 5px 6px #000;
+  z-index: 1;
+  animation: slideInFromLeft 1s ease forwards;
+  opacity: 0;
+}
+
+h3 {
+  position: absolute;
+  top: 10%;
+  font-size: 2em;
+  color: #000;
+}
+
+.list-container {
+  position: absolute;
+  top: 25%;
+  width: 90%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.list-container::-webkit-scrollbar {
+  display: none;
+}
+
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ol li {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  font-size: 2em;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 20px;
+  background-color: var(--secondary-color);
+  box-shadow: 5px 6px #000;
+  animation: slideInFromLeft 0.7s ease forwards;
+  opacity: 0;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 7vh;
+  width: 26vw;
+  height: 3.5vh;
+  text-align: center;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 3px solid var(--primary-color);
+  box-shadow: 4px 4px #000;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #DF6B6B;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  white-space: nowrap;
+  transition: width 0.5s ease;
+}
+
+button, input, select, option {
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+button:hover, select:hover, option:hover {
+  transform: scale(1.05);
+}
+
+input:hover {
+  transform: scale(1.02);
+}
+
+.completed-button:hover, .delete-button:hover {
+  transform: scale(1.25);
+}
+
+.add-task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 95%;
+  font-size: 6em;
+  padding-bottom: 25px;
+  width: 4vw;
+  height: 8.5vh;
+  border-radius: 50%;
+  background-color: #DF6B6B;
+  border: 2px solid var(--primary-color);
+  box-shadow: 3px 3px #000;
+  cursor: pointer;
+}
+
+.delete-button, .completed-button {
+  font-size: 1em;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.completed-button {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+}
+
+.view-container, .sort-container {
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+}
+
+.view-container {
+  top: 13vh;
+}
+
+.view-container button, .sort-container button {
+  font-size: 1.2em;
+  margin: 0 21px;
+  padding: 5px;
+  width: 125px;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 3px solid var(--primary-color);
+  box-shadow: 4px 4px #000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-container button:hover,
+.sort-container button:hover,
+.view-container button:active,
+.sort-container button:active,
+.view-container button.active,
+.sort-container button.active {
+  background-color: #DF6B6B;
+}
+
+.sort-container {
+  top: 65vh;
+}
+
+.pop-up {
+  position: absolute;
+  top: 10vh;
+  right: 8vw;
+  width: 24vw;
+  height: 20vh;
+  padding: 12px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 3px solid var(--primary-color);
+  box-shadow: 6px 6px #000;
+  opacity: 0;
+  animation: slideInFromLeft 0.7s ease forwards;
+}
+
+.pop-up-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.task-textbox, select {
+  width: 20vw;
+  font-size: 1.2em;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 20px;
+  background-color: var(--secondary-color);
+  box-shadow: 4px 4px #000;
+  text-align: center;
+}
+
+input::placeholder {
+  color: var(--primary-color);
+}
+
+select {
+  width: 10.5vw;
+  height: 6vh;
+  margin: 0 12px 0 0;
+  cursor: pointer;
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 2vh;
+  right: 1.5vw;
+  font-size: 4em;
+  width: 3vw;
+  height: 6vh;
+  padding-bottom: 17px;
+  border-radius: 50%;
+  background-color: #DF6B6B;
+  border: 2px solid var(--primary-color);
+  box-shadow: 3px 3px #000;
+  cursor: pointer;
+}
+
+.username-textbox {
+  position: relative;
+  top: 5%;
+  width: 23vw;
+  font-size: 1em;
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #EFEFEF;
+}
+
+.username-textbox::placeholder {
+  color: #7A7A7A;
+}
+
+.password-textbox {
+  position: relative;
+  top: 5%;
+  width: 23vw;
+  font-size: 1em;
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #EFEFEF;
+}
+
+.password-textbox::placeholder {
+  color: #7A7A7A;
+}
+
+h4 {
+  position: relative;
+  top: 5%;
+  font-size: 1em;
+  color: #7A7A7A;
+}
+
+.arrow-button {
+  position: relative;
+  top: 15%;
+  background-color: var(--secondary-color);
+  border-radius: 25px;
+  width: 17%;
+  height: 13%;
+}
+
+.google-button {
+  position: relative;
+  top: 5%;
+  width: 23%;
+  height: 5%;
+  padding: 4px;
+  background-color: var(--primary-color);
+  border: 1px solid #9F9F9F;
+}
+
+.g-button {
+  width: 25px;
+  height: 25px;
+}
+
+.create-account,
+.forgot-password {
+  position: relative;
+  top: 20%;
+  font-size: 1em;
+  color: #7A7A7A;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+
+.username-textbox {
+  position: relative;
+  top: 5%;
+  width: 23vw;
+  font-size: 1em;
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #EFEFEF;
+}
+
+.username-textbox::placeholder {
+  color: #7A7A7A;
+}
+
+.password-textbox {
+  position: relative;
+  top: 5%;
+  width: 23vw;
+  font-size: 1em;
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #EFEFEF;
+}
+
+.password-textbox::placeholder {
+  color: #7A7A7A;
+}
+
+.already-account {
+  position: relative;
+  top: 20%;
+  font-size: 1em;
+  color: #7A7A7A;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .container-outline {
+    width: 80vw;
+    min-width: 250px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  .list-container {
+    top: 30%;
+    height: 40%;
+  }
+
+  .progress-bar {
+    width: 80%;
+  }
+
+  .add-task {
+    font-size: 4em;
+    width: 10vw;
+    height: 6vh;
+  }
+
+  .view-container button,
+  .sort-container button {
+    font-size: 1em;
+    width: 100px;
+  }
+
+  .task-textbox,
+  select {
+    width: 75%;
+  }
+
+  .add-button {
+    font-size: 3em;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
