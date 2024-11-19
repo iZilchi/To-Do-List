@@ -62,7 +62,7 @@ This is the syntax for the task list used in the code:
 ### Sorting Algorithms
 The application offers a custom sorting algorithm that sorts the tasks into three categories:
 - **eisenSort:**
-  - ***Importance-Urgencu***
+  - ***Importance-Urgency***
   - ***Importance***
   - ***Urgency***
  
