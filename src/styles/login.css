@@ -196,6 +196,12 @@ label {
   }
 }
 
+@media (max-height: 600px) {
+  .sign-in-container {
+    height: 90vh;
+  }
+}
+
 @media (min-width: 1025px) and (max-width: 1280px) {
   .sign-in-container {
     width: 45vw;

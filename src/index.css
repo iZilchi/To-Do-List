@@ -343,15 +343,6 @@ h4 {
   color: #7A7A7A;
 }
 
-.arrow-button {
-  position: relative;
-  top: 15%;
-  background-color: var(--secondary-color);
-  border-radius: 25px;
-  width: 17%;
-  height: 13%;
-}
-
 .google-button {
   position: relative;
   top: 5%;
