@@ -5,420 +5,213 @@
   --linear-color: #785B5B;
 }
 
-.pop-up {
-  position: absolute;
-  top: 33%;
-  width: 70vw;
-  height: 27vh;
-  padding: 12px;
-  border-radius: 20px;
-  background: rgb(255, 255, 255, 0.4);
-  backdrop-filter: blur(12px);
-  box-shadow: 6px 6px #000;
-  border: 2px solid #fff;
-  opacity: 0;
-  animation: slideInFromLeft 0.7s ease forwards;
-}
-  
-.pop-up-container {
-  position: relative;
+.add-pop-up {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #F9F9F9;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  width: 95%;
-  top: 3%;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
 }
 
-select {
-  font-size: 1.2rem;
-  width: 100%;
-  height: 45px;
-  padding: 10px;
+.field {
+  position: absolute;
+  top: 10%;
+  left: 7%;
+  width: 85vw;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  color: #000;
+  background: #FFFFFF;
+  border: 2px solid rgba(161, 163, 171, 0.6);
   border-radius: 20px;
-  background-color: var(--secondary-color);
-  box-shadow: 4px 4px #000;
 }
 
-.task-textbox {
+.h4-task-name {
   position: relative;
-  width: 78%;
-  font-size: 1.2rem;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 20px;
-  background-color: var(--secondary-color);
-  box-shadow: 4px 4px #000;
-  text-align: center;
+  top: -7%;
+  color: #000;
+}
+
+.h4-task-desc,
+.description-textarea {
+  top: -12%;
+}
+
+.option-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  top: -11%;
+}
+
+.option-container h4 {
+  margin-bottom: 10px;
+}
+
+.importance-container .button-group,
+.urgency-container .button-group {
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.button-group button {
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  color: #000;
+  background-color: transparent;
+  border: 2px solid rgba(161, 163, 171, 0.6);
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-group {
+  display: flex;
 }
 
 
-button, input, option {
+.button-group button:hover {
+  background-color: #7D3333;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.button-group button.active {
+  background-color: #FF6767;
+  color: white;
+  border-color: #FF6767;
+}
+
+.importance-container, 
+.urgency-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+}
+
+.button-group button:focus {
+  outline: none;
+}
+
+
+input,
+textarea, 
+.importance-container, 
+.urgency-container,
+.field h4 {
+  position: relative;
+  bottom: 10%;
+  color: #000;
+}
+
+.field h4 {
+  font-size: 1.1rem;
+}
+
+.field h4,
+.field input,
+.field textarea,
+.field .importance-container, 
+.field .urgency-container {
+  width: 100%;
+}
+
+.field input,
+.field textarea {
+  padding: 10px;
+}
+
+.importance-container, 
+.urgency-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.h3-add-task {
+  position: relative;
+  bottom: 38%;
+  right: 21%;
+}
+
+.done-button {
+  position: relative;
+  top: 38%;
+  right: 27%;
+  font-size: 1.5rem; 
+  background-color: #FF6767;
+  width: 130px;
+  height: 60px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+
+.back-button {
+  position: relative;
+  bottom: 58%;
+  left: 43%;
+  color: #585858;;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+button {
+  background: transparent;
+}
+
+button, input, textarea {
   border: none;
   transition: transform 0.2s ease;
 }
 
-button:hover, select:hover, option:hover {
+button:hover {
   transform: scale(1.05);
 }
 
-.add-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  font-size: 4em;
-  top: 12%;
-  right: 5%;
-  width: 50px;
-  height: 50px;
-  padding-bottom: 17px;
-  border-radius: 50%;
-  background-color: #DF6B6B;
-  border: 2px solid var(--primary-color);
-  box-shadow: 3px 3px #000;
-  cursor: pointer;
+input, textarea {
+  background: #f5f5f5;
+  border: 2px solid rgba(161, 163, 171, 0.6);
+  border-radius: 8px;
+  color: #000; 
+  font-size: 0.9rem; 
+  transition: border-color 0.3s ease;
 }
 
-@media (min-height: 601px) and (max-height: 667px) {
-  .pop-up {
-    top: 34%;
-    width: 70vw;
-    height: 33vh;
-    padding: 12px;
-  }
-    
-  .pop-up-container {
-    gap: 15px;
-    width: 95%;
-    top: 2%;
-  }
-  
-  select {
-    font-size: 1.2rem;
-    width: 100%;
-    height: 45px;
-    padding: 10px;
-  }
-  
-  .task-textbox {
-    width: 70%;
-    font-size: 1.2rem;
-    padding: 15px;
-    margin: 10px 0;
-  }
-  
-  .add-button {
-    font-size: 4em;
-    top: 12%;
-    right: 7%;
-    width: 50px;
-    height: 50px;
-    padding-bottom: 20px;
-  }
+textarea {
+  resize: none; 
+  min-height: 110px; 
+  max-height: 600px;
 }
 
-@media (min-width: 481px) and (max-width: 600px) {
-  .pop-up {
-    top: 34%;
-    width: 75vw;
-    height: 27vh;
-    padding: 12px;
-  }
-    
-  .pop-up-container {
-    gap: 15px;
-    width: 95%;
-    top: 2%;
-  }
-  
-  select {
-    font-size: 1.2rem;
-    width: 100%;
-    height: 45px;
-    padding: 10px;
-  }
-  
-  .task-textbox {
-    width: 78%;
-    font-size: 1.2rem;
-    padding: 15px;
-    margin: 10px 0;
-  }
-  
-  .add-button {
-    font-size: 4em;
-    top: 12%;
-    right: 7%;
-    width: 50px;
-    height: 50px;
-    padding-bottom: 20px;
-  }
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #FF6767; 
+  background: #fff; 
 }
 
-@media (min-height: 668px) and (max-height: 720px) {
-  .pop-up {
-    top: 34%;
-    width: 74vw;
-    height: 31vh;
-    padding: 12px;
-  }
-    
-  .pop-up-container {
-    gap: 15px;
-    width: 95%;
-    top: 2%;
-  }
-  
-  select {
-    font-size: 1.2rem;
-    width: 100%;
-    height: 45px;
-    padding: 10px;
-  }
-  
-  .task-textbox {
-    width: 80%;
-    font-size: 1.2rem;
-    padding: 15px;
-    margin: 10px 0;
-  }
-  
-  .add-button {
-    font-size: 4em;
-    top: 12%;
-    right: 7%;
-    width: 50px;
-    height: 50px;
-    padding-bottom: 20px;
-  }
+.task-textbox.warning {
+  border: 1px solid red;
+  background-color: #ffe6e6;
+  animation: shake 0.3s ease-in-out;
 }
 
-@media (min-width: 601px) and (max-width: 768px) {
-  .pop-up {
-    top: 35%;
-    width: 70vw;
-    height: 27vh;
-    padding: 12px;
-  }
-    
-  .pop-up-container {
-    gap: 15px;
-    width: 95%;
-    top: 2%;
-  }
-  
-  select {
-    font-size: 1.2rem;
-    width: 100%;
-    height: 45px;
-    padding: 10px;
-  }
-  
-  .task-textbox {
-    width: 78%;
-    font-size: 1.2rem;
-    padding: 15px;
-    margin: 10px 0;
-  }
-  
-  .add-button {
-    font-size: 4em;
-    top: 12%;
-    right: 7%;
-    width: 50px;
-    height: 50px;
-    padding-bottom: 20px;
-  }
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .pop-up {
-    top: 33%;
-    width: 50vw;
-    height: 27vh;
-    padding: 12px;
-  }
-    
-  .pop-up-container {
-    gap: 15px;
-    width: 95%;
-    top: 2%;
-  }
-  
-  select {
-    font-size: 1.2rem;
-    width: 100%;
-    height: 45px;
-    padding: 10px;
-  }
-  
-  .task-textbox {
-    width: 78%;
-    font-size: 1.2rem;
-    padding: 15px;
-    margin: 10px 0;
-  }
-  
-  .add-button {
-    font-size: 4em;
-    top: 12%;
-    right: 7%;
-    width: 50px;
-    height: 50px;
-    padding-bottom: 20px;
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1280px) {
-  .pop-up {
-    top: 33%;
-    width: 40vw;
-    height: 27vh;
-    padding: 12px;
-  }
-    
-  .pop-up-container {
-    gap: 15px;
-    width: 95%;
-    top: 2%;
-  }
-  
-  select {
-    font-size: 1.2rem;
-    width: 100%;
-    height: 45px;
-    padding: 10px;
-  }
-  
-  .task-textbox {
-    width: 78%;
-    font-size: 1.2rem;
-    padding: 15px;
-    margin: 10px 0;
-  }
-  
-  .add-button {
-    font-size: 4em;
-    top: 12%;
-    right: 7%;
-    width: 50px;
-    height: 50px;
-    padding-bottom: 20px;
-  }
-}
-
-@media (max-height: 600px) {
-  .pop-up {
-    top: 34%;
-    width: 50vw;
-    height: 37vh;
-    padding: 12px;
-  }
-    
-  .pop-up-container {
-    gap: 15px;
-    width: 95%;
-    top: 2%;
-  }
-  
-  select {
-    font-size: 1.2rem;
-    width: 100%;
-    height: 45px;
-    padding: 10px;
-  }
-  
-  .task-textbox {
-    width: 80%;
-    font-size: 1.2rem;
-    padding: 15px;
-    margin: 10px 0;
-  }
-  
-  .add-button {
-    font-size: 4em;
-    top: 12%;
-    right: 7%;
-    width: 50px;
-    height: 50px;
-    padding-bottom: 20px;
-  }
-}
-
-@media (min-width: 1281px) and (max-width: 1440px) {
-  .pop-up {
-    top: 14%;
-    right: 2%;
-    width: 27vw;
-    height: 27vh;
-    padding: 12px;
-  }
-    
-  .pop-up-container {
-    gap: 15px;
-    width: 95%;
-    top: 2%;
-  }
-  
-  select {
-    font-size: 1.2rem;
-    width: 100%;
-    height: 45px;
-    padding: 10px;
-  }
-  
-  .task-textbox {
-    width: 78%;
-    font-size: 1.2rem;
-    padding: 15px;
-    margin: 10px 0;
-  }
-  
-  .add-button {
-    font-size: 4em;
-    top: 12%;
-    right: 7%;
-    width: 50px;
-    height: 50px;
-    padding-bottom: 20px;
-  }
-}
-
-@media (min-width: 1441px) {
-  .pop-up {
-    top: 12%;
-    right: 5%;
-    width: 27vw;
-    height: 25vh;
-    padding: 12px;
-  }
-    
-  .pop-up-container {
-    gap: 15px;
-    width: 95%;
-    top: 2%;
-  }
-  
-  select {
-    font-size: 1.2rem;
-    width: 100%;
-    height: 45px;
-    padding: 10px;
-  }
-  
-  .task-textbox {
-    width: 78%;
-    font-size: 1.2rem;
-    padding: 15px;
-    margin: 10px 0;
-  }
-  
-  .add-button {
-    font-size: 4em;
-    top: 12%;
-    right: 7%;
-    width: 50px;
-    height: 50px;
-    padding-bottom: 20px;
-  }
-}

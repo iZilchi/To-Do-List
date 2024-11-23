@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import '../styles/SortButton.css';
 
-function SortButton({ activeSort, setActiveSort }) {
-    // Load the initial state from localStorage if available
+function SortButton({ activeSort, setActiveSort, isSortActive, setIsSortActive }) {
     useEffect(() => {
         const savedSort = localStorage.getItem("activeSort");
         if (savedSort) {
@@ -10,30 +9,52 @@ function SortButton({ activeSort, setActiveSort }) {
         }
     }, [setActiveSort]);
 
-    // Save the activeSort to localStorage whenever it changes
     useEffect(() => {
         if (activeSort) {
             localStorage.setItem("activeSort", activeSort);
         } else {
-            localStorage.removeItem("activeSort"); // Clear if sort is set to null
+            localStorage.removeItem("activeSort");
         }
     }, [activeSort]);
 
+    const handleSortTask = () => {
+        setIsSortActive(true);
+    }
+
+    const handleClose = () => {
+        setIsSortActive(false);
+    };
+
+    const sortImages = {
+        "importance-urgency": "../src/assets/Imp-Urg.png",
+        "importance": "../src/assets/Importance.png",
+        "urgency": "../src/assets/Urgency.png",
+    };
+
     return (
-        <div className="sort-container">
-            {["importance-urgency", "importance", "urgency"].map((sortType) => (
-                <button
-                    key={sortType}
-                    className={`${sortType}-sort ${activeSort === sortType ? "active" : ""}`}
-                    onClick={() => setActiveSort((prev) => (prev === sortType ? null : sortType))}
-                >
-                    {sortType
-                        .split("-")
-                        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                        .join(" ")}
-                </button>
-            ))}
-        </div>
+        isSortActive && (
+            <div className="background-opacity">
+                <div className="main-container">
+                    <h3 className="sort-header">Sort By</h3>
+                    <div className="sort-container">
+                        {["importance-urgency", "importance", "urgency"].map((sortType) => (
+                            <button
+                                key={sortType}
+                                className={`${sortType}-sort ${activeSort === sortType ? "active" : ""}`}
+                                onClick={() => {
+                                    setActiveSort((prev) => (prev === sortType ? null : sortType));
+                                    handleClose();
+                                }}
+                            >
+                                <img src={sortImages[sortType]} alt={sortType} className="sort-image" />
+                            </button>
+                        ))}
+                    </div>
+                    <button className="sort-button" onClick={handleSortTask}>Sort</button>
+                    <button className="back-sort-button" onClick={handleClose}>✖</button>
+                </div>
+            </div>
+        )
     );
 }
 

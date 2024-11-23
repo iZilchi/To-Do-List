@@ -1,148 +1,100 @@
-:root {
-    --primary-color: #fff;
-    --secondary-color: #A14444;
-    --background-color: #7D3333;
-    --linear-color: #785B5B;
+.task-list {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: #FF6767;
+    margin: 10px;
+    padding: 0;
+    width: 100%;
+    height: 120px;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
-li {
+.task {
+    position: relative;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    font-size: 0.9rem;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 20px;
-    background-color: var(--secondary-color);
-    box-shadow: 5px 6px #000;
-    animation: slideInFromLeft 0.7s ease forwards;
-    opacity: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 4px;
+    bottom: 4%;
+}
+
+.text,
+.description,
+.priority {
+    margin: 5px 0;
+    color: #fff;
+}
+
+.text,
+.description {
+    margin: 5px 0;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text {
+    max-width: 12ch;
+}
+
+.description {
+    max-width: 18ch;
+}
+
+.function-button {
+    left: 12px;
 }
 
 .completed-button {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    border: 2px solid var(--primary-color);
+    border: 5px solid var(--primary-color);
     margin-right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1em;
     line-height: 1;
     background-color: transparent;
     cursor: pointer;
 }
 
-.text {
-    flex: 1;
-    text-align: center;
+.delete-button {
+    position: relative;
+    right: 5%;
 }
 
-.button-group {
-    display: flex;
-}
-
-
-.delete-button, .completed-button, .move-button {
-    font-size: 1em;
+.delete-button,
+.completed-button,
+.move-button {
+    font-size: 1.7em;
     background-color: transparent;
     cursor: pointer;
 }
 
-.completed-button:hover, .delete-button:hover, .move-button:hover {
+.completed-button,
+.delete-button {
+    margin: 12px;
+}
+
+.move-group {
+    position: relative;
+    right: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.completed-button:hover,
+.delete-button:hover,
+.move-button:hover {
     transform: scale(1.25);
 }
-
-@media (min-width: 481px) and (max-width: 600px) {
-    li {
-        font-size: 1rem;
-    }
-    
-    .completed-button {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .delete-button, .completed-button, .move-button {
-        font-size: 1.1em;
-    }
-}
-
-@media (min-width: 601px) and (max-width: 768px) {
-    li {
-        font-size: 1.1rem;
-    }
-    
-    .completed-button {
-        width: 25px;
-        height: 25px;
-    }
-    
-    .delete-button, .completed-button, .move-button {
-        font-size: 1.2em;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    li {
-        font-size: 1.2rem;
-    }
-    
-    .completed-button {
-        width: 25px;
-        height: 25px;
-    }
-    
-    .delete-button, .completed-button, .move-button {
-        font-size: 1.3em;
-    }
-}
-
-@media (min-width: 1025px) and (max-width: 1280px) {
-    li {
-        font-size: 1.3rem;
-    }
-    
-    .completed-button {
-        width: 25px;
-        height: 25px;
-    }
-    
-    .delete-button, .completed-button, .move-button {
-        font-size: 1.3em;
-    }
-}
-
-@media (min-width: 1281px) and (max-width: 1440px) {
-    li {
-        font-size: 1.4rem;
-    }
-    
-    .completed-button {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .delete-button, .completed-button, .move-button {
-        font-size: 1.3em;
-    }
-}
-
-@media (min-width: 1441px) {
-    li {
-        font-size: 1.5rem;
-    }
-    
-    .completed-button {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .delete-button, .completed-button, .move-button {
-        font-size: 1.3em;
-    }
-}
-
 

@@ -8,13 +8,21 @@ import TaskList from './components/TaskList';
 import DisplayButton from './components/DisplayButton';
 import SortButton from './components/SortButton';
 import AddTaskForm from './components/AddTaskForm';
+import Help from './components/Help';
+import About from './components/About';
+import TaskInfo from './components/TaskInfo';
 
 function ToDoList() {
     const [tasks, setTasks] = useState([]);
-    const [isActive, setisActive] = useState(false);
+    const [isAddActive, setIsAddActive] = useState(false);
+    const [isSortActive, setIsSortActive] = useState(false);
+    const [isHelpActive, setIsHelpActive] = useState(false);
+    const [isAboutActive, setIsAboutActive] = useState(false);
+    const [isTaskInfoActive, setIsTaskInfoActive] = useState(false);
     const [activeDisplay, setActiveDisplay] = useState("to-do");
     const [activeSort, setActiveSort] = useState(null);
     const [progress, setProgress] = useState(0);
+    const [drawerOpen, setDrawerOpen] = useState(false);
     const navigate = useNavigate();
 
     // Logout function
@@ -34,7 +42,7 @@ function ToDoList() {
         if (userUid) {
             const tasksRef = ref(database, `users/${userUid}/tasks`);
             onValue(tasksRef, (snapshot) => {
-                try{
+                try {
                     const tasksData = snapshot.val();
                     const tasksList = tasksData
                         ? Object.keys(tasksData).map(key => ({
@@ -43,13 +51,13 @@ function ToDoList() {
                         }))
                         : [];
                     
-                    // Sort tasks by the 'order' property
                     tasksList.sort((a, b) => a.order - b.order);
                     setTasks(tasksList);
                 } catch (error) {
                     console.error("Error Fetching Tasks: ", error.message);
+                    setTasks([]); // Ensure tasks is reset to an empty array if there's an error
                 }
-            });
+            });            
         } else {
             navigate('/');  // Redirect to login if the user is not authenticated
         }
@@ -100,7 +108,7 @@ function ToDoList() {
     }, [sortedTasks, auth.currentUser, database]);
 
     // Add a new task for the authenticated user
-    const addTask = (text, importance, urgency) => {
+    const addTask = (text, description, importance, urgency) => {
         if (text.trim()) {
             const userUid = auth.currentUser?.uid;
             if (userUid) {
@@ -111,6 +119,7 @@ function ToDoList() {
                     const newTaskRef = push(ref(database, `users/${userUid}/tasks`));
                     set(newTaskRef, {
                         text,
+                        description,
                         completed: false,
                         importance,
                         urgency,
@@ -298,21 +307,53 @@ function ToDoList() {
         }
     };
 
-    return (
-        <div className="container">
-            <h1 className="header">To-Do List</h1>
-            <button className="logout-button" onClick={handleLogout}>Logout</button>
+    const toggleDrawer = () => {
+        setDrawerOpen(!drawerOpen);
+    };
 
-            <div className="container-outline">
-                <ProgressBar progress={progress} />
-                <DisplayButton activeDisplay={activeDisplay} setActiveDisplay={setActiveDisplay} />
-                <TaskList tasks={sortedTasks} completeTask={completeTask} moveTaskUp={moveTaskUp} moveTaskDown={moveTaskDown} deleteTask={deleteTask} />
-                <SortButton activeSort={activeSort} setActiveSort={setActiveSort} />
-                <button className="add-task" onClick={() => setisActive(prev => !prev)}>+</button>
+    return (
+        <>
+            <button 
+                className="burger-button" 
+                onClick={toggleDrawer} 
+                style={{ display: drawerOpen ? 'none' : 'block' }}
+            >
+                ☰
+            </button>
+            {drawerOpen && (
+                <div className="drawer">
+                    <div className="drawer-container">
+                        <h2 className="drawer-header">ProcrastiMate</h2>
+                        <button className="close-button" onClick={toggleDrawer}>✖</button>
+                    </div>
+                    <button onClick={() => { navigate('/todo'); toggleDrawer(); }}>My Task</button>
+                    <button onClick={() => { setIsHelpActive(prev => !prev); toggleDrawer(); }}>Help</button>
+                    <button onClick={() => { setIsAboutActive(prev => !prev); toggleDrawer(); }}>About</button>
+                    <button onClick={() => { handleLogout(); toggleDrawer(); }}>Logout</button>
+                </div>
+            )}
+            <h1 className="header">To-Do List</h1>
+            <div className="container">
+                <div className="container-outline">
+                    <ProgressBar progress={progress} />
+                    <DisplayButton activeDisplay={activeDisplay} setActiveDisplay={setActiveDisplay} />
+                    <TaskList tasks={sortedTasks} completeTask={completeTask} moveTaskUp={moveTaskUp} moveTaskDown={moveTaskDown} deleteTask={deleteTask} />
+                    <div className="sort-add-container">
+                        <button className="filter-task" onClick={() => setIsSortActive(prev => !prev)}>
+                            <img src="src/assets/Sort.png" alt="Filter Icon" />
+                        </button>
+                        <button className="add-task" onClick={() => setIsAddActive(prev => !prev)}>+</button>
+                    </div>
+                </div>
+                <AddTaskForm addTask={addTask} isAddActive={isAddActive} setIsAddActive={setIsAddActive} />
+                <SortButton isSortActive={isSortActive} setIsSortActive={setIsSortActive} activeSort={activeSort} setActiveSort={setActiveSort}/>
+                <Help isHelpActive={isHelpActive} setIsHelpActive={setIsHelpActive} />
+                <About isAboutActive={isAboutActive} setIsAboutActive={setIsAboutActive} />
+                <TaskInfo isTaskInfoActive={isTaskInfoActive} setIsTaskInfoActive={setIsTaskInfoActive} tasks={tasks} activeDisplay={activeDisplay} 
+            />
             </div>
-            <AddTaskForm addTask={addTask} isActive={isActive} setisActive={setisActive} />
-        </div>
-    );
+        </>
+    );    
 }
 
 export default ToDoList;
