@@ -1,9 +1,15 @@
-form {
+.sign-in-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--secondary-color);
+  z-index: -1;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  animation: fadeInBackground 0.5s ease-in-out forwards;
 }
 
 .sign-in-container {
@@ -12,68 +18,143 @@ form {
   justify-content: center;
   align-items: center;
   width: 75vw;
-  height: 70vh;
+  height: 90vh;
   padding: 10px;
   border-radius: 12px;
   background-color: var(--container-color);
-  box-shadow: 3px 3px #000;
-  animation: slideInFromLeft 0.7s ease forwards;
+  animation: slideInFromLeft 1s ease forwards;
+}
+
+form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 90%;
+  top: 3%;
+}
+
+.email-text,
+.password-text {
+  position: relative;
+  bottom: 10%;
+  left: 1%; 
+  font-size: 1.1rem;
 }
 
 .username-textbox, .password-textbox {
-  width: 80%;
+  position: relative;
+  width: 100%;
   font-size: 0.9rem;
   padding: 10px;
   margin: 10px 0;
   color: var(--tertiary-color);
   background-color: #EFEFEF;
+  border: 1px solid #ccc; 
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.username-textbox::placeholder, .password-textbox::placeholder {
+.username-textbox::placeholder, 
+.password-textbox::placeholder {
   color: #7A7A7A;
+}
+
+.username-textbox:focus, 
+.password-textbox:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+}
+
+.username-textbox.error, 
+.password-textbox.error {
+  border: 1px solid #ff0000;  /* Red border for error */
+  animation: shake 0.3s ease-in-out;
 }
 
 .sign-in-button {
   position: relative;
-  top: -2%;
+  bottom: 5%;
+  left: 17%;
   width: 60%;
   font-size: 0.9rem;
   padding: 12px;
   margin: 10px;
+  border-radius: 12px;
   background-color: var(--secondary-color);
-  border: var(--border);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-.toggle-sign-up, .forgot-password {
+.sign-in-button:hover {
+  transform: scale(1.05);
+}
+
+.toggle-sign-up, 
+.forgot-password {
   position: relative;
-  top: 5%;
+  top: 10%;
   font-size: 0.9rem;
   color: #7A7A7A;
   background-color: transparent;
   border: none;
   cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.toggle-sign-up::after, 
+.forgot-password::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0;
+  height: 3px;
+  background-color: var(--secondary-color);
+  transition: width 0.3s ease, left 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.toggle-sign-up:hover, 
+.forgot-password:hover {
+  color: var(--secondary-color);
+}
+
+.toggle-sign-up:hover::after, 
+.forgot-password:hover::after {
+  width: 100%;
+  left: 50%;
 }
 
 h3 {
+  position: relative;
+  bottom: 1%;
   font-size: 1.7rem;
   color: var(--tertiary-color);
 }
 
 h4 {
   position: relative;
-  top: -2%;
+  bottom: 1%;
   font-size: 0.9rem;
   color: #7A7A7A;
 }
 
 .google-button {
   position: relative;
-  top: -4%;
+  bottom: 1%;
   width: 40%;
   height: auto;
   padding: 6px;
   background-color: var(--primary-color);
   border: var(--border);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.google-button:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.05);
 }
 
 .g-button {
@@ -90,4 +171,14 @@ label {
   text-align: center;
   margin-left: 15px;
   margin-right: 15px;
+  font-size: 0.8rem;
+  animation: shake 0.3s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.error-message.show {
+  visibility: visible;
+  opacity: 1;
 }

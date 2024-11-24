@@ -135,78 +135,81 @@ export function Auth() {
     }, [navigate]);
 
     return (
-        <div className="sign-in-container">
-            <h3>{isSignUp ? "Create Account" : "Sign In"}</h3>
+        <div className="sign-in-background">
+            <div className="sign-in-container">
+                <h3>{isSignUp ? "Create Account" : "Sign In"}</h3>
+                <form>
+                    {/* Email Input */}
+                    <label htmlFor="email"
+                    className="email-text">
+                        Email
+                    </label>
+                    <input
+                        id="email"
+                        type="text"
+                        placeholder={errorMessage && !email ? errorMessage : "Enter your email"}
+                        className={`username-textbox ${errorMessage ? 'error' : ''}`}  // Add 'error' class if there's an error
+                        value={email}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                            setErrorMessage("");  // Reset error message when user starts typing
+                        }}
+                    />
 
-            <form>
-                {/* Email Input */}
-                <label htmlFor="email">Email</label>
-                <input
-                    id="email"
-                    type="text"
-                    placeholder="EMAIL"
-                    className="username-textbox"
-                    value={email}
-                    onChange={(e) => {
-                        setEmail(e.target.value);
-                        setErrorMessage("");  
-                    }}
-                />
+                    {/* Password Input */}
+                    <label htmlFor="password"
+                    className="password-text">
+                    Password
+                    </label>
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder={errorMessage && !password ? errorMessage : "Enter your password"}
+                        className={`password-textbox ${errorMessage ? 'error' : ''}`}  // Add 'error' class if there's an error
+                        value={password}
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                            setErrorMessage("");  // Reset error message when user starts typing
+                        }}
+                    />
+                    {/* Sign Up / Sign In Button */}
+                    <button
+                        className="sign-in-button"
+                        onClick={isSignUp ? handleSignUp : handleLogin}
+                        disabled={loading}  // Disable button while loading
+                    >
+                        {loading ? "Processing..." : isSignUp ? "Create Account" : "Sign In"}
+                    </button>
+                </form>
 
-                {/* Password Input */}
-                <label htmlFor="password">Password</label>
-                <input
-                    id="password"
-                    type="password"
-                    placeholder="PASSWORD"
-                    className="password-textbox"
-                    value={password}
-                    onChange={(e) => {
-                        setPassword(e.target.value);
-                        setErrorMessage("");  
-                    }}
-                />
+                <h4>OR SIGN IN WITH</h4>
+                <button className="google-button" onClick={handleGoogleLogin} disabled={loading}>
+                    {loading ? "Signing in..." : <img src="src/Assets/GLogo.png" alt="Google Button" className="g-button" />}
+                </button>
 
-                {/* Error Message Display */}
-                {errorMessage && <p className="error-message">{errorMessage}</p>}
+                {/* Forgot Password Button */}
+                <button className="forgot-password" onClick={handleForgotPassword} disabled={loading}>
+                    FORGOT PASSWORD?
+                </button>
 
-                {/* Sign Up / Sign In Button */}
+                {/* Toggle between Sign In and Sign Up */}
                 <button
-                    className="sign-in-button"
-                    onClick={isSignUp ? handleSignUp : handleLogin}
-                    disabled={loading}  // Disable button while loading
+                    className="toggle-sign-up"
+                    onClick={() => {
+                        setIsSignUp(prev => !prev);
+                        setErrorMessage("");  
+                    }}
                 >
-                    {loading ? "Processing..." : isSignUp ? "Create Account" : "Sign In"}
+                    {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Create Account"}
                 </button>
-            </form>
 
-            <h4>OR SIGN IN WITH</h4>
-            <button className="google-button" onClick={handleGoogleLogin} disabled={loading}>
-                {loading ? "Signing in..." : <img src="src/Assets/GLogo.png" alt="Google Button" className="g-button" />}
-            </button>
-
-            {/* Forgot Password Button */}
-            <button className="forgot-password" onClick={handleForgotPassword} disabled={loading}>
-                FORGOT PASSWORD?
-            </button>
-
-            {/* Toggle between Sign In and Sign Up */}
-            <button
-                className="toggle-sign-up"
-                onClick={() => {
-                    setIsSignUp(prev => !prev);
-                    setErrorMessage("");  
-                }}
-            >
-                {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Create Account"}
-            </button>
-
-            {/* Logout Button (only visible if user is logged in) */}
-            {user && (
-                <button className="logout-button" onClick={handleLogout}>
-                    LOGOUT
-                </button>
-            )}
+                {/* Logout Button (only visible if user is logged in) */}
+                {user && (
+                    <button className="logout-button" onClick={handleLogout}>
+                        LOGOUT
+                    </button>
+                )}
+            </div>
         </div>
     );
 }

@@ -1,112 +1,111 @@
 .task-info-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--container-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 997;
-    color: var(--tertiary-color);
-  }
-  
-  .info-close-button {
-    position: relative;
-    bottom: 47%;
-    left: 43%;
-    color: var(--close-button);
-    font-size: 1.5rem;
-    font-weight: 600;
-    z-index: 998;
-  }
-  
-  .info-container {
-    position: absolute;
-    top: 14%;
-    left: 7%;
-    width: 85%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    border: var(--border);
-    border-radius: 20px;
-    padding: 10px 20px;
-    overflow: hidden;
-    box-sizing: border-box;
-  }
-  
-  .info-name,
-  .info-description,
-  .info-priority,
-  .info-status {
-    width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    word-break: break-all;
-    white-space: normal;
-    margin: 0; /* Reset margin */
-  }
-  
-  .info-name {
-    font-weight: bold;
-    font-size: 1.2rem;
-    text-align: left;
-    margin-bottom: 15px; /* Add 5px space below name */
-  }
-  
-  .info-description {
-    height: 300px;
-    overflow-y: auto;
-    box-sizing: border-box;
-    margin-bottom: 15px; /* Add 5px space below description */
-  }
-  
-  .info-priority,
-  .info-status {
-    font-size: 1rem;
-    color: var(--tertiary-color);
-    margin-bottom: 15px; /* Add 5px space below priority and status */
-  }
-  
-  .info-list li {
-    color: var(--tertiary-color);
-  }
-  
-  .edit-task,
-  .delete-task {
-    background-color: var(--secondary-color);
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 55px;
-    height: 55px;
-  }
-  
-  .edit-task img,
-  .delete-task img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 25px;
-  }
-  
-  .info-container ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .info-container li {
-    margin: 5px 0;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--container-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 997;
+  color: var(--tertiary-color);
+}
+
+.info-close-button {
+  position: relative;
+  bottom: 47%;
+  left: 43%;
+  color: var(--close-button);
+  font-size: 1.5rem;
+  font-weight: 600;
+  z-index: 998;
+}
+
+.info-container {
+  position: absolute;
+  top: 14%;
+  left: 7%;
+  width: 85%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: var(--border);
+  border-radius: 20px;
+  padding: 10px 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.info-name,
+.info-description,
+.info-priority,
+.info-status {
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+  margin: 0; /* Reset margin */
+}
+
+.info-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: left;
+  margin-bottom: 15px; /* Add 5px space below name */
+}
+
+.info-description {
+  height: 300px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin-bottom: 15px; /* Add 5px space below description */
+}
+
+.info-priority,
+.info-status {
+  font-size: 1rem;
+  color: var(--tertiary-color);
+  margin-bottom: 15px; /* Add 5px space below priority and status */
+}
+
+.info-list li {
+  color: var(--tertiary-color);
+}
+
+.edit-task,
+.delete-task {
+  background-color: var(--secondary-color);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 55px;
+}
+
+.edit-task img,
+.delete-task img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 25px;
+}
+
+.info-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-container li {
+  margin: 5px 0;
+}

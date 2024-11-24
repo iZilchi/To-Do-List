@@ -17,16 +17,23 @@
   background-color: transparent;
   border: var(--border);
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: 
+    background-color 0.3s ease, 
+    color 0.3s ease, 
+    transform 0.3s ease, 
+    box-shadow 0.3s ease;
 }
 
 .view-container button:hover,
 .view-container button:active,
 .view-container button.active {
-  background-color: #DF6B6B;
+  background-color: var(--secondary-color);
   color: var(--primary-color);
   border: none;
+  transform: scale(1.1);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 
 @media (min-width: 481px) and (max-width: 600px) {
   .view-container button {

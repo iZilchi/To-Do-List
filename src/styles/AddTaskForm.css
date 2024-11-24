@@ -73,7 +73,7 @@
 }
 
 .button-group button:hover {
-  background-color: #7D3333;
+  background-color: var(--secondary-color);
   color: var(--primary-color);
   transform: scale(1.05);
 }
@@ -163,11 +163,6 @@ button {
 
 button, input, textarea {
   border: none;
-  transition: transform 0.2s ease;
-}
-
-button:hover {
-  transform: scale(1.05);
 }
 
 input, textarea {
@@ -195,12 +190,4 @@ input:focus, textarea:focus {
   border: 1px solid red;
   background-color: #ffe6e6;
   animation: shake 0.3s ease-in-out;
-}
-
-@keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
-  100% { transform: translateX(0); }
 }

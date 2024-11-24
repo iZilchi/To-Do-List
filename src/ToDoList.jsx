@@ -23,6 +23,7 @@ function ToDoList() {
     const [activeSort, setActiveSort] = useState(null);
     const [progress, setProgress] = useState(0);
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
     const navigate = useNavigate();
 
     // Logout function
@@ -307,31 +308,52 @@ function ToDoList() {
         }
     };
 
-    const toggleDrawer = () => {
-        setDrawerOpen(!drawerOpen);
+    const handleOpenDrawer = () => {
+        setDrawerOpen(true);
+        setIsClosing(false);
     };
+
+    const handleCloseDrawer = () => {
+        setIsClosing(true);
+        setTimeout(() => {
+            setDrawerOpen(false);
+            setIsClosing(false);
+        }, 800);
+    };
+
 
     return (
         <>
             <button 
                 className="burger-button" 
-                onClick={toggleDrawer} 
+                onClick={handleOpenDrawer} 
                 style={{ display: drawerOpen ? 'none' : 'block' }}
             >
                 ☰
             </button>
             {drawerOpen && (
-                <div className="drawer">
-                    <div className="drawer-container">
-                        <h2 className="drawer-header">ProcrastiMate</h2>
-                        <button className="close-button" onClick={toggleDrawer}>✖</button>
+                <div className={`drawer ${isClosing ? 'slide-out' : ''}`}>
+                    <div className="drawer">
+                        <div className="drawer-container">
+                            <h2 className="drawer-header">ProcrastiMate</h2>
+                            <button className="close-button" onClick={handleCloseDrawer}>✖</button>
+                        </div>
+                        <button className="to-do-drawer" onClick={() => { navigate('/todo'); handleCloseDrawer(); }}>
+                            <span>My Task</span>
+                        </button>
+                        <button className="help-drawer" onClick={() => { setIsHelpActive(prev => !prev); handleCloseDrawer(); }}>
+                            <span>Help</span>
+                        </button>
+                        <button className="about-drawer" onClick={() => { setIsAboutActive(prev => !prev); handleCloseDrawer(); }}>
+                            <span>About</span>
+                        </button>
+                        <button className="logout-drawer" onClick={() => { handleLogout(); handleCloseDrawer(); }}>
+                            <span>Logout</span>
+                        </button>
                     </div>
-                    <button onClick={() => { navigate('/todo'); toggleDrawer(); }}>My Task</button>
-                    <button onClick={() => { setIsHelpActive(prev => !prev); toggleDrawer(); }}>Help</button>
-                    <button onClick={() => { setIsAboutActive(prev => !prev); toggleDrawer(); }}>About</button>
-                    <button onClick={() => { handleLogout(); toggleDrawer(); }}>Logout</button>
                 </div>
             )}
+
             <h1 className="header">To-Do List</h1>
             <div className="container">
                 <div className="container-outline">
@@ -349,8 +371,7 @@ function ToDoList() {
                 <SortButton isSortActive={isSortActive} setIsSortActive={setIsSortActive} activeSort={activeSort} setActiveSort={setActiveSort}/>
                 <Help isHelpActive={isHelpActive} setIsHelpActive={setIsHelpActive} />
                 <About isAboutActive={isAboutActive} setIsAboutActive={setIsAboutActive} />
-                <TaskInfo isTaskInfoActive={isTaskInfoActive} setIsTaskInfoActive={setIsTaskInfoActive} tasks={tasks} activeDisplay={activeDisplay} 
-            />
+                <TaskInfo isTaskInfoActive={isTaskInfoActive} setIsTaskInfoActive={setIsTaskInfoActive} tasks={tasks} activeDisplay={activeDisplay} />
             </div>
         </>
     );    

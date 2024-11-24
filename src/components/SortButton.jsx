@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import '../styles/SortButton.css';
 
 function SortButton({ activeSort, setActiveSort, isSortActive, setIsSortActive }) {
+    const [fadeInBackground, setFadeInBackground] = useState(false);
+
     useEffect(() => {
         const savedSort = localStorage.getItem("activeSort");
         if (savedSort) {
@@ -19,10 +21,15 @@ function SortButton({ activeSort, setActiveSort, isSortActive, setIsSortActive }
 
     const handleSortTask = () => {
         setIsSortActive(true);
-    }
+        setFadeInBackground(false);
+    };
 
     const handleClose = () => {
-        setIsSortActive(false);
+        setFadeInBackground(true);
+        setTimeout(() => {
+            setIsSortActive(false);
+            setFadeInBackground(false);
+        }, 500);
     };
 
     const sortImages = {
@@ -33,20 +40,23 @@ function SortButton({ activeSort, setActiveSort, isSortActive, setIsSortActive }
 
     return (
         isSortActive && (
-            <div className="background-opacity">
+            <div className={`background-opacity ${fadeInBackground ? "fade-in" : ""}`}>
                 <div className="main-container">
                     <h3 className="sort-header">Sort By</h3>
                     <div className="sort-container">
                         {["importance-urgency", "importance", "urgency"].map((sortType) => (
                             <button
                                 key={sortType}
-                                className={`${sortType}-sort ${activeSort === sortType ? "active" : ""}`}
+                                className="sort-img-button"
                                 onClick={() => {
                                     setActiveSort((prev) => (prev === sortType ? null : sortType));
-                                    handleClose();
                                 }}
                             >
-                                <img src={sortImages[sortType]} alt={sortType} className="sort-image" />
+                                <img
+                                    src={sortImages[sortType]}
+                                    alt={sortType}
+                                    className={`sort-image ${activeSort === sortType ? "active" : ""}`}
+                                />
                             </button>
                         ))}
                     </div>

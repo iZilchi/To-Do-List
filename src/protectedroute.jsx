@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { auth } from './Firebase'; // Assuming Firebase is properly initialized
+import { auth } from './firebase'; // Assuming Firebase is properly initialized
 
 // ProtectedRoute component checks if the user is authenticated
 const ProtectedRoute = () => {
