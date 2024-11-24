@@ -4,41 +4,41 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #F9F9F9;
+    background-color: var(--container-color);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 3000;
 }
-
+  
 .about-header {
     position: relative;
     top: 2%;
     right: 7%;
-    color: #000;
-  }
+    color: var(--tertiary-color);
+}
   
-
 .about-close-button {
     position: relative;
     bottom: 12%;
     left: 44%;
-    color: #585858;
+    color: var(--close-button);
     font-size: 1.5rem;
     font-weight: 600;
 }
-
+  
 .about-content {
     position: relative;
     bottom: 5%;
     left: 0;
     width: 80%;
     height: 80%;
-    background-color: #FF6767;
+    background-color: var(--secondary-color);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 15px;
 }
+  

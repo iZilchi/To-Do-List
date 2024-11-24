@@ -12,10 +12,10 @@
   margin: 0 10px;
   padding: 3px;
   width: 100px;
-  color: #FF6767;
+  color: var(--secondary-color);
   border-radius: 20px;
-  background-color: transparent;  
-  border: 2px solid rgba(0, 0, 0, 0.6);
+  background-color: transparent;
+  border: var(--border);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -27,7 +27,6 @@
   color: var(--primary-color);
   border: none;
 }
-
 
 @media (min-width: 481px) and (max-width: 600px) {
   .view-container button {
@@ -76,5 +75,3 @@
     width: 130px;
   }
 }
-
-
