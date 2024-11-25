@@ -12,7 +12,6 @@
   margin: 0 10px;
   padding: 3px;
   width: 100px;
-  color: var(--secondary-color);
   border-radius: 20px;
   background-color: transparent;
   border: var(--border);
@@ -24,16 +23,47 @@
     box-shadow 0.3s ease;
 }
 
-.view-container button:hover,
-.view-container button:active,
-.view-container button.active {
+.view-container button.to-do-view {
+  color: var(--secondary-color);
+}
+
+.view-container button.to-do-view.active {
   background-color: var(--secondary-color);
   color: var(--primary-color);
-  border: none;
+}
+
+.view-container button.completed-view {
+  color: var(--secondary-color);
+}
+
+.view-container button.completed-view.active {
+  background-color: var(--completed-color);
+  color: var(--primary-color);
+}
+
+.view-container button.to-do-view.completed-active {
+  color: var(--completed-color);
+}
+
+.view-container button.to-do-view.completed-active:hover {
+  color: var(--primary-color);
+}
+
+.view-container .to-do-view:hover {
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+}
+
+.view-container .completed-view:hover {
+  color: var(--primary-color);
+  background-color: var(--completed-color);
+}
+
+.view-container button:hover,
+.view-container button:active {
   transform: scale(1.1);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 
 @media (min-width: 481px) and (max-width: 600px) {
   .view-container button {

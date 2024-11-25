@@ -9,16 +9,36 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 3000;
+    z-index: 998;
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
 }
-  
+
+.help-container.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.help-container.hide {
+    opacity: 0;
+    transform: scale(1);
+    pointer-events: none;
+}
+
 .help-header {
     position: relative;
     top: 2%;
     right: 33%;
     color: var(--tertiary-color);
 }
-  
+
+.help-header.completed-active {
+    color: var(--completed-color);
+}
+
 .help-close-button {
     position: relative;
     bottom: 12%;
@@ -26,8 +46,17 @@
     color: var(--close-button);
     font-size: 1.5rem;
     font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
-  
+
+.help-close-button:hover {
+    transform: scale(1.2);
+}
+
+
 .help-content {
     position: relative;
     bottom: 5%;
@@ -41,4 +70,7 @@
     justify-content: center;
     border-radius: 15px;
 }
-  
+
+.help-content.completed-active {
+    background-color: var(--completed-color);
+}

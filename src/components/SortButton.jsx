@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import '../styles/SortButton.css';
+import "../styles/SortButton.css";
 
-function SortButton({ activeSort, setActiveSort, isSortActive, setIsSortActive }) {
+function SortButton({ activeDisplay, setActiveSort, isSortActive, setIsSortActive, activeSort }) {
     const [fadeInBackground, setFadeInBackground] = useState(false);
 
     useEffect(() => {
@@ -47,7 +47,6 @@ function SortButton({ activeSort, setActiveSort, isSortActive, setIsSortActive }
                         {["importance-urgency", "importance", "urgency"].map((sortType) => (
                             <button
                                 key={sortType}
-                                className="sort-img-button"
                                 onClick={() => {
                                     setActiveSort((prev) => (prev === sortType ? null : sortType));
                                 }}
@@ -55,12 +54,12 @@ function SortButton({ activeSort, setActiveSort, isSortActive, setIsSortActive }
                                 <img
                                     src={sortImages[sortType]}
                                     alt={sortType}
-                                    className={`sort-image ${activeSort === sortType ? "active" : ""}`}
+                                    className={`sort-image ${activeSort === sortType ? "active" : ""} ${activeDisplay === "completed" ? "completed-active" : ""}`}
                                 />
                             </button>
                         ))}
                     </div>
-                    <button className="sort-button" onClick={handleSortTask}>Sort</button>
+                    <button className={`sort-button ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={handleSortTask}>Sort</button>
                     <button className="back-sort-button" onClick={handleClose}>✖</button>
                 </div>
             </div>

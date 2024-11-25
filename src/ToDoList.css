@@ -6,6 +6,7 @@
   --close-button: #585858;
   --background-opacity: rgba(57, 57, 57, 0.7);
   --container-color: #F9F9F9;
+  --completed-color: #34ac3a;
 }
 
 html, body {
@@ -63,6 +64,10 @@ body {
   animation: slideInFromTop 1s ease-out;
 }
 
+.header.completed-active {
+  color: var(--completed-color);
+}
+
 .drawer {
   position: fixed;
   top: 0;
@@ -77,6 +82,10 @@ body {
   overflow-y: auto;
   gap: 50px;
   animation: slideInFromLeft 0.5s ease-out;
+}
+
+.drawer.completed-active {
+  background-color: var(--completed-color);
 }
 
 .drawer.slide-out {
@@ -96,7 +105,15 @@ body {
   padding: 0.5rem 2rem;
   overflow: hidden;
   transition: color 0.3s ease;
-  animation: slideInFromLeft 0.8s ease-out forwards;
+  opacity: 0;
+  animation: slideInFromLeft 0.2s ease-out forwards;
+}
+
+.to-do-drawer.completed-active:hover,
+.help-drawer.completed-active:hover,
+.about-drawer.completed-active:hover,
+.logout-drawer.completed-active:hover {
+  color: var(--completed-color);
 }
 
 .to-do-drawer {
@@ -128,7 +145,7 @@ body {
   border-radius: 1rem;
   background-color: var(--primary-color);
   z-index: -1;
-  transition: width 0.7s ease, left 0.7s ease;
+  transition: width 0.3s ease, left 0.7s ease;
 }
 
 .to-do-drawer:hover,
@@ -195,7 +212,11 @@ body {
 }
 
 .burger-button:hover {
-  color: #ddd;
+  color: var(--close-button);
+}
+
+.burger-button.completed-active {
+  color: var(--completed-color);
 }
 
 .sort-add-container {
@@ -228,6 +249,10 @@ body {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
+.add-task.completed-active {
+  background-color: var(--completed-color);
+}
+
 .filter-task {
   background-color: var(--secondary-color);
   width: 55px;
@@ -242,6 +267,10 @@ body {
 .filter-task:hover {
   transform: scale(1.1);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.filter-task.completed-active {
+  background-color: var(--completed-color);
 }
 
 .filter-task img {
@@ -270,9 +299,11 @@ body {
 
 @keyframes slideInFromLeft {
   0% {
+    opacity: 0;
     transform: translateX(-100%);
   }
   100% {
+    opacity: 1;
     transform: translateX(0);
   }
 }

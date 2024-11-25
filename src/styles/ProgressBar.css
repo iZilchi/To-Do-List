@@ -20,7 +20,15 @@
   justify-content: center;
   font-size: 1rem;
   white-space: nowrap;
-  transition: width 0.5s ease;
+  transition: width 0.5s ease, background-color 0.5s ease; /* Smooth transition */
+}
+
+.progress-bar-fill.animating {
+  transition: none; /* Disable transition while animating */
+}
+
+.progress-bar-fill.animating {
+  transition: width 0.5s ease, background-color 0.5s ease; /* Re-enable transition after a small delay */
 }
 
 @media (min-width: 481px) and (max-width: 600px) {

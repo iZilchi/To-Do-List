@@ -11,12 +11,12 @@
   height: 120px;
   border-radius: 12px;
   opacity: 0;
-  transform: translateX(100%); /* Start offscreen */
+  transform: translateX(100%);
   animation: slideInRight 1s forwards;
 }
 
 .task-list.green-bg {
-  background-color: #67FF67;
+  background-color: var(--completed-color);
 }
 
 .task-list.slide-out {

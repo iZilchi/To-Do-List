@@ -325,7 +325,7 @@ function ToDoList() {
     return (
         <>
             <button 
-                className="burger-button" 
+                className={`burger-button ${activeDisplay === "completed" ? "completed-active" : ""}`}
                 onClick={handleOpenDrawer} 
                 style={{ display: drawerOpen ? 'none' : 'block' }}
             >
@@ -333,44 +333,44 @@ function ToDoList() {
             </button>
             {drawerOpen && (
                 <div className={`drawer ${isClosing ? 'slide-out' : ''}`}>
-                    <div className="drawer">
+                    <div className={`drawer ${activeDisplay === "completed" ? "completed-active" : ""}`}>
                         <div className="drawer-container">
                             <h2 className="drawer-header">ProcrastiMate</h2>
                             <button className="close-button" onClick={handleCloseDrawer}>✖</button>
                         </div>
-                        <button className="to-do-drawer" onClick={() => { navigate('/todo'); handleCloseDrawer(); }}>
+                        <button className={`to-do-drawer ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => { navigate('/todo'); handleCloseDrawer(); }}>
                             <span>My Task</span>
                         </button>
-                        <button className="help-drawer" onClick={() => { setIsHelpActive(prev => !prev); handleCloseDrawer(); }}>
+                        <button className={`help-drawer ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => { setIsHelpActive(prev => !prev); handleCloseDrawer(); }}>
                             <span>Help</span>
                         </button>
-                        <button className="about-drawer" onClick={() => { setIsAboutActive(prev => !prev); handleCloseDrawer(); }}>
+                        <button className={`about-drawer ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => { setIsAboutActive(prev => !prev); handleCloseDrawer(); }}>
                             <span>About</span>
                         </button>
-                        <button className="logout-drawer" onClick={() => { handleLogout(); handleCloseDrawer(); }}>
+                        <button className={`logout-drawer ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => { handleLogout(); handleCloseDrawer(); }}>
                             <span>Logout</span>
                         </button>
                     </div>
                 </div>
             )}
 
-            <h1 className="header">To-Do List</h1>
+            <h1 className={`header ${activeDisplay === "completed" ? "completed-active" : ""}`}>To-Do List</h1>
             <div className="container">
                 <div className="container-outline">
-                    <ProgressBar progress={progress} />
+                <ProgressBar progress={progress} activeDisplay={activeDisplay} tasks={tasks} />
                     <DisplayButton activeDisplay={activeDisplay} setActiveDisplay={setActiveDisplay} />
                     <TaskList tasks={sortedTasks} completeTask={completeTask} moveTaskUp={moveTaskUp} moveTaskDown={moveTaskDown} deleteTask={deleteTask} />
                     <div className="sort-add-container">
-                        <button className="filter-task" onClick={() => setIsSortActive(prev => !prev)}>
+                        <button className={`filter-task ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => setIsSortActive(prev => !prev)}>
                             <img src="src/assets/Sort.png" alt="Filter Icon" />
                         </button>
-                        <button className="add-task" onClick={() => setIsAddActive(prev => !prev)}>+</button>
+                        <button className={`add-task ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => setIsAddActive(prev => !prev)}>+</button>
                     </div>
                 </div>
                 <AddTaskForm addTask={addTask} isAddActive={isAddActive} setIsAddActive={setIsAddActive} />
-                <SortButton isSortActive={isSortActive} setIsSortActive={setIsSortActive} activeSort={activeSort} setActiveSort={setActiveSort}/>
-                <Help isHelpActive={isHelpActive} setIsHelpActive={setIsHelpActive} />
-                <About isAboutActive={isAboutActive} setIsAboutActive={setIsAboutActive} />
+                <SortButton isSortActive={isSortActive} setIsSortActive={setIsSortActive} activeSort={activeSort} setActiveSort={setActiveSort} activeDisplay={activeDisplay}/>
+                <Help isHelpActive={isHelpActive} setIsHelpActive={setIsHelpActive} activeDisplay={activeDisplay}/>
+                <About isAboutActive={isAboutActive} setIsAboutActive={setIsAboutActive} activeDisplay={activeDisplay}/>
                 <TaskInfo isTaskInfoActive={isTaskInfoActive} setIsTaskInfoActive={setIsTaskInfoActive} tasks={tasks} activeDisplay={activeDisplay} />
             </div>
         </>
