@@ -9,30 +9,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 998;
-    opacity: 0;
-    transform: scale(1);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    pointer-events: none;
 }
 
-.help-container.show {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
-}
-
-.help-container.hide {
-    opacity: 0;
-    transform: scale(1);
-    pointer-events: none;
-}
 
 .help-header {
     position: relative;
     top: 2%;
     right: 33%;
-    color: var(--tertiary-color);
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
 }
 
 .help-header.completed-active {
@@ -56,21 +41,21 @@
     transform: scale(1.2);
 }
 
-
 .help-content {
     position: relative;
     bottom: 5%;
     left: 0;
     width: 80%;
     height: 80%;
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color); /* Default background */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 15px;
+    transition: background-color 0.3s ease; /* Add transition for smooth background color change */
 }
 
 .help-content.completed-active {
-    background-color: var(--completed-color);
+    background-color: var(--completed-color); /* Change background when completed view is active */
 }

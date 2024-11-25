@@ -42,7 +42,7 @@ function SortButton({ activeDisplay, setActiveSort, isSortActive, setIsSortActiv
         isSortActive && (
             <div className={`background-opacity ${fadeInBackground ? "fade-in" : ""}`}>
                 <div className="main-container">
-                    <h3 className="sort-header">Sort By</h3>
+                    <h3 className={`sort-header ${activeDisplay === "completed" ? "completed-active" : ""}`}>Sort By</h3>
                     <div className="sort-container">
                         {["importance-urgency", "importance", "urgency"].map((sortType) => (
                             <button

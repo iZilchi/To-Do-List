@@ -10,22 +10,7 @@
     align-items: center;
     justify-content: center;
     z-index: 998;
-    opacity: 0;
     transform: scale(1);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    pointer-events: none;
-}
-
-.about-container.show {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
-}
-
-.about-container.hide {
-    opacity: 0;
-    transform: scale(1);
-    pointer-events: none;
 }
 
 .about-header {

@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   z-index: 3000;
+  transition: all 0.3s ease;
 }
 
 .field {
@@ -23,21 +24,27 @@
   justify-content: flex-start;
   align-items: flex-start;
   padding: 20px;
-  color: var(--tertiary-color);
+  color: var(--secondary-color);
   background: var(--primary-color);
   border: var(--border);
   border-radius: 20px;
+  transition: background-color 0.3s ease;
 }
 
-.h4-task-name {
+.h3-task-name {
   position: relative;
-  top: -7%;
-  color: var(--tertiary-color);
+  color: var(--secondary-color);
+  top: -5%;
 }
 
-.h4-task-desc,
-.description-textarea {
-  top: -12%;
+.task-textbox {
+  position: relative;
+  top: -5%;
+}
+
+.tast-description {
+  position: relative;
+  bottom: -5%;
 }
 
 .option-container {
@@ -45,27 +52,25 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  top: -11%;
-}
-
-.option-container h4 {
-  margin-bottom: 10px;
+  top: -3%;
 }
 
 .importance-container .button-group,
 .urgency-container .button-group {
   justify-content: flex-start;
-  gap: 10px;
+  gap: 20px;
 }
 
 .button-group button {
+  position: relative;
+  bottom: 35%;
   padding: 8px 15px;
   font-size: 0.9rem;
   color: var(--tertiary-color);
   background-color: transparent;
   border: var(--border);
   border-radius: 12px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
 }
 
 .button-group {
@@ -88,7 +93,6 @@
 .urgency-container {
   display: flex;
   justify-content: flex-start;
-  gap: 10px;
   align-items: center;
 }
 
@@ -100,17 +104,17 @@ input,
 textarea, 
 .importance-container, 
 .urgency-container,
-.field h4 {
+.field h3 {
   position: relative;
-  bottom: 10%;
-  color: var(--tertiary-color);
+  bottom: 8%;
+  color: var(--secondary-color);
 }
 
-.field h4 {
+.field h3 {
   font-size: 1.1rem;
 }
 
-.field h4,
+.field h3,
 .field input,
 .field textarea,
 .field .importance-container, 
@@ -129,15 +133,17 @@ textarea,
   justify-content: flex-start;
 }
 
-.h3-add-task {
+.h4-add-task {
   position: relative;
   bottom: 38%;
-  right: 21%;
+  right: 20%;
+  color: var(--secondary-color);
+  font-size: 1.7rem;
 }
 
 .done-button {
   position: relative;
-  top: 38%;
+  top: 36%;
   right: 27%;
   font-size: 1.5rem;
   background-color: var(--secondary-color);
@@ -146,6 +152,11 @@ textarea,
   border-radius: 20px;
   color: var(--primary-color);
   font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.done-button:hover {
+  transform: scale(1.2);
 }
 
 .back-button {
@@ -155,7 +166,13 @@ textarea,
   color: var(--close-button);
   font-size: 1.5rem;
   font-weight: 600;
+  transition: color 0.3s ease;
 }
+
+.back-button:hover {
+  color: var(--secondary-color);
+}
+
 
 button {
   background: transparent;
@@ -176,8 +193,7 @@ input, textarea {
 
 textarea {
   resize: none;
-  min-height: 110px;
-  max-height: 600px;
+  min-height: 150px;
 }
 
 input:focus, textarea:focus {
@@ -187,6 +203,43 @@ input:focus, textarea:focus {
 }
 
 .task-textbox.warning {
+  border: 1px solid red;
+  background-color: #ffe6e6;
+  animation: shake 0.3s ease-in-out;
+}
+
+.button-group button.active.completed-view {
+  background-color: var(--completed-color);
+  color: var(--primary-color);
+  border-color: var(--completed-color);
+  transform: scale(1.1);
+}
+
+.button-group button.completed-view:hover {
+  background-color: var(--completed-color);
+  color: var(--primary-color);
+  border-color: var(--completed-color);
+}
+
+.done-button.completed-view {
+  background-color: var(--completed-color);
+  color: var(--primary-color);
+  border: 2px solid var(--completed-color);
+}
+
+.h4-add-task.completed-view, 
+.h3-task-name.completed-view, 
+.h3-importance.completed-view, 
+.h3-urgency.completed-view, 
+.h3-task-desc.completed-view {
+  color: var(--completed-color);
+}
+
+.field.completed-view {
+  background-color: var(--completed-field-bg);
+}
+
+.task-textbox.warning.completed-view {
   border: 1px solid red;
   background-color: #ffe6e6;
   animation: shake 0.3s ease-in-out;
