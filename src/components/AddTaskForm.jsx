@@ -107,7 +107,7 @@ function AddTaskForm({ addTask, isAddActive, setIsAddActive, activeDisplay }) {
                             id="description-input"
                             className={`description-textarea ${activeDisplay === "completed" ? "completed-view" : "todo-view"}`}
                             placeholder="Enter task description"
-                            value={description}
+                            value={description || ""} // Ensure the value is always a string
                             onChange={(e) => setDescription(e.target.value)}
                             rows="4"
                         />

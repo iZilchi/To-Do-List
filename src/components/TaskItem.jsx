@@ -36,6 +36,7 @@ function TaskItem({ task, completeTask, moveTaskUp, moveTaskDown, deleteTask }) 
                 isTaskInfoActive={isTaskInfoActive} 
                 setIsTaskInfoActive={setIsTaskInfoActive}
                 task={task}
+                deleteTask={deleteTask}
             />
             <li 
                 id={task.id}

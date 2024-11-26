@@ -59,7 +59,6 @@ function SortButton({ activeDisplay, setActiveSort, isSortActive, setIsSortActiv
                             </button>
                         ))}
                     </div>
-                    <button className={`sort-button ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={handleSortTask}>Sort</button>
                     <button className="back-sort-button" onClick={handleClose}>✖</button>
                 </div>
             </div>

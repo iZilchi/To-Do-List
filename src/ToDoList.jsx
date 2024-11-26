@@ -153,35 +153,6 @@ function ToDoList() {
     };
 
     const moveTaskUp = (id) => {
-        // const index = tasks.findIndex(task => task.id === id);
-        // if (index > 0) {
-        //     const updatedTasks = [...tasks];
-            
-        //     const tempOrder = updatedTasks[index].initialOrder;
-        //     updatedTasks[index].initialOrder = updatedTasks[index - 1].initialOrder;
-        //     updatedTasks[index - 1].initialOrder = tempOrder;
-
-        //     // Swap order values
-        //     [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]];
-        //     updatedTasks[index].order = index;
-        //     updatedTasks[index - 1].order = index - 1;
-    
-        //     // Update tasks locally
-        //     setTasks(updatedTasks);
-    
-        //     // Update in Firebase
-        //     const userUid = auth.currentUser?.uid;
-        //     if (userUid) {
-        //         try {
-        //             const taskRef1 = ref(database, `users/${userUid}/tasks/${updatedTasks[index].id}`);
-        //             const taskRef2 = ref(database, `users/${userUid}/tasks/${updatedTasks[index - 1].id}`);
-        //             update(taskRef1, { order: updatedTasks[index].order, initialOrder: updatedTasks[index].initialOrder });
-        //             update(taskRef2, { order: updatedTasks[index - 1].order, initialOrder: updatedTasks[index - 1].initialOrder });
-        //         }catch(error){
-        //             console.error("Error Updating Order: ", error.message);
-        //         }
-        //     }
-        // }
         const displayedTasks = eisenSort(
             tasks.filter(task => activeDisplay === "to-do" ? !task.completed : task.completed),
             activeSort
@@ -224,35 +195,6 @@ function ToDoList() {
     };
     
     const moveTaskDown = (id) => {
-        // const index = tasks.findIndex(task => task.id === id);
-        // if (index < tasks.length - 1) {
-        //     const updatedTasks = [...tasks];
-            
-        //     const tempOrder = updatedTasks[index].initialOrder;
-        //     updatedTasks[index].initialOrder = updatedTasks[index + 1].initialOrder;
-        //     updatedTasks[index + 1].initialOrder = tempOrder;
-
-        //     // Swap order values
-        //     [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]];
-        //     updatedTasks[index].order = index;
-        //     updatedTasks[index + 1].order = index + 1;
-    
-        //     // Update tasks locally
-        //     setTasks(updatedTasks);
-    
-        //     // Update in Firebase
-        //     const userUid = auth.currentUser?.uid;
-        //     if (userUid) {
-        //         try {
-        //             const taskRef1 = ref(database, `users/${userUid}/tasks/${updatedTasks[index].id}`);
-        //             const taskRef2 = ref(database, `users/${userUid}/tasks/${updatedTasks[index + 1].id}`);
-        //             update(taskRef1, { order: updatedTasks[index].order, initialOrder: updatedTasks[index].initialOrder });
-        //             update(taskRef2, { order: updatedTasks[index + 1].order, initialOrder: updatedTasks[index + 1].initialOrder });
-        //         }catch(error){
-        //             console.error("Error Updating Order: ", error.message);
-        //         }
-        //     }
-        // }
         const displayedTasks = eisenSort(
             tasks.filter(task => activeDisplay === "to-do" ? !task.completed : task.completed),
             activeSort

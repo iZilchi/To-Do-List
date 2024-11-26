@@ -7,11 +7,6 @@ function TaskInfo({ activeDisplay, isTaskInfoActive, setIsTaskInfoActive, task, 
 
     if (!isTaskInfoActive || !task) return null;
 
-    const handleDelete = () => {
-        deleteTask(task.id);  // Call the deleteTask function passed from ToDoList
-        handleClose();  // Optionally close the task info after deleting
-    };
-
     const handleClose = () => {
         setIsSlidingOut(true);
         setIsFadingOut(true);
@@ -21,11 +16,17 @@ function TaskInfo({ activeDisplay, isTaskInfoActive, setIsTaskInfoActive, task, 
             setIsFadingOut(false);
         }, 300);
     };
+    
+
+    const handleDelete = () => {
+        deleteTask(task.id); // Ensure task ID is passed
+        handleClose(); // Optionally close the task info panel after deletion
+    };
 
     const completedClass = task.completed ? 'completed-active' : ''; // Adds 'completed-active' class if task is completed
     
     return (
-        <div className={`background-opacity ${isFadingOut ? 'fade-out' : ''}`}>
+        <div className={`background-opacity ${isFadingOut ? 'fade-out' : ''}`} >
             <div className={`task-info-container ${isSlidingOut ? 'slide-out' : ''} ${completedClass}`}>
                 <button className="info-close-button" onClick={handleClose}>✖</button>
                 <div className="info-container">
