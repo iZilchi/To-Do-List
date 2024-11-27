@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/AddTaskForm.css';
 
-function AddTaskForm({ addTask, isAddActive, setIsAddActive, activeDisplay }) {
+function AddTaskForm({ addTask, editTask, isAddActive, setIsAddActive, activeDisplay, isToEdit, setIsToEdit, editedTaskId, taskToEdit }) {
     const [newTask, setNewTask] = useState("");
     const [description, setDescription] = useState("");
     const [importance, setImportance] = useState(2);
@@ -9,18 +9,32 @@ function AddTaskForm({ addTask, isAddActive, setIsAddActive, activeDisplay }) {
     const [showWarning, setShowWarning] = useState(false);
     const [isFadingOut, setIsFadingOut] = useState(false); // Track if fade-out is in progress
 
+    useEffect(() => {
+        if (taskToEdit) {
+            setNewTask(taskToEdit.text || "");
+            setDescription(taskToEdit.description || "");
+            setImportance(taskToEdit.importance || 2);
+            setUrgency(taskToEdit.urgency || 2);
+        } else {
+            setNewTask("");
+            setDescription("");
+            setImportance(2);
+            setUrgency(2);
+        }
+    }, [taskToEdit]);
+
     const handleAddTask = () => {
         if (!newTask.trim()) {
             setShowWarning(true); 
             return; 
         }
-        addTask(newTask, description, importance, urgency);
-        setNewTask("");
-        setDescription("");
-        setImportance(2);
-        setUrgency(2);
-        setIsAddActive(false);
-        setShowWarning(false);
+        if (isToEdit && editedTaskId) { 
+            editTask(editedTaskId, newTask, description, importance, urgency); //For Editing Task
+          } else {
+            addTask(newTask, description, importance, urgency); //For Adding Task
+          }
+
+        handleClose();
     };
 
     const handleClose = () => {
@@ -33,6 +47,7 @@ function AddTaskForm({ addTask, isAddActive, setIsAddActive, activeDisplay }) {
         
         setTimeout(() => {
             setIsAddActive(false);
+            setIsToEdit(false);
             setIsFadingOut(false);
         }, 500);
     };
@@ -46,10 +61,10 @@ function AddTaskForm({ addTask, isAddActive, setIsAddActive, activeDisplay }) {
     };
 
     return (
-        isAddActive && (
+        (isAddActive || isToEdit) && (
             <div className={`background-opacity ${isFadingOut ? 'fade-in' : ''}`}>
                 <div className="add-pop-up">
-                    <h4 className={`h4-add-task ${activeDisplay === "completed" ? "completed-view" : "todo-view"}`}>Add New Task</h4>
+                    <h4 className={`h4-add-task ${activeDisplay === "completed" ? "completed-view" : "todo-view"}`}>{isToEdit ? "Edit Task" : "Add New Task"}</h4>
                     <div className="field">
                         <h3 className={`h3-task-name ${activeDisplay === "completed" ? "completed-view" : "todo-view"}`}>Task Name</h3>
                         <input
@@ -62,7 +77,6 @@ function AddTaskForm({ addTask, isAddActive, setIsAddActive, activeDisplay }) {
                                 setNewTask(e.target.value);
                                 setShowWarning(false);
                             }}
-                            maxLength={30}
                         />
                         <div className={`option-container importance-container ${activeDisplay === "completed" ? "completed-view" : "todo-view"}`}>
                             <h3 className={`h3-importance ${activeDisplay === "completed" ? "completed-view" : "todo-view"}`}>Importance</h3>
@@ -116,7 +130,7 @@ function AddTaskForm({ addTask, isAddActive, setIsAddActive, activeDisplay }) {
                         className={`done-button ${activeDisplay === "completed" ? "completed-view" : "todo-view"}`}
                         onClick={handleAddTask}
                     >
-                        Done
+                        {isToEdit ? "Save" : "Done"}
                     </button>
                     <button className={`back-button ${activeDisplay === "completed" ? "completed-view" : "todo-view"}`} onClick={handleClose}>✖</button>
                 </div>

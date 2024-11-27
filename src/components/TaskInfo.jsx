@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/TaskInfo.css';
 
-function TaskInfo({ activeDisplay, isTaskInfoActive, setIsTaskInfoActive, task, deleteTask }) {
+function TaskInfo({ activeDisplay, isTaskInfoActive, setIsTaskInfoActive, task, deleteTask, setIsToEdit, setEditedTaskId }) {
     const [isSlidingOut, setIsSlidingOut] = useState(false);
     const [isFadingOut, setIsFadingOut] = useState(false);
 
@@ -17,11 +17,17 @@ function TaskInfo({ activeDisplay, isTaskInfoActive, setIsTaskInfoActive, task, 
         }, 300);
     };
     
+    const handleEdit = () => {
+        setEditedTaskId(task.id);
+        setIsToEdit(true); // Trigger edit mode
+        handleClose();
+    };
 
     const handleDelete = () => {
         deleteTask(task.id); // Ensure task ID is passed
         handleClose(); // Optionally close the task info panel after deletion
     };
+
 
     const completedClass = task.completed ? 'completed-active' : ''; // Adds 'completed-active' class if task is completed
     
@@ -53,7 +59,7 @@ function TaskInfo({ activeDisplay, isTaskInfoActive, setIsTaskInfoActive, task, 
                         </li>
                     </ul>
                     <div className="button-container">
-                        <div className={`edit-task ${completedClass}`}>
+                        <div className={`edit-task ${completedClass}`} onClick={handleEdit}>
                             <img src="/src/assets/Edit.png" alt="Edit Task" />
                         </div>
                         <div className={`delete-task ${completedClass}`} onClick={handleDelete}>

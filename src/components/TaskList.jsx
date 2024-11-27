@@ -3,7 +3,7 @@ import TaskItem from "./TaskItem";
 
 import '../styles/TaskList.css';
 
-function TaskList({tasks, completeTask, moveTaskUp, moveTaskDown, deleteTask}){
+function TaskList({tasks, completeTask, moveTaskUp, moveTaskDown, deleteTask, setIsToEdit, setEditedTaskId }){
     return (
         <div className="list-container">
             <ol>
@@ -15,6 +15,8 @@ function TaskList({tasks, completeTask, moveTaskUp, moveTaskDown, deleteTask}){
                         moveTaskUp={moveTaskUp}
                         moveTaskDown={moveTaskDown}
                         deleteTask = {deleteTask}
+                        setIsToEdit = {setIsToEdit} //Pass to task item
+                        setEditedTaskId={setEditedTaskId} //Are din
                     />
                 ))}
             </ol>

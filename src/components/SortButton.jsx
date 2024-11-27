@@ -19,9 +19,10 @@ function SortButton({ activeDisplay, setActiveSort, isSortActive, setIsSortActiv
         }
     }, [activeSort]);
 
-    const handleSortTask = () => {
-        setIsSortActive(true);
+    const handleSortTask = (sortType) => {
+        setActiveSort((prev) => (prev === sortType ? null : sortType));
         setFadeInBackground(false);
+        handleClose();
     };
 
     const handleClose = () => {
@@ -48,7 +49,7 @@ function SortButton({ activeDisplay, setActiveSort, isSortActive, setIsSortActiv
                             <button
                                 key={sortType}
                                 onClick={() => {
-                                    setActiveSort((prev) => (prev === sortType ? null : sortType));
+                                    handleSortTask(sortType);
                                 }}
                             >
                                 <img

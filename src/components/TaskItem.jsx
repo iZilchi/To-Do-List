@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/TaskItem.css';
 import TaskInfo from '../components/TaskInfo'; 
 
-function TaskItem({ task, completeTask, moveTaskUp, moveTaskDown, deleteTask }) {
+function TaskItem({ task, completeTask, moveTaskUp, moveTaskDown, deleteTask, setIsToEdit, setEditedTaskId }) {
     const [isTaskInfoActive, setIsTaskInfoActive] = useState(false);
     const [isCompleted, setIsCompleted] = useState(task.completed);
     const [isDeleted, setIsDeleted] = useState(false);  // Track delete state
@@ -37,6 +37,8 @@ function TaskItem({ task, completeTask, moveTaskUp, moveTaskDown, deleteTask }) 
                 setIsTaskInfoActive={setIsTaskInfoActive}
                 task={task}
                 deleteTask={deleteTask}
+                setIsToEdit={setIsToEdit} //Pass to TaskInfo
+                setEditedTaskId={setEditedTaskId} // are din
             />
             <li 
                 id={task.id}

@@ -15,6 +15,8 @@ import TaskInfo from './components/TaskInfo';
 function ToDoList() {
     const [tasks, setTasks] = useState([]);
     const [isAddActive, setIsAddActive] = useState(false);
+    const [isToEdit, setIsToEdit] = useState(false); //Para malaman kung naka edit mode
+    const [editedTaskId, setEditedTaskId] = useState(null); // Track task being edited
     const [isSortActive, setIsSortActive] = useState(false);
     const [isHelpActive, setIsHelpActive] = useState(false);
     const [isAboutActive, setIsAboutActive] = useState(false);
@@ -111,31 +113,58 @@ function ToDoList() {
     // Add a new task for the authenticated user
     const addTask = (text, description, importance, urgency) => {
         if (text.trim()) {
+          const userUid = auth.currentUser?.uid;
+          if (userUid) {
+              const taskScale = (importance === 1 && urgency === 1) ? 1 : 
+                                (importance === 2 && urgency === 1) ? 2 : 
+                                (importance === 1 && urgency === 2) ? 3 : 4;
+              try {
+                const newTaskRef = push(ref(database, `users/${userUid}/tasks`));
+                set(newTaskRef, {
+                  text,
+                  description,
+                  completed: false,
+                  importance,
+                  urgency,
+                  scale: taskScale,
+                  order: tasks.length,
+                  initialOrder: tasks.length,
+                });
+              } catch (error) {
+                console.error("Error Adding Tasks: ", error.message);
+              }
+            
+          }
+        }
+      };
+
+      // Edit an existing task
+    const editTask = (id, text, description, importance, urgency) => {
+        if (text.trim()){
             const userUid = auth.currentUser?.uid;
-            if (userUid) {
+            if (userUid && id) {
+                const taskRef = ref(database, `users/${userUid}/tasks/${id}`);
                 const taskScale = (importance === 1 && urgency === 1) ? 1 : 
-                                  (importance === 2 && urgency === 1) ? 2 : 
-                                  (importance === 1 && urgency === 2) ? 3 : 4;
+                                (importance === 2 && urgency === 1) ? 2 : 
+                                (importance === 1 && urgency === 2) ? 3 : 4;
+
                 try {
-                    const newTaskRef = push(ref(database, `users/${userUid}/tasks`));
-                    set(newTaskRef, {
+                    update(taskRef, {
                         text,
                         description,
-                        completed: false,
                         importance,
                         urgency,
                         scale: taskScale,
-                        order: tasks.length,
-                        initialOrder: tasks.length,
                     });
-                }catch (error) {
-                    console.error("Error Adding Tasks: ", error.message);
+                } catch (error) {
+                    console.error("Error Editing Task: ", error.message);
                 }
             }
         }
     };
-    
 
+    const taskToEdit = isToEdit ? tasks.find(task => task.id === editedTaskId) : null;
+    
     // Toggle task completion status
     const completeTask = (id) => {
         const userUid = auth.currentUser?.uid;
@@ -301,7 +330,7 @@ function ToDoList() {
                 <div className="container-outline">
                     <ProgressBar progress={progress} activeDisplay={activeDisplay} tasks={tasks} />
                     <DisplayButton activeDisplay={activeDisplay} setActiveDisplay={setActiveDisplay} />
-                    <TaskList tasks={sortedTasks} completeTask={completeTask} moveTaskUp={moveTaskUp} moveTaskDown={moveTaskDown} deleteTask={deleteTask} />
+                    <TaskList tasks={sortedTasks} completeTask={completeTask} moveTaskUp={moveTaskUp} moveTaskDown={moveTaskDown} deleteTask={deleteTask} setIsToEdit={setIsToEdit} setEditedTaskId={setEditedTaskId} />
                     <div className="sort-add-container">
                         <button className={`filter-task ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => setIsSortActive(prev => !prev)}>
                             <img src="src/assets/Sort.png" alt="Filter Icon" />
@@ -309,7 +338,7 @@ function ToDoList() {
                         <button className={`add-task ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => setIsAddActive(prev => !prev)}>+</button>
                     </div>
                 </div>
-                <AddTaskForm addTask={addTask} isAddActive={isAddActive} setIsAddActive={setIsAddActive} activeDisplay={activeDisplay}/>
+                <AddTaskForm addTask={addTask} editTask={editTask} isAddActive={isAddActive} setIsAddActive={setIsAddActive} activeDisplay={activeDisplay} isToEdit={isToEdit} setIsToEdit={setIsToEdit} editedTaskId={editedTaskId} taskToEdit={taskToEdit}/>
                 <SortButton isSortActive={isSortActive} setIsSortActive={setIsSortActive} activeSort={activeSort} setActiveSort={setActiveSort} activeDisplay={activeDisplay}/>
                 <Help isHelpActive={isHelpActive} setIsHelpActive={setIsHelpActive} activeDisplay={activeDisplay}/>
                 <About isAboutActive={isAboutActive} setIsAboutActive={setIsAboutActive} activeDisplay={activeDisplay}/>
