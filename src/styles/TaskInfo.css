@@ -66,27 +66,28 @@
   font-weight: bold;
   font-size: 1.2rem;
   text-align: left;
-  margin-bottom: 15px; /* Add 5px space below name */
+  margin-bottom: 15px;
   color: var(--secondary-color)
 }
 
 .info-description {
-  height: 390px;
+  height: 520px;
   overflow-y: auto;
   box-sizing: border-box;
-  margin-bottom: 15px; /* Add 5px space below description */
+  margin-bottom: 15px;
 }
 
 .info-priority,
 .info-status {
   font-size: 1rem;
   color: var(--secondary-color);
-  margin-bottom: 15px; /* Add 5px space below priority and status */
+  margin-bottom: 15px;
 }
 
 .info-list li {
   color: var(--tertiary-color);
 }
+
 .edit-task,
 .delete-task {
   background-color: var(--secondary-color);
@@ -130,7 +131,7 @@
   justify-content: center;
   width: 100%;
   gap: 25px;
-  top: 88%;
+  top: 90%;
   left: 0;
 }
 
@@ -144,14 +145,14 @@
 }
 
 .info-container.completed-active {
-  background-color: var(--completed-color); /* Background color for completed tasks */
+  background-color: var(--completed-color);
 }
 
 .info-name.completed-active, 
 .info-priority.completed-active, 
 .info-status.completed-active, 
 .info-description.completed-active {
-  color: var(--completed-color); /* Text color for completed tasks */
+  color: var(--completed-color);
 }
 
 .edit-task.completed-active,

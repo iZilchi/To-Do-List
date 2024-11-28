@@ -7,7 +7,7 @@
   background-color: var(--primary-color);
   border-radius: 15px;
   width: 84%;
-  height: 40%;
+  height: 30%;
 }
 
 .sort-container {
@@ -19,7 +19,7 @@
   border: var(--border);
   border-radius: 20px;
   width: 80%;
-  height: 40%;
+  height: 50%;
   bottom: 10%;
 }
 

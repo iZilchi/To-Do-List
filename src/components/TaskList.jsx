@@ -15,8 +15,8 @@ function TaskList({tasks, completeTask, moveTaskUp, moveTaskDown, deleteTask, se
                         moveTaskUp={moveTaskUp}
                         moveTaskDown={moveTaskDown}
                         deleteTask = {deleteTask}
-                        setIsToEdit = {setIsToEdit} //Pass to task item
-                        setEditedTaskId={setEditedTaskId} //Are din
+                        setIsToEdit = {setIsToEdit}
+                        setEditedTaskId={setEditedTaskId}
                     />
                 ))}
             </ol>

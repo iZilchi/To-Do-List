@@ -19,17 +19,17 @@ function TaskInfo({ activeDisplay, isTaskInfoActive, setIsTaskInfoActive, task, 
     
     const handleEdit = () => {
         setEditedTaskId(task.id);
-        setIsToEdit(true); // Trigger edit mode
+        setIsToEdit(true);
         handleClose();
     };
 
     const handleDelete = () => {
-        deleteTask(task.id); // Ensure task ID is passed
-        handleClose(); // Optionally close the task info panel after deletion
+        deleteTask(task.id);
+        handleClose();
     };
 
 
-    const completedClass = task.completed ? 'completed-active' : ''; // Adds 'completed-active' class if task is completed
+    const completedClass = task.completed ? 'completed-active' : '';
     
     return (
         <div className={`background-opacity ${isFadingOut ? 'fade-out' : ''}`} >

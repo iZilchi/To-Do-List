@@ -28,6 +28,12 @@ function ToDoList() {
     const [isClosing, setIsClosing] = useState(false);
     const navigate = useNavigate();
 
+    const sortImages = {
+        "importance-urgency": "../src/assets/Imp-Urg.png",
+        importance: "../src/assets/Importance.png",
+        urgency: "../src/assets/Urgency.png",
+    };
+
     // Logout function
     const handleLogout = async () => {
         try {
@@ -293,6 +299,10 @@ function ToDoList() {
     };
 
 
+    const toggleSortMenu = () => {
+        setIsSortActive((prev) => !prev);
+    };
+
     return (
         <>
             <button 
@@ -332,9 +342,15 @@ function ToDoList() {
                     <DisplayButton activeDisplay={activeDisplay} setActiveDisplay={setActiveDisplay} />
                     <TaskList tasks={sortedTasks} completeTask={completeTask} moveTaskUp={moveTaskUp} moveTaskDown={moveTaskDown} deleteTask={deleteTask} setIsToEdit={setIsToEdit} setEditedTaskId={setEditedTaskId} />
                     <div className="sort-add-container">
-                        <button className={`filter-task ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => setIsSortActive(prev => !prev)}>
-                            <img src="src/assets/Sort.png" alt="Filter Icon" />
-                        </button>
+                    <button
+                        className={`filter-task ${activeDisplay === "completed" ? "completed-active" : ""}`}
+                        onClick={toggleSortMenu}
+                    >
+                        <img
+                            src={sortImages[activeSort] || "../src/assets/Sort.png"}
+                            alt="Filter"
+                        />
+                    </button>
                         <button className={`add-task ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => setIsAddActive(prev => !prev)}>+</button>
                     </div>
                 </div>

@@ -15,10 +15,10 @@
 
 .field {
   position: absolute;
-  top: 10%;
+  top: 11%;
   left: 7%;
   width: 85vw;
-  height: 75vh;
+  height: 78vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -29,6 +29,14 @@
   border: var(--border);
   border-radius: 20px;
   transition: background-color 0.3s ease;
+}
+
+.h4-add-task {
+  position: relative;
+  bottom: 37%;
+  right: 20%;
+  color: var(--secondary-color);
+  font-size: 1.7rem;
 }
 
 .h3-task-name {
@@ -106,7 +114,7 @@ textarea,
 .urgency-container,
 .field h3 {
   position: relative;
-  bottom: 8%;
+  bottom: 5%;
   color: var(--secondary-color);
 }
 
@@ -133,17 +141,9 @@ textarea,
   justify-content: flex-start;
 }
 
-.h4-add-task {
-  position: relative;
-  bottom: 38%;
-  right: 20%;
-  color: var(--secondary-color);
-  font-size: 1.7rem;
-}
-
 .done-button {
   position: relative;
-  top: 36%;
+  top: 40%;
   right: 27%;
   font-size: 1.5rem;
   background-color: var(--secondary-color);
@@ -161,7 +161,7 @@ textarea,
 
 .back-button {
   position: relative;
-  bottom: 58%;
+  bottom: 57%;
   left: 43%;
   color: var(--close-button);
   font-size: 1.5rem;
@@ -193,7 +193,7 @@ input, textarea {
 
 textarea {
   resize: none;
-  min-height: 150px;
+  min-height: 280px;
 }
 
 input:focus, textarea:focus {

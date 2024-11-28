@@ -7,7 +7,7 @@ function AddTaskForm({ addTask, editTask, isAddActive, setIsAddActive, activeDis
     const [importance, setImportance] = useState(2);
     const [urgency, setUrgency] = useState(2);
     const [showWarning, setShowWarning] = useState(false);
-    const [isFadingOut, setIsFadingOut] = useState(false); // Track if fade-out is in progress
+    const [isFadingOut, setIsFadingOut] = useState(false);
 
     useEffect(() => {
         if (taskToEdit) {
@@ -29,9 +29,9 @@ function AddTaskForm({ addTask, editTask, isAddActive, setIsAddActive, activeDis
             return; 
         }
         if (isToEdit && editedTaskId) { 
-            editTask(editedTaskId, newTask, description, importance, urgency); //For Editing Task
+            editTask(editedTaskId, newTask, description, importance, urgency);
           } else {
-            addTask(newTask, description, importance, urgency); //For Adding Task
+            addTask(newTask, description, importance, urgency);
           }
 
         handleClose();
@@ -74,9 +74,12 @@ function AddTaskForm({ addTask, editTask, isAddActive, setIsAddActive, activeDis
                             className={`task-textbox ${showWarning ? "warning" : ""} ${activeDisplay === "completed" ? "completed-view" : "todo-view"}`}
                             value={newTask}
                             onChange={(e) => {
-                                setNewTask(e.target.value);
-                                setShowWarning(false);
+                                if (e.target.value.length <= 30) {
+                                    setNewTask(e.target.value);
+                                    setShowWarning(false);
+                                }
                             }}
+                            maxLength={30}
                         />
                         <div className={`option-container importance-container ${activeDisplay === "completed" ? "completed-view" : "todo-view"}`}>
                             <h3 className={`h3-importance ${activeDisplay === "completed" ? "completed-view" : "todo-view"}`}>Importance</h3>
@@ -121,7 +124,7 @@ function AddTaskForm({ addTask, editTask, isAddActive, setIsAddActive, activeDis
                             id="description-input"
                             className={`description-textarea ${activeDisplay === "completed" ? "completed-view" : "todo-view"}`}
                             placeholder="Enter task description"
-                            value={description || ""} // Ensure the value is always a string
+                            value={description || ""}
                             onChange={(e) => setDescription(e.target.value)}
                             rows="4"
                         />
