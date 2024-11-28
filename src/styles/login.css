@@ -256,7 +256,7 @@ label {
 @media (min-width: 1024px) {
   .sign-in-container {
     width: 40vw;
-    height: 75vh;
+    height: 85vh;
     padding: 10px;
   }
 
@@ -274,6 +274,7 @@ label {
   
   .toggle-sign-up, 
   .forgot-password {
+    top: 5%;
     font-size: 1rem;
   }
 
@@ -282,7 +283,7 @@ label {
 @media (min-width: 1280px) {
   .sign-in-container {
     width: 35vw;
-    height: 80vh;
+    height: 90vh;
     padding: 10px;
   }
 
@@ -310,7 +311,7 @@ label {
   
   .toggle-sign-up, 
   .forgot-password {
-    top: 7%;
+    top: 9%;
     font-size: 1rem;
   }
 
