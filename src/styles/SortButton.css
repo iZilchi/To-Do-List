@@ -106,3 +106,172 @@
 .sort-container img.active {
   transform: scale(1.2);
 }
+
+@media (min-width: 320px) {
+  .main-container {
+    width: 95%;
+    height: 25%;
+  }
+
+  .sort-header {
+    top: 1%;
+  }
+  
+  .back-sort-button {
+    bottom: 80%;
+    left: 87%;
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 375px) {
+  .main-container {
+    width: 95%;
+    height: 28%;
+  }
+
+  .sort-header {
+    top: 1%;
+  }
+  
+  .back-sort-button {
+    bottom: 80%;
+    left: 87%;
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 480px) {
+  .main-container {
+    width: 65%;
+    height: 25%;
+  }
+
+  .sort-header {
+    top: 1%;
+  }
+  
+  .back-sort-button {
+    bottom: 80%;
+    left: 87%;
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-container {
+    width: 40%;
+    height: 25%;
+  }
+
+  .sort-header {
+    top: 1%;
+  }
+  
+  .back-sort-button {
+    bottom: 80%;
+    left: 87%;
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-container {
+    width: 30%;
+    height: 30%;
+  }
+
+  .sort-header {
+    top: 1%;
+  }
+  
+  .back-sort-button {
+    bottom: 80%;
+    left: 87%;
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .main-container {
+    width: 30%;
+    height: 30%;
+  }
+
+  .sort-container {
+    width: 70%;
+    height: 50%;
+    bottom: 10%;
+  }
+
+  .sort-header {
+    top: 1%;
+    right: 20%;
+  }
+  
+  .back-sort-button {
+    bottom: 85%;
+    left: 90%;
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .main-container {
+    width: 30%;
+    height: 35%;
+  }
+
+  .sort-container {
+    width: 75%;
+    height: 45%;
+    bottom: 10%;
+  }
+
+  .sort-header {
+    top: 1%;
+    right: 22%;
+    font-size: 2.5rem;
+  }
+  
+  .back-sort-button {
+    bottom: 85%;
+    left: 90%;
+    font-size: 1.5rem;
+  }
+
+  .sort-container img {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .main-container {
+    width: 25%;
+    height: 28%;
+  }
+
+  .sort-container {
+    width: 75%;
+    height: 45%;
+    bottom: 10%;
+  }
+
+  .sort-header {
+    top: 1%;
+    right: 22%;
+    font-size: 2.5rem;
+  }
+  
+  .back-sort-button {
+    bottom: 85%;
+    left: 90%;
+    font-size: 1.5rem;
+  }
+
+  .sort-container img {
+    width: 75px;
+    height: 75px;
+  }
+}

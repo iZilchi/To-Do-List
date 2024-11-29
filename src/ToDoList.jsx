@@ -26,6 +26,7 @@ function ToDoList() {
     const [progress, setProgress] = useState(0);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
+    const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
     const navigate = useNavigate();
 
     const sortImages = {
@@ -284,6 +285,17 @@ function ToDoList() {
             }
         }
     };
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsLargeScreen(window.innerWidth >= 1024);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     const handleOpenDrawer = () => {
         setDrawerOpen(true);

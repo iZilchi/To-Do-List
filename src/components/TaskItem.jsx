@@ -37,8 +37,8 @@ function TaskItem({ task, completeTask, moveTaskUp, moveTaskDown, deleteTask, se
                 setIsTaskInfoActive={setIsTaskInfoActive}
                 task={task}
                 deleteTask={deleteTask}
-                setIsToEdit={setIsToEdit} //Pass to TaskInfo
-                setEditedTaskId={setEditedTaskId} // are din
+                setIsToEdit={setIsToEdit}
+                setEditedTaskId={setEditedTaskId}
             />
             <li 
                 id={task.id}

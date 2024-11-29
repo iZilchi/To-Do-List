@@ -278,6 +278,12 @@ label {
     font-size: 1rem;
   }
 
+  .email-text,
+  .password-text,
+  .username-textbox,
+  .password-textbox {
+    bottom: 5%;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -318,6 +324,7 @@ label {
   .email-text,
   .password-text {
     font-size: 1.3rem;
+    bottom: 3%;
   }
 
   .username-textbox, .password-textbox {
@@ -368,6 +375,7 @@ label {
   .email-text,
   .password-text {
     font-size: 1.3rem;
+    bottom: 3%;
   }
 
   .username-textbox, .password-textbox {

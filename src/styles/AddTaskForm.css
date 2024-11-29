@@ -50,7 +50,7 @@
   top: -5%;
 }
 
-.tast-description {
+.task-description {
   position: relative;
   bottom: -5%;
 }
@@ -143,12 +143,12 @@ textarea,
 
 .done-button {
   position: relative;
-  top: 40%;
-  right: 27%;
+  top: 39%;
+  right: 30%;
   font-size: 1.5rem;
   background-color: var(--secondary-color);
-  width: 130px;
-  height: 60px;
+  width: 100px;
+  height: 50px;
   border-radius: 20px;
   color: var(--primary-color);
   font-weight: bold;
@@ -193,7 +193,8 @@ input, textarea {
 
 textarea {
   resize: none;
-  min-height: 280px;
+  min-height: 34%;
+  max-height: 100%;
 }
 
 input:focus, textarea:focus {
@@ -243,4 +244,454 @@ input:focus, textarea:focus {
   border: 1px solid red;
   background-color: #ffe6e6;
   animation: shake 0.3s ease-in-out;
+}
+
+@media (min-width: 480px) {
+  .field {
+    top: 9%;
+    left: 7%;
+    width: 85%;
+    height: 81%;
+  }
+  
+  .h4-add-task {
+    bottom: 40%;
+    right: 19%;
+    font-size: 2.3rem;
+  }
+  
+  .h3-task-name {
+    top: -2%;
+  }
+  
+  .task-textbox {
+    top: -2%;
+  }
+  
+  .task-description {
+    bottom: -2%;
+  }
+  
+  .option-container {
+    top: -2%;
+  }
+
+  .button-group button {
+    bottom: 40%;
+    padding: 8px 15px;
+    font-size: 1.1rem;
+  }
+  
+  input,
+  textarea, 
+  .importance-container, 
+  .urgency-container,
+  .field h3 {
+    bottom: 5%;
+  }
+  
+  .field h3 {
+    font-size: 1.5rem;
+  }
+
+  .done-button {
+    top: 40%;
+    right: 31%;
+    font-size: 1.7rem;
+    width: 120px;
+    height: 60px;
+  }
+  
+  .back-button {
+    bottom: 58%;
+    left: 45%;
+    font-size: 1.5rem;
+  }
+
+  input, textarea {
+    font-size: 1.2rem;
+  }
+  
+  textarea {
+    min-height: 50%;
+    max-height: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .add-pop-up {
+    top: 10%;
+    left: 17%;
+    width: 70%;
+    height: 80%;
+    border-radius: 12px;
+  }
+  .field {
+    top: 13%;
+    left: 7%;
+    width: 85%;
+    height: 75%;
+  }
+  
+  .h4-add-task {
+    bottom: 35%;
+    right: 21%;
+    font-size: 2.3rem;
+  }
+  
+  .h3-task-name {
+    top: -4%;
+  }
+  
+  .task-textbox {
+    top: -4%;
+  }
+  
+  .task-description {
+    bottom: -4%;
+  }
+  
+  .option-container {
+    top: -4%;
+  }
+
+  .button-group button {
+    bottom: 40%;
+    padding: 8px 15px;
+    font-size: 1.1rem;
+  }
+  
+  input,
+  textarea, 
+  .importance-container, 
+  .urgency-container,
+  .field h3 {
+    bottom: 8%;
+  }
+  
+  .field h3 {
+    font-size: 1.5rem;
+  }
+
+  .done-button {
+    top: 37%;
+    right: 32%;
+    font-size: 1.7rem;
+    width: 120px;
+    height: 60px;
+  }
+  
+  .back-button {
+    bottom: 59%;
+    left: 43%;
+    font-size: 1.5rem;
+  }
+
+  input, textarea {
+    font-size: 1.2rem;
+  }
+  
+  textarea {
+    min-height: 32%;
+    max-height: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .add-pop-up {
+    top: 5%;
+    left: 30%;
+    width: 40%;
+    height: 90%;
+    border-radius: 12px;
+  }
+  .field {
+    top: 9%;
+    left: 7%;
+    width: 85%;
+    height: 78%;
+  }
+  
+  .h4-add-task {
+    bottom: 38%;
+    right: 26%;
+    font-size: 1.3rem;
+  }
+  
+  .h3-task-name {
+    top: -8%;
+  }
+  
+  .task-textbox {
+    top: -11%;
+  }
+
+  .option-container {
+    top: -10%;
+  }
+
+  .button-group button {
+    bottom: 70%;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+  
+  input,
+  textarea, 
+  .importance-container, 
+  .urgency-container,
+  .field h3 {
+    bottom: 18%;
+  }
+  
+  .field h3 {
+    font-size: 1rem;
+  }
+
+  .done-button {
+    top: 38%;
+    right: 33%;
+    font-size: 1.2rem;
+    width: 90px;
+    height: 40px;
+  }
+  
+  .back-button {
+    bottom: 58%;
+    left: 45%;
+    font-size: 1.2rem;
+  }
+
+  input, textarea {
+    font-size: 0.9rem;
+  }
+  
+  textarea {
+    min-height: 37%;
+    max-height: 100%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .add-pop-up {
+    top: 5%;
+    left: 30%;
+    width: 40%;
+    height: 90%;
+    border-radius: 12px;
+  }
+  .field {
+    top: 11%;
+    left: 7%;
+    width: 85%;
+    height: 77%;
+  }
+  
+  .h4-add-task {
+    bottom: 38%;
+    right: 26%;
+    font-size: 1.6rem;
+  }
+  
+  .h3-task-name {
+    top: -5%;
+  }
+  
+  .task-textbox {
+    top: -7%;
+  }
+
+  .option-container {
+    top: -6%;
+  }
+
+  .button-group button {
+    bottom: 70%;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+  
+  input,
+  textarea, 
+  .importance-container, 
+  .urgency-container,
+  .field h3 {
+    bottom: 13%;
+  }
+  
+  .field h3 {
+    font-size: 1rem;
+  }
+
+  .done-button {
+    top: 38%;
+    right: 34%;
+    font-size: 1.2rem;
+    width: 90px;
+    height: 40px;
+  }
+  
+  .back-button {
+    bottom: 56%;
+    left: 45%;
+    font-size: 1.2rem;
+  }
+
+  input, textarea {
+    font-size: 0.9rem;
+  }
+  
+  textarea {
+    min-height: 42%;
+    max-height: 100%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .add-pop-up {
+    top: 5%;
+    left: 30%;
+    width: 40%;
+    height: 90%;
+    border-radius: 12px;
+  }
+  .field {
+    top: 12%;
+    left: 7%;
+    width: 85%;
+    height: 77%;
+  }
+  
+  .h4-add-task {
+    bottom: 38%;
+    right: 26%;
+    font-size: 2.2rem;
+  }
+  
+  .h3-task-name {
+    top: -2%;
+  }
+  
+  .task-textbox {
+    top: -2%;
+  }
+
+  .option-container {
+    top: -1%;
+  }
+
+  .button-group button {
+    bottom: 50%;
+    padding: 8px 15px;
+    font-size: 1.1rem;
+  }
+  
+  input,
+  textarea, 
+  .importance-container, 
+  .urgency-container,
+  .field h3 {
+    bottom: 3%;
+  }
+  
+  .field h3 {
+    font-size: 1.4rem;
+  }
+
+  .done-button {
+    top: 38%;
+    right: 36%;
+    font-size: 1.5rem;
+    width: 100px;
+    height: 50px;
+  }
+  
+  .back-button {
+    bottom: 58%;
+    left: 45%;
+    font-size: 1.2rem;
+  }
+
+  input, textarea {
+    font-size: 1rem;
+  }
+  
+  textarea {
+    min-height: 23%;
+    max-height: 100%;
+  }
+}
+
+@media (min-width: 1920px) {
+  .add-pop-up {
+    top: 10%;
+    left: 25%;
+    width: 50%;
+    height: 80%;
+  }
+  
+  .field {
+    top: 12%;
+    left: 7%;
+    width: 85%;
+    height: 76%;
+  }
+  
+  .h4-add-task {
+    top: -37%;
+    right: 30%;
+    font-size: 2.5rem;
+  }
+  
+  .h3-task-name {
+    top: -3%;
+  }
+  
+  .task-textbox {
+    top: -3%;
+  }
+  
+  .option-container {
+    top: -1%;
+  }
+
+  .button-group button {
+    bottom: 35%;
+    padding: 8px 15px;
+    font-size: 1.2rem;
+  }
+  
+  input,
+  textarea, 
+  .importance-container, 
+  .urgency-container,
+  .field h3 {
+    bottom: 5%;
+  }
+  
+  .field h3 {
+    font-size: 1.5rem;
+  }
+
+  .done-button {
+    top: 36%;
+    right: 36%;
+    font-size: 2rem;
+    width: 130px;
+    height: 60px;
+  }
+  
+  .back-button {
+    bottom: 59%;
+    left: 47%;
+    font-size: 1.5rem;
+  }
+
+  input, textarea {
+    font-size: 1.2rem;
+  }
+  
+  textarea {
+    min-height: 200px;
+  }
 }

@@ -142,3 +142,208 @@
 .move-button:hover {
   transform: scale(1.25);
 }
+
+@media (min-width: 768px) {
+  .task-list {
+    width: 100%;
+    height: 140px;
+  }
+  
+  .task {
+    bottom: 4%;
+  }
+
+  .text {
+    max-width: 9ch;
+  }
+    
+  .description {
+    max-width: 15ch;
+  }
+    
+    
+  .completed-button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .delete-button {
+    right: 5%;
+  }
+  
+  .delete-button,
+  .completed-button,
+  .move-button {
+    font-size: 1.7em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .task-list {
+    width: 100%;
+    height: 120px;
+  }
+
+  .task,
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .text {
+    max-width: 9ch;
+  }
+    
+  .description {
+    max-width: 12ch;
+  }
+
+  .priority {
+    font-size: 0.9rem;
+  }
+  
+  .delete-button,
+  .completed-button,
+  .move-button {
+    font-size: 1.5em;
+  }
+}
+
+@media (min-width: 1280px) {
+  .task-list {
+    width: 100%;
+    height: 140px;
+  }
+  
+  .task {
+    font-size: 1.1rem;
+    bottom: 0%;
+  }
+
+  .text {
+    max-width: 8ch;
+  }
+    
+  .description {
+    font-size: 1rem;
+    max-width: 12ch;
+  }
+
+  .priority {
+    font-size: 0.9rem;
+  }
+
+  .delete-button {
+    font-size: 2rem;
+  }
+    
+  .completed-button {
+    margin-left: 15px;
+    margin-top: 20px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .delete-button {
+    right: 5%;
+  }
+  
+  .completed-button,
+  .move-button {
+    font-size: 1.8em;
+  }
+    
+  .move-group {
+    right: 10px;
+    gap: 40px
+  }
+}
+
+@media (min-width: 1440px) {
+  .task-list {
+    width: 100%;
+    height: 160px;
+  }
+  
+  .task {
+    font-size: 1.2rem;
+    bottom: 2%;
+  }
+
+  .text {
+    max-width: 8ch;
+  }
+    
+  .description {
+    font-size: 1.5rem;
+    max-width: 12ch;
+  }
+
+  .priority {
+    font-size: 1rem;
+  }
+
+  .delete-button {
+    font-size: 2rem;
+  }
+    
+  .completed-button {
+    margin-left: 17px;
+    margin-top: 20px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .delete-button {
+    left: 2%;
+  }
+  
+  .completed-button,
+  .move-button {
+    font-size: 1.8em;
+  }
+}
+
+@media (min-width: 1920px) {
+  .task-list {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .task {
+    font-size: 2rem;
+    bottom: 8%;
+  }
+
+  .text {
+    max-width: 10ch;
+  }
+    
+  .description {
+    font-size: 1.5rem;
+    max-width: 20ch;
+  }
+
+  .priority {
+    font-size: 1.3rem;
+  }
+
+  .delete-button {
+    font-size: 3rem;
+  }
+    
+  .completed-button {
+    margin-left: 15px;
+    margin-top: 20px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .delete-button {
+    left: 2%;
+  }
+  
+  .completed-button,
+  .move-button {
+    font-size: 2em;
+  }
+}

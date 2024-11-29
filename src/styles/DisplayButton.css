@@ -64,3 +64,68 @@
   transform: scale(1.1);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+@media (min-width: 480px) {
+  .view-container {
+    left: 20%;
+  }
+  
+  .view-container button {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .view-container {
+    left: 32%;
+  }
+  
+  .view-container button {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .view-container {
+    top: 3%;
+    left: 37%;
+  }
+  
+  .view-container button {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .view-container {
+    top: 3%;
+    left: 37%;
+  }
+  
+  .view-container button {
+    font-size: 1.2rem;
+    width: 120px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .view-container {
+    left: 36%;
+  }
+  
+  .view-container button {
+    font-size: 1.5rem;
+    width: 150px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .view-container {
+    left: 40%;
+  }
+  
+  .view-container button {
+    font-size: 1.5rem;
+    width: 150px;
+  }
+}

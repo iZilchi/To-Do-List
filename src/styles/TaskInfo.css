@@ -71,7 +71,7 @@
 }
 
 .info-description {
-  height: 520px;
+  max-height: 380px;
   overflow-y: auto;
   box-sizing: border-box;
   margin-bottom: 15px;
@@ -158,4 +158,28 @@
 .edit-task.completed-active,
 .delete-task.completed-active {
   background-color: var(--completed-color);
+}
+
+@media (min-width: 480px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 1024px) {
+
+}
+
+@media (min-width: 1280px) {
+
+}
+
+@media (min-width: 1440px) {
+
+}
+
+@media (min-width: 1920px) {
+
 }

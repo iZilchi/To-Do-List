@@ -19,6 +19,7 @@
   align-items: center;
   justify-content: center;
   font-size: 1rem;
+  font-weight: bold;
   white-space: nowrap;
   transition: width 0.5s ease, background-color 0.5s ease;
 }
@@ -29,4 +30,62 @@
 
 .progress-bar-fill.animating {
   transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+@media (min-width: 768px) {
+  .progress-bar {
+    top: 0;
+    left: 30%;
+    width: 40%;
+    height: 4%;
+  }
+  
+  .progress-bar-fill {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .progress-bar {
+    top: 0%;
+    left: 35%;
+    width: 30%;
+    height: 4%;
+  }
+  
+  .progress-bar-fill {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .progress-bar {
+    top: 0%;
+    left: 35%;
+    width: 30%;
+    height: 4%;
+  }
+  
+  .progress-bar-fill {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .progress-bar-fill {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .progress-bar {
+    top: 0%;
+    left: 35%;
+    width: 30%;
+    height: 4%;
+  }
+  
+  .progress-bar-fill {
+    font-size: 1.7rem;
+  }
 }
