@@ -188,15 +188,11 @@ function ToDoList() {
         }
     };
 
-    const moveTaskUp = (id) => {
-        const displayedTasks = eisenSort(
-            tasks.filter(task => activeDisplay === "to-do" ? !task.completed : task.completed),
-            activeSort
-        );
-        const index = displayedTasks.findIndex(task => task.id === id);
+    const moveTaskUp = (id) => { 
+        const index = sortedTasks.findIndex(task => task.id === id);
     
         if (index > 0) {
-            const updatedDisplayedTasks = [...displayedTasks];
+            const updatedDisplayedTasks = [...sortedTasks];
     
             // Swap the `order` and `initialOrder` values
             const tempOrder = updatedDisplayedTasks[index].order;
@@ -230,15 +226,11 @@ function ToDoList() {
         }
     };
     
-    const moveTaskDown = (id) => {
-        const displayedTasks = eisenSort(
-            tasks.filter(task => activeDisplay === "to-do" ? !task.completed : task.completed),
-            activeSort
-        );
-        const index = displayedTasks.findIndex(task => task.id === id);
+    const moveTaskDown = (id) => { 
+        const index = sortedTasks.findIndex(task => task.id === id);
     
-        if (index < displayedTasks.length - 1) {
-            const updatedDisplayedTasks = [...displayedTasks];
+        if (index < sortedTasks.length - 1) {
+            const updatedDisplayedTasks = [...sortedTasks];
     
             // Swap the `order` and `initialOrder` values
             const tempOrder = updatedDisplayedTasks[index].order;
