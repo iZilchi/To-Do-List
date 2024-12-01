@@ -543,8 +543,15 @@ body {
     font-size: 2.2rem;
   }
 
+  .drawer {
+    width: 30%;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+
   .drawer-container {
-    font-size: 1.8rem;
+    font-size: 2rem
+    
   }
 
   .drawer-header {
@@ -579,6 +586,8 @@ body {
   
   .drawer {
     gap: 60px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
   }
 
   .to-do-drawer,
@@ -625,6 +634,8 @@ body {
 
   .drawer {
     gap: 60px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
   }
 
   .to-do-drawer,
@@ -694,6 +705,8 @@ body {
 
   .drawer {
     gap: 80px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
   }
 
   .to-do-drawer,
@@ -757,6 +770,8 @@ body {
 
   .drawer {
     gap: 80px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
   }
 
   .to-do-drawer,
