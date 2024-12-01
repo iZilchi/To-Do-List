@@ -147,7 +147,7 @@ export function Auth() {
                     <input
                         id="email"
                         type="text"
-                        placeholder={errorMessage && !email ? errorMessage : "Enter your email"}
+                        placeholder="Enter your email"
                         className={`username-textbox ${errorMessage ? 'error' : ''}`}  // Add 'error' class if there's an error
                         value={email}
                         onChange={(e) => {
@@ -164,7 +164,7 @@ export function Auth() {
                     <input
                         id="password"
                         type="password"
-                        placeholder={errorMessage && !password ? errorMessage : "Enter your password"}
+                        placeholder="Enter your password"
                         className={`password-textbox ${errorMessage ? 'error' : ''}`}  // Add 'error' class if there's an error
                         value={password}
                         onChange={(e) => {
@@ -172,6 +172,11 @@ export function Auth() {
                             setErrorMessage("");  // Reset error message when user starts typing
                         }}
                     />
+
+                    {/* Error Message */}
+                    {errorMessage && <p className="error-message show">{errorMessage}</p>}
+                
+
                     {/* Sign Up / Sign In Button */}
                     <button
                         className="sign-in-button"

@@ -1,3 +1,4 @@
+
 .help-container {
     position: fixed;
     top: 0;
@@ -9,6 +10,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 998;
+    transform: scale(1);
+    overflow: hidden;
 }
 
 
@@ -41,21 +45,103 @@
     transform: scale(1.2);
 }
 
-.help-content {
+.help-content-container {
     position: relative;
     bottom: 5%;
     left: 0;
     width: 80%;
-    height: 80%;
+    height: auto; /* Allow the container to adjust based on content */
+    max-height: 90vh; /* Make sure content does not overflow the viewport */
     background-color: var(--secondary-color);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start; /* Align content to the left */
+    justify-content: flex-start;
+    padding: 20px;
     border-radius: 15px;
-    transition: background-color 0.3s ease;
+    overflow-y: scroll; /* Allow vertical scrolling */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.help-content.completed-active {
+.help-content-container::-webkit-scrollbar {
+    width: 8px; /* Default width, you can adjust it if needed */
+    opacity: 0; /* Make the scrollbar initially invisible */
+    transition: opacity 0.3s ease;}
+
+.help-content-container::-webkit-scrollbar-track {
+    background: transparent; /* Set track color (background) */
+}
+.help-content-container::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color); /* Set thumb (handle) color to white */
+    border-radius: 10px; /* Optional: rounded corners for the thumb */
+}
+.help-content-container::-webkit-scrollbar-thumb:hover {
+    background-color: #f1f1f1; /* Slightly darker color when hovering over the thumb */
+}
+
+.help-content-container.completed-active {
     background-color: var(--completed-color);
+}
+
+.help-description ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.help-description li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.help-description li strong {
+    min-width: 80px; /* Adjust width as needed */
+    font-weight: bold;
+}
+
+.help-description li p {
+    flex: 1;
+    margin: 0;
+    padding-left: 10px;
+}
+
+.help-description ul li img {
+    width: 30%; /* Adjust as needed */
+    height: auto;
+    object-fit: contain;
+}
+
+.help-description h3{
+    color: var(--primary-color);
+}
+
+.help-img {
+    width: 50%;
+    max-width: 50%;
+    height: auto;
+    object-fit: contain; /* Ensures the image fits nicely within its container */
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.help-img-button {
+    width: 15%;
+    max-width: 15%;
+    height: auto;
+    object-fit: contain; /* Ensures the image fits nicely within its container */
+    border-radius: 8px;
+    margin: 10px 20px;
+}
+
+.help-sort-buttons ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between image and text */
+}
+
+.help-sort-img {
+    width: 40px; /* Adjust size */
+    height: auto;
+    object-fit: contain;
 }
