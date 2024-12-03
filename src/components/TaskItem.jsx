@@ -5,7 +5,7 @@ import TaskInfo from '../components/TaskInfo';
 function TaskItem({ task, completeTask, moveTaskUp, moveTaskDown, deleteTask, setIsToEdit, setEditedTaskId }) {
     const [isTaskInfoActive, setIsTaskInfoActive] = useState(false);
     const [isCompleted, setIsCompleted] = useState(task.completed);
-    const [isDeleted, setIsDeleted] = useState(false);  // Track delete state
+    const [isDeleted, setIsDeleted] = useState(false);
 
     const importanceText = task.importance === 1 ? "Important" : "Not Important";
     const urgencyText = task.urgency === 1 ? "Urgent" : "Not Urgent";

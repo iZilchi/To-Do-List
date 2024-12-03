@@ -26,7 +26,7 @@ function ToDoList() {
     const [progress, setProgress] = useState(0);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
-    const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
+    const [fadeInBackground, setFadeInBackground] = useState(false);
     const navigate = useNavigate();
 
     const sortImages = {
@@ -278,29 +278,21 @@ function ToDoList() {
         }
     };
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsLargeScreen(window.innerWidth >= 1024);
-        };
-
-        window.addEventListener("resize", handleResize);
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
-
     const handleOpenDrawer = () => {
-        setDrawerOpen(true);
+        setDrawerOpen(true)
         setIsClosing(false);
     };
-
+    
     const handleCloseDrawer = () => {
         setIsClosing(true);
+        setFadeInBackground(true);
         setTimeout(() => {
             setDrawerOpen(false);
+            setFadeInBackground(false);
             setIsClosing(false);
         }, 800);
     };
+    
 
 
     const toggleSortMenu = () => {
@@ -317,26 +309,29 @@ function ToDoList() {
                 ☰
             </button>
             {drawerOpen && (
-                <div className={`drawer ${isClosing ? 'slide-out' : ''}`}>
-                    <div className={`drawer ${activeDisplay === "completed" ? "completed-active" : ""}`}>
-                        <div className="drawer-container">
-                            <h2 className="drawer-header">ProcrastiMate</h2>
-                            <button className="close-button" onClick={handleCloseDrawer}>✖</button>
+                <>
+                    <div className={`background-opacity ${fadeInBackground ? "fade-in" : ""}`} onClick={handleCloseDrawer}></div>
+                    <div className={`drawer ${isClosing ? "slide-out" : ""} ${activeDisplay === "completed" ? "completed-active" : ""}`}>
+                        <div className={`drawer ${activeDisplay === "completed" ? "completed-active" : ""}`}>
+                            <div className="drawer-container">
+                                <h2 className="drawer-header">ProcrastiMate</h2>
+                                <button className="close-button" onClick={handleCloseDrawer}>✖</button>
+                            </div>
+                            <button className={`to-do-drawer ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => { navigate('/todo'); handleCloseDrawer(); }}>
+                                <span>My Task</span>
+                            </button>
+                            <button className={`help-drawer ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => { setIsHelpActive(prev => !prev); handleCloseDrawer(); }}>
+                                <span>Help</span>
+                            </button>
+                            <button className={`about-drawer ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => { setIsAboutActive(prev => !prev); handleCloseDrawer(); }}>
+                                <span>About</span>
+                            </button>
+                            <button className={`logout-drawer ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => { handleLogout(); handleCloseDrawer(); }}>
+                                <span>Logout</span>
+                            </button>
                         </div>
-                        <button className={`to-do-drawer ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => { navigate('/todo'); handleCloseDrawer(); }}>
-                            <span>My Task</span>
-                        </button>
-                        <button className={`help-drawer ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => { setIsHelpActive(prev => !prev); handleCloseDrawer(); }}>
-                            <span>Help</span>
-                        </button>
-                        <button className={`about-drawer ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => { setIsAboutActive(prev => !prev); handleCloseDrawer(); }}>
-                            <span>About</span>
-                        </button>
-                        <button className={`logout-drawer ${activeDisplay === "completed" ? "completed-active" : ""}`} onClick={() => { handleLogout(); handleCloseDrawer(); }}>
-                            <span>Logout</span>
-                        </button>
                     </div>
-                </div>
+                </>
             )}
 
             <h1 className={`header ${activeDisplay === "completed" ? "completed-active" : ""}`}>To-Do List</h1>

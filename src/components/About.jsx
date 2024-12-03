@@ -14,15 +14,16 @@ function About({ activeDisplay, isAboutActive, setIsAboutActive }) {
 
     return (
         isAboutActive && (
-            <div className={`background-opacity ${fadeInBackground ? "fade-in" : ""}`}>
-                <div className="about-container">
+            <>
+                <div className={`background-opacity ${fadeInBackground ? "fade-in" : ""}`} onClick={handleClose}></div>
+                <div className={`about-container ${fadeInBackground ? "fade-in" : ""}`}>
                     <h3 className={`about-header ${activeDisplay === "completed" ? "completed-active" : ""}`}>About ProcrastiMate</h3>
                     <button className="about-close-button" onClick={handleClose}>✖</button>
                     <div className={`about-content-container ${activeDisplay === "completed" ? "completed-active" : ""}`}>
                         <div className="about-description">
                             <p><strong>ProcrastiMate</strong> is a smart to-do list application designed to help you conquer procrastination and boost your productivity. By leveraging the powerful Eisenhower Matrix and our custom sorting algorithm, EisenSort, ProcrastiMate empowers you to prioritize tasks effectively.</p>
                         </div>
-                        <h2>EisenHower Matrix</h2>
+                        <h2 className="h2-about">EisenHower Matrix</h2>
                         <div className="about-description">
                             <p>The Eisenhower Matrix is a powerful time management tool that helps you prioritize tasks based on their urgency and importance. By categorizing tasks into four quadrants:</p>
                             <ul>
@@ -34,7 +35,7 @@ function About({ activeDisplay, isAboutActive, setIsAboutActive }) {
                             <p>By effectively using the Eisenhower Matrix, you can focus on high-impact tasks, reduce stress, and increase productivity.</p>
                         </div>
                         <img className="eisen-matrix-img" src="../src/assets/eisenhower-matrix-image.png" alt="Eisenhower Matrix" />
-                        <h2>EisenSort</h2>
+                        <h2 className="h2-about">EisenSort</h2>
                         <div className="about-description">
                             <p>EisenSort is a custom sorting algorithm inspired by the Eisenhower Matrix, which categorizes tasks based on their urgency and importance:</p>
                             <ol>
@@ -45,7 +46,7 @@ function About({ activeDisplay, isAboutActive, setIsAboutActive }) {
                             </ol>
                             <p>This approach ensures that urgent and important tasks are prioritized first, followed by less critical ones, helping optimize time management.</p>
                         </div>
-                        <h2>Developers</h2>
+                        <h2 className="h2-about">Developers</h2>
                         <div className="profile-container">
                             <fieldset className={`profile ${activeDisplay === "completed" ? "completed-active" : ""}`}>
                                 <legend>Back End Developer</legend>
@@ -63,14 +64,14 @@ function About({ activeDisplay, isAboutActive, setIsAboutActive }) {
 
                             <fieldset className={`profile ${activeDisplay === "completed" ? "completed-active" : ""}`}>
                                 <legend>Front End Developer</legend>
-                                <img className="prof-pic" src="profile-pic-kent.jpg" alt="Kent Melard D. Pagcaliuangan" />
+                                <img className="prof-pic" src="../src/assets/profile/zilchi-pfp.jpg" alt="Kent Melard D. Pagcaliuangan" />
                                 <h5 className="name">Kent Melard D. Pagcaliuangan</h5>
-                                <a href="">Github Profile: "___"</a>
+                                <a href="https://github.com/iZilchi">Github Profile: "iZilchi"</a>
                             </fieldset>
                         </div>
                     </div>
                 </div>
-            </div>
+            </>
         )
     );
 }

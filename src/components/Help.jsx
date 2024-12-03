@@ -14,8 +14,9 @@ function Help({ activeDisplay, isHelpActive, setIsHelpActive }) {
 
     return (
         isHelpActive && (
-            <div className={`background-opacity ${fadeInBackground ? "fade-in" : ""}`}>
-                <div className="help-container">
+            <>
+                <div className={`background-opacity ${fadeInBackground ? "fade-in" : ""}`} onClick={handleClose}></div>
+                <div className={`help-container ${fadeInBackground ? "fade-in" : ""}`}>
                     <h3 className={`help-header ${activeDisplay === "completed" ? "completed-active" : ""}`}>Help</h3>
                     <button className="help-close-button" onClick={handleClose}>✖</button>
                     <div className={`help-content-container ${activeDisplay === "completed" ? "completed-active" : ""}`}>
@@ -93,7 +94,7 @@ function Help({ activeDisplay, isHelpActive, setIsHelpActive }) {
                         </div>
                     </div>
                 </div>
-            </div> 
+            </>
         )
     );
 }

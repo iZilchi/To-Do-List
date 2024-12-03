@@ -13,13 +13,18 @@
     z-index: 998;
     transform: scale(1);
     overflow: hidden;
+    animation: fadeInBackground 0.5s forwards;
 }
 
+.help-container.fade-in {
+  animation: fadeOutBackground 0.5s forwards;
+}
 
 .help-header {
     position: relative;
     top: 2%;
-    right: 33%;
+    right: 32%;
+    padding-bottom: 12px;
     color: var(--secondary-color);
     transition: color 0.3s ease;
 }
@@ -29,9 +34,9 @@
 }
 
 .help-close-button {
-    position: relative;
-    bottom: 12%;
-    left: 44%;
+    position: absolute;
+    bottom:  95%;
+    left: 89%;
     color: var(--close-button);
     font-size: 1.5rem;
     font-weight: 600;
@@ -47,36 +52,35 @@
 
 .help-content-container {
     position: relative;
-    bottom: 5%;
+    bottom: 1%;
     left: 0;
     width: 80%;
-    height: auto; /* Allow the container to adjust based on content */
-    max-height: 90vh; /* Make sure content does not overflow the viewport */
+    height: 85%;
     background-color: var(--secondary-color);
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align content to the left */
+    align-items: flex-start;
     justify-content: flex-start;
     padding: 20px;
     border-radius: 15px;
-    overflow-y: scroll; /* Allow vertical scrolling */
+    overflow-y: scroll;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .help-content-container::-webkit-scrollbar {
-    width: 8px; /* Default width, you can adjust it if needed */
-    opacity: 0; /* Make the scrollbar initially invisible */
+    width: 8px;
+    opacity: 0;
     transition: opacity 0.3s ease;}
 
 .help-content-container::-webkit-scrollbar-track {
-    background: transparent; /* Set track color (background) */
+    background: transparent;
 }
 .help-content-container::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color); /* Set thumb (handle) color to white */
-    border-radius: 10px; /* Optional: rounded corners for the thumb */
+    background-color: var(--primary-color);
+    border-radius: 10px;
 }
 .help-content-container::-webkit-scrollbar-thumb:hover {
-    background-color: #f1f1f1; /* Slightly darker color when hovering over the thumb */
+    background-color: #f1f1f1;
 }
 
 .help-content-container.completed-active {
@@ -96,7 +100,7 @@
 }
 
 .help-description li strong {
-    min-width: 80px; /* Adjust width as needed */
+    min-width: 80px;
     font-weight: bold;
 }
 
@@ -107,7 +111,7 @@
 }
 
 .help-description ul li img {
-    width: 30%; /* Adjust as needed */
+    width: 30%;
     height: auto;
     object-fit: contain;
 }
@@ -120,7 +124,7 @@
     width: 50%;
     max-width: 50%;
     height: auto;
-    object-fit: contain; /* Ensures the image fits nicely within its container */
+    object-fit: contain;
     border-radius: 8px;
     margin: 10px 0;
 }
@@ -129,7 +133,7 @@
     width: 15%;
     max-width: 15%;
     height: auto;
-    object-fit: contain; /* Ensures the image fits nicely within its container */
+    object-fit: contain;
     border-radius: 8px;
     margin: 10px 20px;
 }
@@ -137,11 +141,86 @@
 .help-sort-buttons ul li {
     display: flex;
     align-items: center;
-    gap: 10px; /* Space between image and text */
+    gap: 10px;
 }
 
 .help-sort-img {
-    width: 40px; /* Adjust size */
+    width: 40px; 
     height: auto;
     object-fit: contain;
+}
+
+@media (min-width: 375px) {
+    .help-close-button {
+        bottom: 95%;
+        left: 921;
+    }
+}
+
+@media (min-width: 480px) {
+    .help-close-button {
+        bottom: 96%;
+        left: 92%;
+    }
+
+    .help-header {
+        right: 35%;
+    }
+}
+
+@media (min-width: 768px) {
+    .help-close-button {
+        bottom: 96%;
+        left: 95%;
+    }
+
+    .help-header {
+        right: 37%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .help-container {
+        width: 40%;
+        height: 90%;
+        top: 5%;
+        left: 25%;
+        border-radius: 12px;
+    }
+    
+    .help-content-container {
+        bottom: 5%;
+        height: 80%;
+    }
+
+    .help-close-button {
+        display: none;
+    }
+
+    .help-header {
+        top: 1%;
+        right: 34%;
+        font-size: 1.9rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .help-header {
+        top: 0%;
+        right: 34%;
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .help-header {
+        padding-bottom: 20px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .help-header {
+        right: 36%;
+        padding-bottom: 30px;
+    }
 }

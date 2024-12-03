@@ -540,29 +540,27 @@ body {
   .help-drawer,
   .about-drawer,
   .logout-drawer {
-    font-size: 2.2rem;
+    font-size: 1.7rem;
   }
 
   .drawer {
     width: 30%;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 
   .drawer-container {
-    font-size: 2rem
+    font-size: 1.3rem
     
   }
 
   .drawer-header {
     top: 30%;
-    left: 33%;
+    left: 0%;
   }
 
   .close-button {
-    font-size: 1.8rem;
-    bottom: 45%;
-    left: 5%;
+    display: none;
   }
 
   .burger-button {
@@ -585,31 +583,24 @@ body {
   }
   
   .drawer {
+    width: 25%;
     gap: 60px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
   }
 
   .to-do-drawer,
   .help-drawer,
   .about-drawer,
   .logout-drawer {
-    font-size: 2.5rem;
-    bottom: 5%;
+    font-size: 2rem;
+    bottom: 3%;
   }
 
   .drawer-container {
-    font-size: 2rem;
+    font-size: 1.4rem;
   }
 
   .drawer-header {
     top: 10%;
-    left: 35%;
-  }
-
-  .close-button {
-    font-size: 1.8rem;
-    bottom: 45%;
     left: 4%;
   }
 
@@ -633,26 +624,25 @@ body {
   }
 
   .drawer {
-    gap: 60px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    width: 23%;
+    gap: 70px;
   }
 
   .to-do-drawer,
   .help-drawer,
   .about-drawer,
   .logout-drawer {
-    bottom: 5%;
-    font-size: 2.5rem;
+    bottom: 3%;
+    font-size: 2rem;
   }
 
   .drawer-container {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .drawer-header {
     top: 10%;
-    left: 39%;
+    left: 10%;
   }
 
   .close-button {
@@ -704,26 +694,25 @@ body {
   }
 
   .drawer {
-    gap: 80px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    width: 20%;
+    gap: 60px;
   }
 
   .to-do-drawer,
   .help-drawer,
   .about-drawer,
   .logout-drawer {
-    bottom: 5%;
-    font-size: 3rem;
+    bottom: 3%;
+    font-size:  2rem;
   }
 
   .drawer-container {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
 
   .drawer-header {
     top: 10%;
-    left: 38%;
+    left: 7%;
   }
 
   .close-button {
@@ -770,25 +759,23 @@ body {
 
   .drawer {
     gap: 80px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
   }
 
   .to-do-drawer,
   .help-drawer,
   .about-drawer,
   .logout-drawer {
-    bottom: 10%;
-    font-size: 3.5rem;
+    bottom: 5%;
+    font-size: 2.7rem;
   }
 
   .drawer-container {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .drawer-header {
     top: 0%;
-    left: 39%;
+    left: 10%;
   }
 
   .close-button {

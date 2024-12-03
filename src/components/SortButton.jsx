@@ -41,9 +41,21 @@ function SortButton({ activeDisplay, setActiveSort, isSortActive, setIsSortActiv
 
     return (
         isSortActive && (
-            <div className={`background-opacity ${fadeInBackground ? "fade-in" : ""}`}>
-                <div className="main-container">
-                    <h3 className={`sort-header ${activeDisplay === "completed" ? "completed-active" : ""}`}>Sort By</h3>
+            <>
+                <div
+                    className={`background-opacity ${fadeInBackground ? "fade-in" : ""}`}
+                    onClick={handleClose}
+                ></div>
+                <div
+                    className={`main-container ${fadeInBackground ? "fade-in" : ""}`}
+                >
+                    <h3
+                        className={`sort-header ${
+                            activeDisplay === "completed" ? "completed-active" : ""
+                        }`}
+                    >
+                        Sort By
+                    </h3>
                     <div className="sort-container">
                         {["importance-urgency", "importance", "urgency"].map((sortType) => (
                             <button
@@ -55,14 +67,19 @@ function SortButton({ activeDisplay, setActiveSort, isSortActive, setIsSortActiv
                                 <img
                                     src={sortImages[sortType]}
                                     alt={sortType}
-                                    className={`sort-image ${activeSort === sortType ? "active" : ""} ${activeDisplay === "completed" ? "completed-active" : ""}`}
+                                    className={`sort-image ${
+                                        activeSort === sortType ? "active" : ""
+                                    } ${
+                                        activeDisplay === "completed"
+                                            ? "completed-active"
+                                            : ""
+                                    }`}
                                 />
                             </button>
                         ))}
                     </div>
-                    <button className="back-sort-button" onClick={handleClose}>✖</button>
                 </div>
-            </div>
+            </>
         )
     );
 }

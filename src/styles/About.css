@@ -11,15 +11,20 @@
     justify-content: center;
     z-index: 998;
     transform: scale(1);
-    overflow: hidden;
+    animation: fadeInBackground 0.5s forwards;
+}
+
+.about-container.fade-in {
+  animation: fadeOutBackground 0.5s forwards;
 }
 
 .about-header {
     position: relative;
     top: 2%;
-    right: 7%;
+    right: 8%;
+    padding-bottom: 12px;
     color: var(--secondary-color);
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: bold;
 }
 
@@ -28,9 +33,9 @@
 }
 
 .about-close-button {
-    position: relative;
-    bottom: 12%;
-    left: 44%;
+    position: absolute;
+    bottom: 95%;
+    left: 91%;
     color: var(--close-button);
     font-size: 1.5rem;
     font-weight: 600;
@@ -46,39 +51,37 @@
 
 .about-content-container {
     position: relative;
-    bottom: 5%;
-    left: 0;
+    bottom: 2%;
     width: 80%;
-    height: auto; /* Allow the container to adjust based on content */
-    max-height: 90vh; /* Make sure content does not overflow the viewport */
+    height: 85%;
     background-color: var(--secondary-color);
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align content to the left */
+    align-items: flex-start;
     justify-content: flex-start;
     padding: 20px;
     border-radius: 15px;
-    overflow-y: scroll; /* Allow vertical scrolling */
+    overflow-y: scroll;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .about-content-container::-webkit-scrollbar {
-    width: 8px; /* Default width, you can adjust it if needed */
-    opacity: 0; /* Make the scrollbar initially invisible */
+    width: 8px;
+    opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 .about-content-container::-webkit-scrollbar-track {
-    background: transparent; /* Set track color (background) */
+    background: transparent;
 }
 
 .about-content-container::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color); /* Set thumb (handle) color to white */
-    border-radius: 10px; /* Optional: rounded corners for the thumb */
+    background-color: var(--primary-color);
+    border-radius: 10px;
 }
 
 .about-content-container::-webkit-scrollbar-thumb:hover {
-    background-color: #f1f1f1; /* Slightly darker color when hovering over the thumb */
+    background-color: #f1f1f1;
 }
 
 .about-content-container.completed-active {
@@ -95,24 +98,24 @@
     hyphens: auto;
     width: 100%;
     overflow-wrap: break-word;
-    padding: 10px; /* Added padding to avoid text touching the edges */
-    white-space: normal; /* Ensures text wraps as needed */
+    padding: 10px;
+    white-space: normal;
 }
 
 .about-description ul, .about-description ol {
     padding-left: 20px;
-    word-wrap: break-word; /* Ensure list items break to the next line */
+    word-wrap: break-word;
     text-align: left;
 }
 
-h2 {
-    font-size: 1.8rem; /* Adjust font size as needed */
-    margin-top: 30px; /* Adds space above the h2 element */
-    margin-bottom: 10px; /* Adds space below the h2 element */
-    color: var(--primary-color); /* Ensure it matches the design theme */
+.h2-about {
+    font-size: 1.8rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
     font-weight: bold;
-    text-align: left; /* Align the h2 text to the left */
-    width: 100%; /* Ensure it spans the full width */
+    text-align: left;
+    width: 100%;
 }
 
 .eisen-matrix-img {
@@ -186,4 +189,115 @@ legend {
 .name {
     font-size: 1rem;
     font-weight: 600;
+}
+
+@media (min-width: 375px) {
+    .about-header {
+        right: 9%;
+    }
+}
+
+@media (min-width: 480px) {
+    .about-header {
+        right: 16%;
+        top: 1%;
+    }
+
+    .about-close-button {
+        left: 92%;
+        bottom: 96%;
+    }
+}
+
+@media (min-width: 768px) {
+    .about-header {
+        right: 23%;
+        font-size: 1.9rem;
+    }
+
+    .about-close-button {
+        left: 95%;
+        bottom: 95%;
+    }
+
+    .h2-about {
+        font-size: 1.5rem;
+    }
+
+    .about-description {
+        font-size: 1.1rem;
+    }
+
+    legend {
+        font-size: 1.3rem;
+    }
+
+    .profile a,
+    .profile h5 {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .about-container {
+        width: 40%;
+        height: 90%;
+        border-radius: 12px;
+        top: 5%;
+        left: 30%;
+    }
+
+    .about-content-container {
+        height: 75%;
+    }
+
+    .about-header {
+        right: 10%;
+        font-size: 1.9rem;
+    }
+
+    .about-close-button {
+        display: none;
+    }
+}
+
+@media (min-width: 1280px) {
+    .about-container {
+        width: 40%;
+        height: 90%;
+        border-radius: 12px;
+        top: 5%;
+        left: 30%;
+    }
+
+    .about-header {
+        right: 14%;
+        font-size: 1.9rem;
+    }
+
+    .about-content-container {
+        height: 80%;
+    }
+}
+
+@media (min-width: 1440px) {
+    .about-header {
+        right: 17%;
+        font-size: 1.9rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .about-container {
+        width: 35%;
+        height: 90%;
+        border-radius: 12px;
+        top: 5%;
+        left: 32%;
+    }
+
+    .about-header {
+        right: 15%;
+        font-size: 2.3rem;
+    }
 }
