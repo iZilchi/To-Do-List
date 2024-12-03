@@ -144,6 +144,10 @@
     gap: 10px;
 }
 
+.help-images {
+    width: 100px;
+}
+
 .help-sort-img {
     width: 40px; 
     height: auto;
