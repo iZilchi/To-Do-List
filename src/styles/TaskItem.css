@@ -49,6 +49,7 @@
   padding: 4px;
   bottom: 4%;
   transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
 }
   
 .text,

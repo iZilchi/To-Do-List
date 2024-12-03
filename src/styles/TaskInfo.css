@@ -8,12 +8,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  animation: slideInFromLeft 0.3s ease-in-out;
+  z-index: 996;
+  animation: fadeInBackground 0.3s ease-in-out;
 }
 
-.task-info-container.slide-out {
-  animation: slideOutFromLeft 0.3s ease-in-out;
+.task-info-container.fade-out {
+  animation: fadeOutBackground 0.3s ease-in-out;
 }
 
 .info-close-button {
@@ -48,7 +48,13 @@
   padding: 10px 20px;
   overflow: hidden;
   box-sizing: border-box;
+  animation: fadeInBackground 0.3s ease-in-out;
 }
+
+.info-container.fade-out {
+  animation: fadeOutBackground 0.3s ease-in-out;
+}
+
 
 .info-name,
 .info-description,
@@ -71,10 +77,31 @@
 }
 
 .info-description {
-  max-height: 380px;
+  height: 60vh;
   overflow-y: auto;
   box-sizing: border-box;
   margin-bottom: 15px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) var(--border-color);
+}
+
+.info-description::-webkit-scrollbar {
+  width: 8px;
+}
+
+.info-description::-webkit-scrollbar-track {
+  background: var(--border-color);
+  border-radius: 20px;
+}
+
+.info-description::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 20px;
+  border: 2px solid var(--border-color);
+}
+
+.info-description::-webkit-scrollbar-thumb:hover {
+  background-color: var(--highlight-color);
 }
 
 .info-priority,
@@ -98,6 +125,7 @@
   width: 55px;
   height: 55px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .edit-task:hover,
@@ -160,25 +188,195 @@
   background-color: var(--completed-color);
 }
 
-@media (min-width: 480px) {
+@media (min-width: 375px) {
+  .info-description {
+    height: 55vh;
+  }
+}
 
+
+@media (min-width: 480px) {
+  .info-description {
+    height: 65vh;
+  }
 }
 
 @media (min-width: 768px) {
+ .info-close-button {
+  display: none;
+ }
 
+ .task-info-container {
+  visibility: hidden;
+  position: fixed;
+}
+
+ .info-container {
+  position: fixed;
+  visibility: visible;
+  top: 11%;
+  left: 55%;
+  width: 40vw;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: var(--border);
+  border-radius: 20px;
+  background-color: var(--container-color);
+  animation: fadeInContainer 0.8s ease-out, scaleUp 0.5s ease-in-out;
+ }
+
+ .info-description {
+  height: 60vh;
+ }
+
+ .info-status,
+ .info-priority {
+  font-size: 1.05rem;
+ }
+
+ .info-name {
+  font-size: 1.3rem;
+ }
 }
 
 @media (min-width: 1024px) {
+  .info-container {
+    top: 15%;
+    left: 40%;
+    width: 55vw;
+    height: 80vh;
+    display: flex;
+   }
+  
+   .info-description {
+    height: 45vh;
+   }
+  
+   .info-status,
+   .info-priority {
+    font-size: 1.1rem;
+   }
+  
+   .info-name {
+    font-size: 1.3rem;
+   }
+
+   .button-container {
+    width: 100%;
+    gap: 25px;
+    top: 85%;
+    left: 0;
+  }
 }
 
 @media (min-width: 1280px) {
+  .info-container {
+    top: 13%;
+    left: 40%;
+    width: 57vw;
+    height: 82vh;
+    display: flex;
+  }
+  
+  .info-description {
+    height: 49vh;
+  }
+  
+  .info-status,
+  .info-priority {
+    font-size: 1.2rem;
+  }
+  
+  .info-name {
+    font-size: 1.4rem;
+  }
 
+  .button-container {
+    width: 100%;
+    gap: 25px;
+    top: 85%;
+    left: 0;
+  }
+
+  .edit-task,
+  .delete-task {
+      width: 60px;
+      height: 60px;
+  }
 }
 
 @media (min-width: 1440px) {
+  .info-container {
+    top: 12%;
+    left: 38%;
+    width: 60vw;
+    height: 82vh;
+    display: flex;
+  }
+  
+  .info-description {
+    height: 50vh;
+  }
+  
+  .info-status,
+  .info-priority {
+    font-size: 1.2rem;
+  }
+  
+  .info-name {
+    font-size: 1.4rem;
+  }
 
+  .button-container {
+    width: 100%;
+    gap: 25px;
+    top: 85%;
+    left: 0;
+  }
+
+  .edit-task,
+  .delete-task {
+      width: 65px;
+      height: 65px;
+  }
 }
 
 @media (min-width: 1920px) {
+  .info-container {
+    top: 10%;
+    left: 38%;
+    width: 60vw;
+    height: 84vh;
+    display: flex;
+  }
+  
+  .info-description {
+    height: 55vh;
+    font-size: 1.2rem;
+  }
+  
+  .info-status,
+  .info-priority {
+    font-size: 1.3rem;
+  }
+  
+  .info-name {
+    font-size: 1.5rem;
+  }
 
+  .button-container {
+    width: 100%;
+    gap: 25px;
+    top: 85%;
+    left: 0;
+  }
+
+  .edit-task,
+  .delete-task {
+      width: 80px;
+      height: 80px;
+  }
 }

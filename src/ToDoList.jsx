@@ -15,8 +15,8 @@ import TaskInfo from './components/TaskInfo';
 function ToDoList() {
     const [tasks, setTasks] = useState([]);
     const [isAddActive, setIsAddActive] = useState(false);
-    const [isToEdit, setIsToEdit] = useState(false); //Para malaman kung naka edit mode
-    const [editedTaskId, setEditedTaskId] = useState(null); // Track task being edited
+    const [isToEdit, setIsToEdit] = useState(false);
+    const [editedTaskId, setEditedTaskId] = useState(null);
     const [isSortActive, setIsSortActive] = useState(false);
     const [isHelpActive, setIsHelpActive] = useState(false);
     const [isAboutActive, setIsAboutActive] = useState(false);
@@ -44,6 +44,11 @@ function ToDoList() {
         } catch (error) {
             console.error("Error logging out: ", error.message);
         }
+    };
+
+    const handleTaskClick = (task) => {
+        setSelectedTask(task);
+        setIsTaskInfoActive(true); // Optionally show the TaskInfo section
     };
 
     // Fetch tasks for the logged-in user
@@ -335,6 +340,10 @@ function ToDoList() {
             )}
 
             <h1 className={`header ${activeDisplay === "completed" ? "completed-active" : ""}`}>To-Do List</h1>
+            <div className="info">
+                <h2 className={`no-task ${activeDisplay === "completed" ? "completed-active" : ""}`}>Select a task to show more information</h2>
+                <TaskInfo isTaskInfoActive={isTaskInfoActive} setIsTaskInfoActive={setIsTaskInfoActive} tasks={tasks} activeDisplay={activeDisplay} deleteTask={deleteTask} />
+            </div>
             <div className="container">
                 <div className="container-outline">
                     <ProgressBar progress={progress} activeDisplay={activeDisplay} tasks={tasks} />
@@ -357,7 +366,6 @@ function ToDoList() {
                 <SortButton isSortActive={isSortActive} setIsSortActive={setIsSortActive} activeSort={activeSort} setActiveSort={setActiveSort} activeDisplay={activeDisplay}/>
                 <Help isHelpActive={isHelpActive} setIsHelpActive={setIsHelpActive} activeDisplay={activeDisplay}/>
                 <About isAboutActive={isAboutActive} setIsAboutActive={setIsAboutActive} activeDisplay={activeDisplay}/>
-                <TaskInfo isTaskInfoActive={isTaskInfoActive} setIsTaskInfoActive={setIsTaskInfoActive} tasks={tasks} activeDisplay={activeDisplay} deleteTask={deleteTask} />
             </div>
         </>
     );    

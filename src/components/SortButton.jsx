@@ -46,34 +46,45 @@ function SortButton({ activeDisplay, setActiveSort, isSortActive, setIsSortActiv
                     className={`background-opacity ${fadeInBackground ? "fade-in" : ""}`}
                     onClick={handleClose}
                 ></div>
-                <div
-                    className={`main-container ${fadeInBackground ? "fade-in" : ""}`}
-                >
-                    <h3
-                        className={`sort-header ${
-                            activeDisplay === "completed" ? "completed-active" : ""
+                <div className={`main-container ${fadeInBackground ? "fade-in" : ""}`}>
+                <h3
+                    className={`sort-header ${
+                        activeDisplay === "completed" ? "completed-active" : ""
+                    }`}
+                    >
+                    Sort By:{" "}
+                    <span
+                        className={`active-sort-label ${
+                        activeDisplay === "completed" ? "completed-active" : ""
                         }`}
                     >
-                        Sort By
-                    </h3>
+                        {activeSort === "importance-urgency"
+                        ? "Eisen Sort"
+                        : activeSort
+                        ? activeSort.charAt(0).toUpperCase() + activeSort.slice(1)
+                        : "None"}
+                    </span>
+                </h3>
                     <div className="sort-container">
                         {["importance-urgency", "importance", "urgency"].map((sortType) => (
                             <button
                                 key={sortType}
+                                data-label={
+                                    sortType === "importance-urgency"
+                                    ? "Eisen Sort"
+                                    : sortType.charAt(0).toUpperCase() + sortType.slice(1)
+                                }
                                 onClick={() => {
                                     handleSortTask(sortType);
                                 }}
-                            >
+                                className={activeDisplay === "completed" ? "completed-active" : ""}
+                                >
                                 <img
                                     src={sortImages[sortType]}
                                     alt={sortType}
                                     className={`sort-image ${
-                                        activeSort === sortType ? "active" : ""
-                                    } ${
-                                        activeDisplay === "completed"
-                                            ? "completed-active"
-                                            : ""
-                                    }`}
+                                    activeSort === sortType ? "active" : ""
+                                    } ${activeDisplay === "completed" ? "completed-active" : ""}`}
                                 />
                             </button>
                         ))}

@@ -6,7 +6,7 @@
   --close-button: #585858;
   --background-opacity: rgba(57, 57, 57, 0.7);
   --container-color: #F9F9F9;
-  --completed-color: #34ac3a;
+  --completed-color: #24a92b;
 }
 
 html, body {
@@ -71,6 +71,10 @@ body {
   position: relative;
   width: 85vw;
   height: 80vh;
+}
+
+.info {
+  display: none;
 }
 
 .header {
@@ -260,6 +264,7 @@ body {
   color: var(--primary-color);
   font-weight: bold;
   padding-bottom: 17px;
+  cursor: pointer;
   transition: transform 0.2s ease-out;
 }
 
@@ -280,6 +285,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   transition: transform 0.2s ease-out, box-shadow 0.3s ease;
 }
 
@@ -310,6 +316,16 @@ body {
 
 .task-list {
   animation: fadeIn 0.5s ease;
+}
+
+.no-task {
+  position: relative;
+  text-align: center;
+  color: var(--secondary-color)
+}
+
+.no-task.completed-active {
+  color: var(--completed-color)
 }
 
 
@@ -536,6 +552,22 @@ body {
     height: 85vh;
   }
 
+  .info {
+    position: absolute;
+    top: 11%;
+    left: 55%;
+    width: 40vw;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: var(--border);
+    border-radius: 20px;
+    background-color: var(--container-color);
+    animation: fadeInContainer 0.8s ease-out, scaleUp 0.5s ease-in-out;
+  }
+
   .to-do-drawer,
   .help-drawer,
   .about-drawer,
@@ -572,6 +604,10 @@ body {
   .sort-add-container {
     top: 83%;
   }
+
+  .header { 
+    right: 5%;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -582,6 +618,13 @@ body {
     height: 90vh;
   }
   
+  .info {
+    top: 15%;
+    left: 40%;
+    width: 55vw;
+    height: 80vh;
+  }
+
   .drawer {
     width: 25%;
     gap: 60px;
@@ -621,6 +664,13 @@ body {
     left: 7%;
     width: 30vw;
     height: 90vh;
+  }
+
+  .info {
+    top: 13%;
+    left: 40%;
+    width: 57vw;
+    height: 82vh;
   }
 
   .drawer {
@@ -693,6 +743,13 @@ body {
     height: 90vh;
   }
 
+  .info {
+    top: 12%;
+    left: 38%;
+    width: 60vw;
+    height: 82vh;
+  }
+
   .drawer {
     width: 20%;
     gap: 60px;
@@ -755,6 +812,13 @@ body {
     left: 6%;
     width: 30vw;
     height: 90vh;
+  }
+
+  .info {
+    top: 10%;
+    left: 38%;
+    width: 60vw;
+    height: 84vh;
   }
 
   .drawer {

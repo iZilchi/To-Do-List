@@ -34,7 +34,6 @@
 .h4-add-task {
   position: relative;
   bottom: 37%;
-  right: 20%;
   color: var(--secondary-color);
   font-size: 1.7rem;
 }
@@ -109,7 +108,7 @@
 }
 
 input,
-textarea, 
+.description-textarea, 
 .importance-container, 
 .urgency-container,
 .field h3 {
@@ -124,14 +123,14 @@ textarea,
 
 .field h3,
 .field input,
-.field textarea,
+.field .description-textarea,
 .field .importance-container, 
 .field .urgency-container {
   width: 100%;
 }
 
 .field input,
-.field textarea {
+.field .description-textarea {
   padding: 10px;
 }
 
@@ -178,11 +177,11 @@ button {
   background: transparent;
 }
 
-button, input, textarea {
+button, input, .description-textarea {
   border: none;
 }
 
-input, textarea {
+input, .description-textarea {
   background: #f5f5f5;
   border: var(--border);
   border-radius: 8px;
@@ -191,13 +190,12 @@ input, textarea {
   transition: border-color 0.3s ease;
 }
 
-textarea {
+.description-textarea {
   resize: none;
-  min-height: 34%;
-  max-height: 100%;
+  min-height: 32%;
 }
 
-input:focus, textarea:focus {
+input:focus, .description-textarea:focus {
   outline: none;
   border-color: var(--secondary-color);
   background: var(--primary-color);
@@ -246,6 +244,12 @@ input:focus, textarea:focus {
   animation: shake 0.3s ease-in-out;
 }
 
+@media (min-width: 375px) {
+  .description-textarea {
+    min-height: 24%;
+  }
+}
+
 @media (min-width: 480px) {
   .field {
     top: 9%;
@@ -256,7 +260,6 @@ input:focus, textarea:focus {
   
   .h4-add-task {
     bottom: 40%;
-    right: 19%;
     font-size: 2.3rem;
   }
   
@@ -283,7 +286,7 @@ input:focus, textarea:focus {
   }
   
   input,
-  textarea, 
+  .description-textarea, 
   .importance-container, 
   .urgency-container,
   .field h3 {
@@ -308,13 +311,12 @@ input:focus, textarea:focus {
     font-size: 1.5rem;
   }
 
-  input, textarea {
+  input, .description-textarea {
     font-size: 1.2rem;
   }
-  
-  textarea {
-    min-height: 50%;
-    max-height: 100%;
+
+  .description-textarea {
+    min-height: 38%;
   }
 }
 
@@ -335,7 +337,6 @@ input:focus, textarea:focus {
   
   .h4-add-task {
     bottom: 35%;
-    right: 21%;
     font-size: 2.3rem;
   }
   
@@ -390,10 +391,10 @@ input:focus, textarea:focus {
   input, textarea {
     font-size: 1.2rem;
   }
-  
-  textarea {
-    min-height: 32%;
-    max-height: 100%;
+
+  .description-textarea {
+    bottom: 10%;
+    min-height: 18%;
   }
 }
 
@@ -414,7 +415,6 @@ input:focus, textarea:focus {
   
   .h4-add-task {
     bottom: 38%;
-    right: 26%;
     font-size: 1.3rem;
   }
   
@@ -465,10 +465,10 @@ input:focus, textarea:focus {
   input, textarea {
     font-size: 0.9rem;
   }
-  
-  textarea {
-    min-height: 37%;
-    max-height: 100%;
+
+  .description-textarea {
+    bottom: 20%;
+    min-height: 25%;
   }
 }
 
@@ -489,7 +489,6 @@ input:focus, textarea:focus {
   
   .h4-add-task {
     bottom: 38%;
-    right: 26%;
     font-size: 1.6rem;
   }
   
@@ -540,10 +539,10 @@ input:focus, textarea:focus {
   input, textarea {
     font-size: 0.9rem;
   }
-  
-  textarea {
-    min-height: 42%;
-    max-height: 100%;
+
+  .description-textarea {
+    bottom: 15%;
+    min-height: 28%;
   }
 }
 
@@ -564,7 +563,6 @@ input:focus, textarea:focus {
   
   .h4-add-task {
     bottom: 38%;
-    right: 26%;
     font-size: 2.2rem;
   }
   
@@ -615,10 +613,9 @@ input:focus, textarea:focus {
   input, textarea {
     font-size: 1rem;
   }
-  
-  textarea {
-    min-height: 23%;
-    max-height: 100%;
+  .description-textarea {
+    bottom: 5%;
+    min-height: 16%;
   }
 }
 
@@ -639,7 +636,6 @@ input:focus, textarea:focus {
   
   .h4-add-task {
     top: -37%;
-    right: 30%;
     font-size: 2.5rem;
   }
   
@@ -690,8 +686,9 @@ input:focus, textarea:focus {
   input, textarea {
     font-size: 1.2rem;
   }
-  
-  textarea {
-    min-height: 200px;
+
+  .description-textarea {
+    bottom: 7%;
+    min-height: 20%;
   }
 }

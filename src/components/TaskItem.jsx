@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/TaskItem.css';
 import TaskInfo from '../components/TaskInfo'; 
 
-function TaskItem({ task, completeTask, moveTaskUp, moveTaskDown, deleteTask, setIsToEdit, setEditedTaskId }) {
+function TaskItem({ task, completeTask, moveTaskUp, moveTaskDown, deleteTask, setIsToEdit, setEditedTaskId, activeTaskId, setActiveTaskId }) {
     const [isTaskInfoActive, setIsTaskInfoActive] = useState(false);
     const [isCompleted, setIsCompleted] = useState(task.completed);
     const [isDeleted, setIsDeleted] = useState(false);
@@ -10,8 +10,8 @@ function TaskItem({ task, completeTask, moveTaskUp, moveTaskDown, deleteTask, se
     const importanceText = task.importance === 1 ? "Important" : "Not Important";
     const urgencyText = task.urgency === 1 ? "Urgent" : "Not Urgent";
 
-    const importanceColor = task.importance === 1 ? "#4B4B4B" : "#FFD700";
-    const urgencyColor = task.urgency === 1 ? "#2C8F77" : "#F0E68C";
+    const importanceColor = task.importance === 1 ? "#1E3A8A" : "#18747E";
+    const urgencyColor = task.urgency === 1 ? "#6D2E6F" : "#6A0572";
 
     const handleCompleteTask = () => {
         setIsCompleted(prev => !prev);
@@ -33,8 +33,8 @@ function TaskItem({ task, completeTask, moveTaskUp, moveTaskDown, deleteTask, se
     return (
         <>
             <TaskInfo 
-                isTaskInfoActive={isTaskInfoActive} 
-                setIsTaskInfoActive={setIsTaskInfoActive}
+                isTaskInfoActive={activeTaskId === task.id} 
+                setIsTaskInfoActive={() => setActiveTaskId(task.id)}
                 task={task}
                 deleteTask={deleteTask}
                 setIsToEdit={setIsToEdit}
@@ -51,7 +51,7 @@ function TaskItem({ task, completeTask, moveTaskUp, moveTaskDown, deleteTask, se
                     ></button>
                     <button className="delete-button" onClick={handleDeleteTask}>—</button>
                 </div>
-                <div className="task" onClick={() => setIsTaskInfoActive(prev => !prev)}>
+                <div className="task" onClick={() => setActiveTaskId(task.id)}>
                     <h2 className="text" style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>
                         {task.text}
                     </h2>

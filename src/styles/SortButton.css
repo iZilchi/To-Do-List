@@ -6,7 +6,7 @@
   flex-direction: column;
   background-color: var(--primary-color);
   border-radius: 15px;
-  width: 84%;
+  width: 90%;
   height: 30%;
   z-index: 998;
   animation: fadeInBackground 0.5s forwards;
@@ -24,15 +24,46 @@
   background: transparent;
   border: var(--border);
   border-radius: 20px;
-  width: 85%;
+  width: 90%;
   height: 50%;
   bottom: 10%;
 }
 
 .sort-container button {
+  position: relative;
   animation: slideInRight 0.5s forwards;
   opacity: 0;
-  transition: transform 0.3s ease
+  transition: transform 0.3s ease;
+}
+
+.sort-container button::after {
+  content: attr(data-label);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  opacity: 0;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-size: 1rem;
+  padding: 4px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sort-container button:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(15px);
+}
+
+.sort-container button.completed-active:hover::after {
+  background-color: var(--completed-color);
+}
+
+.active-sort-label.completed-active {
+  color: var(--completed-color);
 }
 
 .sort-container button:nth-child(1) {
@@ -55,6 +86,7 @@
   border-radius: 12px;
   width: 60px;
   height: 60px;
+  cursor: pointer;
 }
 
 .sort-container img.completed-active {
@@ -63,52 +95,27 @@
 
 .sort-header {
   position: relative;
-  bottom: 5%;
-  right: 25%;
+  font-size: 1.5rem;
   color: var(--secondary-color);
+  text-align: center;
 }
 
 .sort-header.completed-active {
   color: var(--completed-color);
 }
 
-.sort-button {
-  position: relative;
-  bottom: 5%;
-  right: 0%;
-  font-size: 1.5rem;
-  background-color: var(--secondary-color);
-  width: 130px;
-  height: 60px;
-  border-radius: 20px;
-  color: var(--primary-color);
-  font-weight: 600;
-}
-
-.sort-button.sort-button.completed-active {
-  background-color: var(--completed-color);
-}
-
-
-.back-sort-button {
-  position: absolute;
-  bottom: 85%;
-  left: 87%;
-  color: var(--close-button);
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.sort-button:hover, .back-sort-button:hover {
-  transform: scale(1.2);
+.sort-button:hover {
+  transform: scale(1.05);
 }
 
 .sort-container img {
   transition: transform 0.3s ease;
 }
 
-.sort-container img:hover,
-.sort-container img:active,
+.sort-container img:hover {
+  transform: scale(1.05);
+}
+
 .sort-container img.active {
   transform: scale(1.2);
 }
@@ -132,29 +139,33 @@
   }
 
   .sort-container {
-    height: 40%;
+    height: 45%;
   }
 
   .sort-header {
-    top: 0%;
-    right: 27%;
+    padding-bottom: 10px;
+  }
+
+  .sort-container button:hover::after {
+    font-size: 1.1rem;
+    transform: translateX(-50%) translateY(15px);
   }
 }
 
 @media (min-width: 480px) {
   .main-container {
-    width: 75%;
-    height: 35%;
+    width: 80%;
+    height: 30%;
   }
 
   .sort-header {
-    top: 0%;
+    font-size: 1.6rem;
   }
 }
 
 @media (min-width: 768px) {
   .main-container {
-    width: 95%;
+    width: 100%;
     height: 30%;
     left: 55%;
   }
@@ -162,50 +173,52 @@
   .sort-header {
     top: 0%;
   }
+
+  .sort-container button:hover::after {
+    font-size: 1.3rem;
+  }
 }
 
 @media (min-width: 1024px) {
   .main-container {
-    width: 90%;
+    width: 100%;
     height: 40%;
     top: 30%;
     left: 100%;
   }
 
   .sort-header {
-    top: 1%;
+    font-size: 1.8rem;
   }
-  
-  .back-sort-button {
-    bottom: 80%;
-    left: 87%;
-    font-size: 1.5rem;
+
+  .sort-container button:hover::after {
+    font-size: 1.3rem;
   }
 }
 
 @media (min-width: 1280px) {
   .main-container {
-    width: 80%;
+    width: 90%;
     height: 40%;
-    left: 110%;
+    left: 100%;
   }
 
-  .sort-header {
-    top: 1%;
-    right: 23%;
+  .sort-container img {
+    width: 65px;
+    height: 65px;
   }
 }
 
 @media (min-width: 1440px) {
   .main-container {
-    width: 70%;
+    width: 80%;
     height: 35%;
-    left: 110%;
+    left: 100%;
   }
 
-  .sort-header {
-    top: 1%;
-    right: 23%;
+  .sort-container img {
+    width: 70px;
+    height: 70px;
   }
 }
 
@@ -217,13 +230,15 @@
   }
 
   .sort-header {
-    top: 1%;
-    right: 23%;
-    font-size: 2.8rem;
+    font-size: 2rem;
   }
 
   .sort-container img {
     width: 75px;
     height: 75px;
+  }
+
+  .sort-container button:hover::after {
+    font-size: 1.4rem;
   }
 }

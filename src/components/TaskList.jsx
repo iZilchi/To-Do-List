@@ -1,9 +1,16 @@
-import React from "react";
 import TaskItem from "./TaskItem";
+import React, { useState } from 'react';
+
 
 import '../styles/TaskList.css';
 
 function TaskList({tasks, completeTask, moveTaskUp, moveTaskDown, deleteTask, setIsToEdit, setEditedTaskId }){
+    const [activeTaskId, setActiveTaskId] = useState(null);
+
+    const handleSetActiveTask = (taskId) => {
+        setActiveTaskId(prevTaskId => (prevTaskId === taskId ? null : taskId));
+    };
+
     return (
         <div className="list-container">
             <ol>
@@ -17,6 +24,8 @@ function TaskList({tasks, completeTask, moveTaskUp, moveTaskDown, deleteTask, se
                         deleteTask = {deleteTask}
                         setIsToEdit = {setIsToEdit}
                         setEditedTaskId={setEditedTaskId}
+                        activeTaskId={activeTaskId}
+                        setActiveTaskId={handleSetActiveTask}
                     />
                 ))}
             </ol>
