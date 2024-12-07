@@ -8,9 +8,13 @@
   - View created tasks in the **_To-do_** View.
   - View the completed tasks in the **_Completed_** View.
 - **Task Management**
-  - Create tasks and categorize them by assigning its Importance and Urgency.
-  - Delete tasks by clicking on the "-" button.
-  - Mark tasks as completed by clicking on the "✓" button.
+  - **_Create_** tasks and categorize them by assigning its Importance and Urgency.
+  - **_Delete_** tasks by clicking on the "-" button.
+  - Mark tasks as **_completed_** by clicking on the "✓" button.
+- **Task Information Display**
+  - **_View_** the full information of tasks by clicking them in the list.
+  - **_Edit_** the tasks by clicking the edit button in the task info container.
+  - **_Delete_** the tasks by clicking the delete button in the task info container.
 - **Task Sorting**
   - Sort tasks by Importance and Urgency by clicking the **_Importance Urgency_** sort button.
   - Sort tasks by Importance by clicking the **_Importance_** sort button.
@@ -43,6 +47,15 @@
    - **TaskItem**
      - Contains the complete button, task name, manual sort buttons (up and down), and delete button.
      - Allows user to complete task, move their order up or down, and delete task.
+   - **TaskInfo**
+     - Contains the task title, priority, status, and description.
+     - Allows user to edit the task values or delete them.
+3. **About Page:**
+   - Contains the information about the following:
+     - **Product Description:** ***ProcrastiMate***
+     - **Computer Science Concept:** ***Eisenhower Matrix***
+     - **Custom Sorting Algorithm:** ***EisenSort***
+     - **Developers**
 #### Backend
 1. **Firebase User Authentication**
    - Handles user authentication and authorization.
@@ -69,6 +82,8 @@ The application offers a custom sorting algorithm that sorts the tasks into thre
  ### Framework
  The application based its custom sorting algorithm on a framework called the Eisenhower Matrix. This framework is used for managing tasks based on importance and urgency. The concept of Eisenhower Matrix is that tasks are categorized into ***Four Quadrants***:
  ![image](https://github.com/user-attachments/assets/e7f84752-3f90-4998-b34a-efd98aaffce5)
+ 
+ [Link for the Eisenhower Framework and Diagram **_- Asana_**](https://asana.com/resources/eisenhower-matrix)
 
 - **Tasks Categorization**
   - **Do**: Important & Urgent
@@ -168,7 +183,9 @@ To enhance the security of the web application, the following security mechanism
 To ensure the correctness and efficiency of the application, the developers thoroughly tested the overall functionality of the application from login to task completion to make sure that every features perform as how they are intended to. Morever, security mechanisms are added to constraint user and guide them in using the application ensuring that only the correct inputs are accepted. Lastly, the developers came up with a minimal UI for the application to make it easier for the user to use the application.
 
 ## VIII. How to Run the Project
-To run the application, the following requirements must be met:
+To run the application, make sure that you have the following dependencies used installed. You can do this by running this command once the code is cloned:
+`npm install`
+Once the dependencies are installed, you may now run the web application.
 
 Running the application:
 1. Open the folder where the code is located.
@@ -185,11 +202,15 @@ Running the application:
 
 ## IX. Contributors
 - **Front End Developer**
-  - **Pagcaliuangan, Kent Melard D.** <!-- Lagyan ng mention -->
+  - **Pagcaliuangan, Kent Melard D.** 
 - **Back End Developer**
-  - **Landicho, Alessandra Marie M.** <!-- Lagyan ng mention -->
+  - **Landicho, Alessandra Marie M.** 
 - **Full Stack Developer**
-  - **Padua, Chris Justine L.** <!-- Lagyan ng mention -->
+  - **Padua, Chris Justine L.**
 
 ## X. Acknowledgement
+We would like to express our heartfelt gratitude to our professor **Ms. Fatima Marie P. Agdon** for her invaluable guidance, constructive suggestions, and encouragement throughout the development of this project. Her insights and support played a vital role in shaping this program and improving its overall quality.
 
+We would also like to extend our appreciation to our frontend developer, **Kent Melard D. Pagcaliuangan**, and backend developer, **Alessandra Marie M. Landicho**, for their exceptional dedication, hard work, and creativity. Their relentless efforts and skills were instrumental in bringing this project to fruition.
+
+This project is the result of the collective contributions and commitment of everyone involved, and we are truly grateful for their efforts.
