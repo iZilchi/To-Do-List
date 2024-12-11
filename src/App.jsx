@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import ProtectedRoute from './Protectedroute';
-import Auth from './Login'; // Your login/signup component
-import ToDoList from './ToDoList'; // Your protected component
+import ProtectedRoute from './protectedroute';
+import Auth from './Login'; 
+import ToDoList from './ToDoList'; 
 
 function App() {
     return (

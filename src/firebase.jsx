@@ -1,5 +1,4 @@
-//need ang buong file na ito para sa realtime database
-//link para makita content ng database na iniinput
+// DATABASE LINK:
 // https://to-do-list-fee57-default-rtdb.asia-southeast1.firebasedatabase.app/tasks 
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";

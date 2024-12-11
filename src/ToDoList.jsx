@@ -35,7 +35,6 @@ function ToDoList() {
         urgency: "../src/assets/Urgency.png",
     };
 
-    // Logout function
     const handleLogout = async () => {
         try {
             await signOut(auth);  
@@ -48,10 +47,10 @@ function ToDoList() {
 
     const handleTaskClick = (task) => {
         setSelectedTask(task);
-        setIsTaskInfoActive(true); // Optionally show the TaskInfo section
+        setIsTaskInfoActive(true); 
     };
 
-    // Fetch tasks for the logged-in user
+    // READ TASK FOR USER ACCOUNT
     useEffect(() => {
         const userUid = auth.currentUser?.uid;
         if (userUid) {
@@ -70,27 +69,26 @@ function ToDoList() {
                     setTasks(tasksList);
                 } catch (error) {
                     console.error("Error Fetching Tasks: ", error.message);
-                    setTasks([]); // Ensure tasks is reset to an empty array if there's an error
+                    setTasks([]);
                 }
             });            
         } else {
-            navigate('/');  // Redirect to login if the user is not authenticated
+            navigate('/');
         }
     }, [navigate]);
     
 
-    // Calculate progress based on completed tasks
+    // PROGRESS BAR
     const calculateProgress = () => {
         const completedTasks = tasks.filter(task => task.completed).length;
         return tasks.length ? (completedTasks / tasks.length) * 100 : 0;
     };
 
-    // Update progress whenever tasks change
     useEffect(() => {
         setProgress(calculateProgress());
     }, [tasks]);
 
-    // Sort tasks by importance and urgency
+    // SORTING ALGORITHM
     const eisenSort = (tasks, activeSort) => {
         return tasks.slice().sort((a, b) => {
             if (activeSort === "importance-urgency") {
@@ -107,7 +105,7 @@ function ToDoList() {
 
     const sortedTasks = eisenSort(tasks.filter(task => activeDisplay === "to-do" ? !task.completed : task.completed), activeSort);
 
-    // Save order to Firebase when sorting changes
+    // SAVE CURRENT STATE
     useEffect(() => {
         const userUid = auth.currentUser?.uid;
         if (userUid && sortedTasks.length) {
@@ -122,7 +120,6 @@ function ToDoList() {
         }
     }, [sortedTasks, auth.currentUser, database]);
 
-    // Add a new task for the authenticated user
     const addTask = (text, description, importance, urgency) => {
         if (text.trim()) {
           const userUid = auth.currentUser?.uid;
@@ -150,7 +147,6 @@ function ToDoList() {
         }
       };
 
-      // Edit an existing task
     const editTask = (id, text, description, importance, urgency) => {
         if (text.trim()){
             const userUid = auth.currentUser?.uid;
@@ -177,7 +173,6 @@ function ToDoList() {
 
     const taskToEdit = isToEdit ? tasks.find(task => task.id === editedTaskId) : null;
     
-    // Toggle task completion status
     const completeTask = (id) => {
         const userUid = auth.currentUser?.uid;
         if (userUid) {
@@ -199,7 +194,6 @@ function ToDoList() {
         if (index > 0) {
             const updatedDisplayedTasks = [...sortedTasks];
     
-            // Swap the `order` and `initialOrder` values
             const tempOrder = updatedDisplayedTasks[index].order;
             const tempInitialOrder = updatedDisplayedTasks[index].initialOrder;
     
@@ -208,15 +202,13 @@ function ToDoList() {
     
             updatedDisplayedTasks[index - 1].order = tempOrder;
             updatedDisplayedTasks[index - 1].initialOrder = tempInitialOrder;
-    
-            // Update the tasks array
+
             const updatedTasks = tasks.map(task => {
                 const updatedTask = updatedDisplayedTasks.find(updated => updated.id === task.id);
                 return updatedTask || task;
             });
             setTasks(updatedTasks);
-    
-            // Update Firebase
+
             const userUid = auth.currentUser?.uid;
             if (userUid) {
                 try {
@@ -236,8 +228,7 @@ function ToDoList() {
     
         if (index < sortedTasks.length - 1) {
             const updatedDisplayedTasks = [...sortedTasks];
-    
-            // Swap the `order` and `initialOrder` values
+   
             const tempOrder = updatedDisplayedTasks[index].order;
             const tempInitialOrder = updatedDisplayedTasks[index].initialOrder;
     
@@ -247,14 +238,12 @@ function ToDoList() {
             updatedDisplayedTasks[index + 1].order = tempOrder;
             updatedDisplayedTasks[index + 1].initialOrder = tempInitialOrder;
     
-            // Update the tasks array
             const updatedTasks = tasks.map(task => {
                 const updatedTask = updatedDisplayedTasks.find(updated => updated.id === task.id);
                 return updatedTask || task;
             });
             setTasks(updatedTasks);
     
-            // Update Firebase
             const userUid = auth.currentUser?.uid;
             if (userUid) {
                 try {
@@ -269,8 +258,6 @@ function ToDoList() {
         }
     };
     
-
-    // Delete a task
     const deleteTask = (id) => {
         const userUid = auth.currentUser?.uid;
         if (userUid) {
