@@ -174,7 +174,7 @@ To enhance the security of the web application, the following security mechanism
 
 ## VI. Development Process and Design Decisions
 **Computer Science Theory Influence:**
-- The developers used **List** data structure for storing the list of tasks. This is because it allows for flexible storage of datas related to tasks that have different values unlike arrays. The data for task, value for importance and urgency, and the order of the tasks are dynamically stored in list.
+- The developers used **List** data structure for storing the list of tasks. This is because it allows for flexible storage of data related to tasks that have different values unlike arrays. The data for task, value for importance and urgency, and the order of the tasks are dynamically stored in list.
 - The developers utilized **Firebase API** because it has realtime database and user authentication that is easy to implement since we are new to using APIs.
 - The design of the application is directed towards **minimalist design**. The developers want to make the application easy to use by offering a simple design that user can easily comprehend.
 - **React library** is utilized in developing the application. This lets the developers organize their codes thanks to the library's ability to create components. Through this, maintaining a part of the application is easier and efficient.
