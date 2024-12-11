@@ -50,9 +50,9 @@ function About({ activeDisplay, isAboutActive, setIsAboutActive }) {
                         <div className="profile-container">
                             <fieldset className={`profile ${activeDisplay === "completed" ? "completed-active" : ""}`}>
                                 <legend>Back End Developer</legend>
-                                <img className="prof-pic" src="profile-pic-alessandra.jpg" alt="Alessandra Marie M. Landicho" />
+                                <img className="prof-pic" src="../src/assets/profile/alyssa-pfp.jpg" alt="Alessandra Marie M. Landicho" />
                                 <h5 className="name">Alessandra Marie M. Landicho</h5>
-                                <a href="">Github Profile: "___"</a>
+                                <a href="https://github.com/alyssaml">Github Profile: "alyssaml"</a>
                             </fieldset>
 
                             <fieldset className={`profile ${activeDisplay === "completed" ? "completed-active" : ""}`}>
